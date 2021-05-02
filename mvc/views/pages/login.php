@@ -1,53 +1,60 @@
-<div class="container login-container">
-            <div class="row">
-                <div class="col-md-8 login-form-1">
-                    <h3>Đăng nhập</h3>
-                    <form method="post">
-                        <?php
-                            if(isset($data["Err"])) {
-                                echo "<div class='alert alert-primary' role='alert'>
-                                ${data['Err']}
-                              </div>";
-                            };
-                        ?>
-                        <div class="form-group">
-                            <input type="text" name="username" class="form-control" placeholder="Mã giảng viên" value="" required/>
-                        </div>
-                        <div class="form-group">
-                            <input type="password" name="password" class="form-control" placeholder="Mật khẩu" value="" required/>
-                        </div>
-                        <div class="form-group">
-                            <input type="submit" name="gvsubmit" class="btnSubmit" value="Đăng nhập" />
-                        </div>
-                        <div class="form-group">
-                            <a href="#" class="ForgetPwd">Quên mật khẩu?</a>
-                        </div>
-                    </form>
-                </div>
-                <div class="col-md-4 login-form-2">
-                    <h3>Nếu bạn là sinh viên</h3>
-                    <form method="post" action="">
-                    <?php
-                            if(isset($data["Err1"])) {
-                                echo "<div class='alert alert-primary' role='alert'>
-                                ${data['Err1']}
-                              </div>";
-                            };
-                        ?>
-                        <div class="form-group">
-                            <input type="text" name="username" class="form-control" placeholder="Mã số sinh viên" value="" />
-                        </div>
-                        <div class="form-group">
-                            <input type="password" name="password" class="form-control" placeholder="Mật khẩu" value="" />
-                        </div>
-                        <div class="form-group">
-                            <input type="submit" name="svsubmit" class="btnSubmit" value="Đăng nhập" />
-                        </div>
-                        <div class="form-group">
+<link rel="stylesheet" href="public/css/style.css">
+<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<div class="login100-pic js-tilt" data-tilt>
+					<img src="https://colorlib.com/etc/lf/Login_v1/images/img-01.png" alt="IMG">
+				</div>
 
-                            <a href="#" class="ForgetPwd" value="Login">Quên mật khẩu?</a>
-                        </div>
-                    </form>
-            </div>
-        </div>
+				<form class="login100-form validate-form" method="POST">
+					<h3 class="login100-form-title">
+						LOGIN
+					</h3>
+					<?php
+						if(isset($data["Err"]))
+						{
+							echo "<span style='color: red'>${data['Err']}</span>";
+						}
+					?>
+					<div class="wrap-input100 validate-input">
+						<input class="input100" type="text" name="username" placeholder="Tên tài khoản">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+                            <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+						</span>
+					</div>
+
+					<div class="wrap-input100 validate-input">
+						<input class="input100" type="password" name="password" placeholder="Mật khẩu">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-lock" aria-hidden="true"></i>
+						</span>
+					</div>
+
+					<div class="container-login100-form-btn">
+						<button class="login100-form-btn" name="login-submit">
+							ĐĂNG NHẬP
+						</button>
+					</div>
+
+					<div class="text-center p-t-12">
+						<!-- <span class="txt1">
+							Forgot
+						</span>
+						<a class="txt2" href="#">
+							Username / Password?
+						</a> -->
+					</div>
+
+					<!-- <div class="text-center p-t-136">
+						<a class="txt2" href="#">
+							Create your Account
+							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+						</a>
+					</div> -->
+				</form>
+			</div>
+		</div>
+	</div>
 </div>

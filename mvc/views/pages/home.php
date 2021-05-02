@@ -1,3 +1,3 @@
 <?php
-    echo "Đây là trang chủ";
+    echo "Home Page";
 ?>

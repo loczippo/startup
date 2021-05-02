@@ -1,17 +1,10 @@
 <?php
     class Home extends Controller{
         function Index() {
-            // models
-            $username = null;
-            if(isset($_SESSION['username'])) {
-                $username = $_SESSION['username'];
-            }
-            $SinhVien = $this->model("SinhVienModel");
-            $data = $SinhVien->GetSV1($username);
-            $view = $this->view("Layout1", [
-                "SinhVien" => $data,
+            //$SinhVien = $this->model("SinhVienModel");
+            //$data = $SinhVien->GetSV1($username);
+            $view = $this->view("Layout1", __CLASS__, [
                 "Page" => "home",
-                "Username" => $username?$username:null
             ]);
             echo $view;
             // while($row = mysqli_fetch_array($data)) {
@@ -20,15 +13,6 @@
 
             // views
             
-        }
-        function Show() {
-            $SinhVien = $this->model("SinhVienModel");
-            $name = $SinhVien->GetSV();
-            $view = $this->view("Layout1", [
-                "SinhVien" => $name,
-                "Page" => "news",
-                ]);
-            echo $view;
         }
     }
 ?>
