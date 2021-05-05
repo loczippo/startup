@@ -2,7 +2,7 @@
 <div class="container-fluid mt-3">
     <div class="card">
         <div class="card-header">
-            <h6><img class="img-fluid" src="public/img/star.gif" alt="" width="40">HOME -> ADMIN PANEL</h6>
+            <h6><img class="img-fluid" src="public/img/star.gif" alt="" width="40">HOME -> ADMIN PANEL ->INSERT DATA</h6>
         </div>
         <form method="POST" name="upload" id="upload" enctype="multipart/form-data">
             <div class="card-body">
@@ -24,6 +24,9 @@
         </form>
     </div>
     <div class="card mt-3">
+        <div class="card-header">
+            <h6><img class="img-fluid" src="public/img/star.gif" alt="" width="40">HOME -> ADMIN PANEL ->HAND OVER WORK</h6>
+        </div>
         <form method="POST" action="Upload" name="handing" id="handing">
             <div class="card-body">
                 <h5 class="card-title">Bàn giao công việc</h5>
@@ -59,16 +62,19 @@ document.addEventListener('DOMContentLoaded', (event) => {
     $("form#upload").submit(function(e) {
         e.preventDefault();    
         var formData = new FormData(this);
+        var a = window.performance.now();
         $.ajax({
             url: 'Upload',
             type: 'POST',
             data: formData,
             success: function (data) {
-                if(data == 'failed') {
-                    sweetalert2('Oops!','Đã có lỗi xảy ra, vui lòng kiểm tra lại','error','OKAY');
+                if(data == 'successfuly') {
+                    var b = window.performance.now();
+                    var seconds = ((b-a) / 1000).toFixed(1);
+                    sweetalert2('Successfuly','Insert dữ liệu thành công trong '+seconds+' giây','success','HAPPY');
                 }
                 else {
-                    sweetalert2('Successfuly','Insert dữ liệu thành công','success','HAPPY');
+                    sweetalert2('Oops!','Đã có lỗi xảy ra, vui lòng kiểm tra lại','error','OKAY');
                 }
             },
             cache: false,

@@ -10,20 +10,24 @@
                 if($row == "") {
                     break;
                 }
-                else {
-                    echo "<a href='StaffData/DataEntry/All/${row[0]}' class='btn btn-success' type='button'>Nhập Data</a>";
+                
+                if($row[5] == NULL) {
+                    echo "<a href='StaffData/DataEntry/${row[0]}' class='btn btn-success' type='button'>Nhập Data</a>";
                     break;
                 }
             }
         ?>
-        <table class="table mt-3 mb-3 mx-auto table-hover">
+        
+        <div class="table-responsive-sm">
+        <table class="table table-sm mt-3 mb-3 mx-auto table-hover">
             <thead>
                 <tr>
                 <th scope="col">#</th>
                 <th scope="col">Họ và tên</th>
                 <th scope="col">CMND</th>
                 <th scope="col">Số điện thoại</th>
-                <th scope="col">Hạn mức</th>
+                <!-- <th scope="col">Hạn mức</th> -->
+                <th scope="col">Trạng thái</th>
                 <th scope="col">Action</th>
                 </tr>
             </thead>
@@ -44,14 +48,32 @@
                         return $number;
                     }
                     $i=1;
+                    
                     foreach($data["Customer"] as $row) {
                         $money = formatMoney($row[4]);
+                        $ngayhen = $row[8];
+                        $today = date("Y-m-d H:i:s");
+                        if($row[5] == "Không nhu cầu" || $row[5] == "Có nhu cầu") {
+                            continue;
+                        }
+                        if($ngayhen != NULL) {
+                            if(($ngayhen>$today)) {
+                                continue;
+                            }
+                        }
                         echo "<tr>";
                         echo "<th>${i}</th>";
                         echo "<td>${row[1]}</td>";
                         echo "<td>${row[2]}</td>";
                         echo "<td>${row[3]}</td>";
-                        echo "<td>${money}</td>";
+                        if($row[5] == NULL)
+                        {
+                            $status="Chưa cập nhật";
+                            echo "<td>${status}</td>";
+                        } 
+                        else {
+                            echo "<td>${row[5]}</td>";
+                        }
                         echo "<td><a href='StaffData/DataEntry/${row[0]}' class='btn btn-success' type='button'>Nhập</a></td>";
                         echo "</tr>";
                         $i++;
@@ -62,6 +84,7 @@
                 ?>
             </tbody>
         </table>
+        </div>
         </div>
     </div>
 </div>

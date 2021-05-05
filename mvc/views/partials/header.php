@@ -1,3 +1,4 @@
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="">Navbar</a>
@@ -9,9 +10,15 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="">Home</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Features</a>
-        </li>
+        <?php
+          if(isset($_SESSION['role'])) {
+            if($_SESSION['role'] == "admin") {
+            echo "<a class='nav-link' href='/PanelAdmin/InsertData'>
+            Insert Data
+            </a>";
+            }
+          }
+        ?>
         <li class="nav-item">
           <a class="nav-link" href="#">Pricing</a>
         </li>
@@ -62,6 +69,7 @@
             }
         }
       ?>
+      
     </div>
   </div>
 </nav>

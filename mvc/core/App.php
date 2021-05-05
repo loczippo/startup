@@ -12,10 +12,12 @@
 
             // xử lý controllers
             // file_exits kiểm tra file có tồn tại không
-            if( file_exists("./mvc/controllers/".$arr[0].".php") ){
-                $this->controller = $arr[0];
-                // hủy kết quả sau khi lấy
-                unset($arr[0]);
+            if(isset($arr[0])) {
+                if( file_exists("./mvc/controllers/".$arr[0].".php") ){
+                    $this->controller = $arr[0];
+                    // hủy kết quả sau khi lấy
+                    unset($arr[0]);
+                }
             }
             require_once("./mvc/controllers/".$this->controller.".php");
             // xử lý actional
