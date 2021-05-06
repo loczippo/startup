@@ -6,9 +6,9 @@
             if( !isset($_SESSION['username'])) {
                 header("Location: /Login");
             }
-            // if($_SESSION['username'] == "admin") {
-            //     header("Location: /PanelAdmin/ViewData");
-            // }
+            if($_SESSION['role'] == "admin") {
+                header("Location: /PanelAdmin/ViewData");
+            }
             if($_SESSION['role'] == "nhanvien") {
                 header("Location: /StaffData");
             }
