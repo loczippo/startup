@@ -21,17 +21,19 @@
         }
 
         function ViewData() {
+            
             if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['username'])) {
                 $userid = $_POST['username'];
+                //header("Location: /PanelAdmin/ViewData/${userid}");
                 $Customer = $this->model("CustomerModel");
-                $data = mysqli_fetch_all($Customer->GetCustomer($userid));
+                $data = mysqli_fetch_all($Customer->GetCustomer1($userid));
                 $view = $this->view("Layout1",__CLASS__, [
                     "Page" => "staffdata",
                     "Customer" => $data,
                 ]);
                 echo $view;
-                die;
             }
+            
             if($_SESSION['role'] != "admin") die;
             $Account = $this->model("AccountModel");
             $data = mysqli_fetch_all($Account->GetNhanVien());

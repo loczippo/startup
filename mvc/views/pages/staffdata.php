@@ -6,16 +6,16 @@
         </div>
         <div class="card-body">
         <?php
-            foreach($data["Customer"] as $row) {
-                if($row == "") {
-                    break;
+                foreach($data["Customer"] as $row) {
+                    if($row == "") {
+                        break;
+                    }
+                    
+                    if($row[5] == NULL) {
+                        echo "<a href='StaffData/DataEntry/${row[0]}' class='btn btn-success' type='button'>Nhập Data</a>";
+                        break;
+                    }
                 }
-                
-                if($row[5] == NULL) {
-                    echo "<a href='StaffData/DataEntry/${row[0]}' class='btn btn-success' type='button'>Nhập Data</a>";
-                    break;
-                }
-            }
         ?>
         
         <div class="table-responsive-sm">
@@ -53,12 +53,14 @@
                         $money = formatMoney($row[4]);
                         $ngayhen = $row[8];
                         $today = date("Y-m-d H:i:s");
-                        if($row[5] == "Không nhu cầu" || $row[5] == "Có nhu cầu") {
-                            continue;
-                        }
-                        if($ngayhen != NULL) {
-                            if(($ngayhen>$today)) {
+                        if($_SESSION['role'] != "admin") {
+                            if($row[5] == "Không nhu cầu" || $row[5] == "Có nhu cầu" || $row[5] == "Khác") {
                                 continue;
+                            }
+                            if($ngayhen != NULL) {
+                                if(($ngayhen>$today)) {
+                                    continue;
+                                }
                             }
                         }
                         echo "<tr>";

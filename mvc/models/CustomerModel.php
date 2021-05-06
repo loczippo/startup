@@ -5,6 +5,10 @@
             $qr = "SELECT * FROM customers where userid = '${userid}' Order by ngayhen desc, trangthai asc";
             return mysqli_query($this->connection, $qr);
         }
+        public function GetCustomer1($userid) {
+            $qr = "SELECT * FROM customers where userid = '${userid}'";
+            return mysqli_query($this->connection, $qr);
+        }
         public function GetCustomerForCustomerID($customerID) {
             $qr = "SELECT * FROM customers where customerid = '${customerID}'";
             return mysqli_query($this->connection, $qr);
