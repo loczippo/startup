@@ -27,8 +27,8 @@ SET time_zone = "+00:00";
 -- Cấu trúc bảng cho bảng `accounts`
 --
 
-DROP TABLE IF EXISTS `accounts`;
-CREATE TABLE IF NOT EXISTS `accounts` (
+DROP TABLE IF EXISTS `CRM_accounts`;
+CREATE TABLE IF NOT EXISTS `CRM_accounts` (
   `userid` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(20) NOT NULL,
   `password` varchar(20) NOT NULL,
@@ -37,13 +37,13 @@ CREATE TABLE IF NOT EXISTS `accounts` (
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
--- Đang đổ dữ liệu cho bảng `accounts`
+-- Đang đổ dữ liệu cho bảng `CRM_accounts`
 --
 
-INSERT INTO `accounts` (`userid`, `username`, `password`, `role`) VALUES
-(1, 'admin', '123', 'admin'),
-(2, 'loczippo', '123', 'nhanvien'),
-(3, 'demo', '123', 'nhanvien');
+INSERT INTO `CRM_accounts` (`userid`, `username`, `password`, `role`) VALUES
+(1, 'admin', 'abc@123', 'admin'),
+(2, 'nhanvien1', 'abc@123', 'nhanvien'),
+(3, 'nhanvien2', 'abc@123', 'nhanvien');
 
 -- --------------------------------------------------------
 
@@ -51,8 +51,8 @@ INSERT INTO `accounts` (`userid`, `username`, `password`, `role`) VALUES
 -- Cấu trúc bảng cho bảng `customers`
 --
 
-DROP TABLE IF EXISTS `customers`;
-CREATE TABLE IF NOT EXISTS `customers` (
+DROP TABLE IF EXISTS `CRM_customers`;
+CREATE TABLE IF NOT EXISTS `CRM_customers` (
   `customerid` int(11) NOT NULL AUTO_INCREMENT,
   `hoten` varchar(30) NOT NULL,
   `cmnd` varchar(11) NOT NULL,
