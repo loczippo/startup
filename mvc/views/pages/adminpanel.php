@@ -23,7 +23,7 @@
             </div>
         </form>
     </div>
-    <div class="card mt-3">
+    <!-- <div class="card mt-3">
         <div class="card-header">
             <h6><img class="img-fluid" src="public/img/star.gif" alt="" width="40">HOME -> ADMIN PANEL ->HAND OVER WORK</h6>
         </div>
@@ -33,9 +33,9 @@
                 <div class="form-floating">
                     <select class="form-select" id="username" name="username">
                         <?php
-                            foreach($data["Nhanvien"] as $row) {
-                                echo "<option value='${row[0]}'>${row[1]}</option>";
-                            }
+                            // foreach($data["Nhanvien"] as $row) {
+                            //     echo "<option value='${row[0]}'>${row[1]}</option>";
+                            // }
                         ?>
                     </select>
                     <label for="username">Nhân viên muốn chuyển</label>
@@ -43,9 +43,9 @@
                 <div class="form-floating mt-3">
                     <select class="form-select" id="username-new" name="username-new">
                         <?php
-                            foreach($data["Nhanvien"] as $row) {
-                                echo "<option value='${row[0]}'>${row[1]}</option>";
-                            }
+                            // foreach($data["Nhanvien"] as $row) {
+                            //     echo "<option value='${row[0]}'>${row[1]}</option>";
+                            // }
                             
                         ?>
                     </select>
@@ -54,7 +54,7 @@
                 <button class="btn btn-success mt-2">Chuyển</button>
             </div>
         </form>
-    </div>
+    </div> -->
 </div>
 
 <script>
