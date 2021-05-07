@@ -4,18 +4,18 @@
         <div class="card-header">
             <h6><img class="img-fluid" src="public/img/star.gif" alt="" width="40">HOME -> ADMIN PANEL -> DETAILS</h6>
         </div>
-        <form method="POST" action="/PanelAdmin/ViewData" name="handing" id="handing">
+        <form method="GET" action="/PanelAdmin/ViewData" name="handing" id="handing">
             <div class="card-body">
                 <h5 class="card-title">Chi tiết công việc</h5>
                 <div class="form-floating">
-                    <select class="form-select" id="username" name="username">
+                    <select class="form-select" id="userid" name="userid">
                         <?php
                             foreach($data["Nhanvien"] as $row) {
                                 echo "<option value='${row[0]}'>${row[1]}</option>";
                             }
                         ?>
                     </select>
-                    <label for="username">Nhân viên muốn hiển thị</label>
+                    <label for="userid">Nhân viên muốn hiển thị</label>
                 </div>
                 <button class="btn btn-success mt-2">Hiển thị</button>
             </div>

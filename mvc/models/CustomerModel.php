@@ -6,7 +6,15 @@
             return mysqli_query($this->connection, $qr);
         }
         public function GetCustomer1($userid) {
-            $qr = "SELECT * FROM customers where userid = '${userid}'";
+            $qr = "SELECT * FROM CRM_customers where userid = '${userid}'";
+            return mysqli_query($this->connection, $qr);
+        }
+        public function GetCustomer2($userid, $trangthai) {
+            $qr = "SELECT * FROM CRM_customers where userid = '${userid}' and trangthai ='${trangthai}'";
+            return mysqli_query($this->connection, $qr);
+        }
+        public function GetCustomer3($userid) {
+            $qr = "SELECT * FROM CRM_customers where userid = '${userid}' and trangthai IS NULL";
             return mysqli_query($this->connection, $qr);
         }
         public function GetCustomerForCustomerID($customerID) {

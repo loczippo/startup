@@ -61,7 +61,6 @@
                 $sotien = $_POST['sotien'];
                 $ngayhen = $_POST['ngayhen'];
                 $ngaygoi = date("Y-m-d");
-                
                 if(strlen($sotien) !=0 && $trangthai=="Có nhu cầu") {
                     $Customer->UpdateCustomerCNC($customerid, $hoten, $cmnd, $sodt, $hanmuc, $trangthai, $ghichu, $sotien, $ngaygoi);
                 }
