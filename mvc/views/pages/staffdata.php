@@ -6,6 +6,7 @@
         </div>
         <div class="card-body">
         <?php
+            if($_SESSION['role'] != "admin") {
                 foreach($data["Customer"] as $row) {
                     if($row == "") {
                         break;
@@ -16,10 +17,47 @@
                         break;
                     }
                 }
+            }
+            if($_SESSION['role'] == "admin") {
+                echo "<div class='d-flex'>";
+                echo "<div>";
+                    echo "<form method='POST' action=''>
+                    <div class='form-floating'>
+                    <select style='width: 200px' class='form-select' id='trangthai' name='trangthai'>
+                        <option value='Tất cả'>Tất cả</option>
+                        <option value='Có nhu cầu'>Có nhu cầu</option>
+                        <option value='Không bắt máy'>Không bắt máy</option>
+                        <option value='Hẹn gọi lại'>Hẹn gọi lại</option>
+                        <option value='Khác'>Khác</option>
+                        <option value='Chửi'>Chửi</option>
+                    </select>
+                    <label for='trangthai'>Trạng thái</label>
+                    </div>
+                    <button type='submit' class='btn btn-success mt-1'>Lọc</button>
+                    </form>";
+                echo "</div>";
+                echo "<div style='margin-left:10px'>";
+                    echo "<form method='POST' action='' name='handing' id='handing'>
+                    <div class='form-floating'>
+                    <select style='width: 220px' class='form-select' id='uid' name='uid'>";
+                        foreach($data["Nhanvien"] as $row) {
+                            echo "<option value='${row[0]}'>${row[1]}</option>";
+                        }
+                    echo "</select>
+                    <label for='trangthai'>Chọn NV muốn chuyển</label>
+                    </div>
+                    <button type='submit' class='btn btn-success mt-1'>Chuyển</button>
+                    <br/>
+                    ";
+                echo "</div>";
+                echo "</div>";
+                echo "<input style='' class='mt-4' type='checkbox' id='checkbox-all'/> Chọn tất cả";                    
+                echo "<input type='text' id='myInput' class='form-control' style='width: 200px'>";
+            }
         ?>
         
         <div class="table-responsive-sm">
-        <table class="table table-sm mt-3 mb-3 mx-auto table-hover">
+        <table class="table table-sm mb-3 mx-auto table-hover">
             <thead>
                 <tr>
                 <th scope="col">#</th>
@@ -31,7 +69,7 @@
                 <th scope="col">Action</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id='myTable'>
                 <?php
                     function formatMoney($number, $fractional=false) {  
                         if ($fractional) {  
@@ -54,7 +92,7 @@
                         $ngayhen = $row[8];
                         $today = date("Y-m-d H:i:s");
                         if($_SESSION['role'] != "admin") {
-                            if($row[5] == "Không nhu cầu" || $row[5] == "Có nhu cầu" || $row[5] == "Khác") {
+                            if($row[5] == "Không nhu cầu" || $row[5] == "Có nhu cầu" || $row[5] == "Khác" || $row[5] == "Chửi") {
                                 continue;
                             }
                             if($ngayhen != NULL) {
@@ -64,7 +102,7 @@
                             }
                         }
                         echo "<tr>";
-                        echo "<th>${i}</th>";
+                        echo "<th><input type='checkbox' name='customerIds[]' value='${row[0]}'/>${i}</th>";
                         echo "<td>${row[1]}</td>";
                         echo "<td>${row[2]}</td>";
                         echo "<td>${row[3]}</td>";
@@ -86,8 +124,66 @@
                 ?>
             </tbody>
         </table>
+        <?php echo "</form>"; ?>
         </div>
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var checkboxAll = $('#checkbox-all');
+        var customerItemCheckbox = $('input[name="customerIds[]"]')
+        //console.log(customerItemCheckbox)
+        // check click
+        checkboxAll.change(function() {
+            var isCheckedAll = $(this).prop('checked');
+            customerItemCheckbox.prop('checked', isCheckedAll);
+        })
+        customerItemCheckbox.change(function() {
+            var isCheckedAll = customerItemCheckbox.length === $('input[name="customerIds[]"]:checked').length;
+            checkboxAll.prop('checked', isCheckedAll);
+        })
+        $(document).ready(function(){
+            $("#myInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+            $("form#handing").submit(function(e) {
+                e.preventDefault();    
+                var formData = new FormData(this);
+                $.ajax({
+                    url: '',
+                    type: 'POST',
+                    data: formData,
+                    success: function (data) {
+                        if(data == 'successfuly') {
+                            sweetalert2('Successfuly','Chuyển dữ liệu sang thành công','success','HAPPY');
+                        }
+                        else {
+                            sweetalert2('Oops!','Đã có lỗi xảy ra, vui lòng kiểm tra lại','error','OKAY');
+                        }
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                });
+            });
+            function sweetalert2(title, text, action, btn){
+                Swal({
+                    title: title,
+                    text: text,
+                    type: action,
+                    confirmButtonText: btn
+                }).then((result) => {
+                    if (result.value) {
+                        location.reload();
+                    }
+                })
+            }
+        });
+    })
+</script>
 

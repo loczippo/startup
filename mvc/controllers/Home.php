@@ -7,7 +7,7 @@
                 header("Location: /Login");
             }
             if($_SESSION['role'] == "admin") {
-                header("Location: /PanelAdmin/ViewData");
+                header("Location: /PanelAdmin");
             }
             if($_SESSION['role'] == "nhanvien") {
                 header("Location: /StaffData");
