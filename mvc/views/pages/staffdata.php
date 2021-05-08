@@ -86,7 +86,7 @@
                         return $number;
                     }
                     $i=1;
-                    
+                    $count=0;
                     foreach($data["Customer"] as $row) {
                         $money = formatMoney($row[4]);
                         $ngayhen = $row[8];
@@ -117,6 +117,7 @@
                         echo "<td><a href='StaffData/DataEntry/${row[0]}' class='btn btn-success' type='button'>Nhập</a></td>";
                         echo "</tr>";
                         $i++;
+                        $count++;
                     }
                     if($data["Customer"] == null) {
                         echo "<tr><td  class='text-center' colspan='6'>Không có data nào dành cho bạn</td></tr>";
@@ -124,6 +125,16 @@
                 ?>
             </tbody>
         </table>
+        <span>
+                    <?php
+                        if($count==0) {
+                            echo "Tổng cộng có <b>0</b> bản ghi";
+                        }
+                        else {
+                            echo "Tổng cộng có <b>${count}</b> bản ghi";
+                        }
+                    ?>
+            </span>
         <?php echo "</form>"; ?>
         </div>
         </div>
