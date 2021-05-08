@@ -6,7 +6,7 @@
                 $this->confirm($_POST['username'], $_POST['password']);
                 die();
             }
-            $view = $this->view("Layout1", __CLASS__, [
+            $view = $this->view("Layout2", __CLASS__, [
                 "Page" => "login",
             ]);
             echo $view;
