@@ -46,7 +46,7 @@
                     echo "</select>
                     <label for='trangthai'>Chọn NV muốn chuyển</label>
                     </div>
-                    <button type='submit' class='btn btn-success mt-1'>Chuyển</button>
+                    <button type='submit' id='checkall-btn-submit' class='btn btn-success mt-1' disabled>Chuyển</button>
                     <br/>
                     ";
                 echo "</div>";
@@ -133,6 +133,7 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         var checkboxAll = $('#checkbox-all');
+        var checkAllSubmitBtn = $('#checkall-btn-submit');
         var customerItemCheckbox = $('input[name="customerIds[]"]')
         //console.log(customerItemCheckbox)
         // check click
@@ -143,7 +144,17 @@
         customerItemCheckbox.change(function() {
             var isCheckedAll = customerItemCheckbox.length === $('input[name="customerIds[]"]:checked').length;
             checkboxAll.prop('checked', isCheckedAll);
+            RenderButtonChuyen();
         })
+        function RenderButtonChuyen() {
+            var checkedCount = $('input[name="customerIds[]"]:checked').length;
+            if(checkedCount >0) {
+                checkAllSubmitBtn.attr('disabled', false);
+            }
+            else {
+                checkAllSubmitBtn.attr('disabled', true);
+            }
+        }
         $(document).ready(function(){
             $("#myInput").on("keyup", function() {
                 var value = $(this).val().toLowerCase();
