@@ -140,6 +140,7 @@
         checkboxAll.change(function() {
             var isCheckedAll = $(this).prop('checked');
             customerItemCheckbox.prop('checked', isCheckedAll);
+            RenderButtonChuyen();
         })
         customerItemCheckbox.change(function() {
             var isCheckedAll = customerItemCheckbox.length === $('input[name="customerIds[]"]:checked').length;
