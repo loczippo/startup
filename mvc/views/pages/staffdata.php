@@ -105,6 +105,9 @@
                         if($_SESSION['role'] == "admin") {
                             echo "<th><input type='checkbox' name='customerIds[]' value='${row[0]}'/>${i}</th>";
                         }
+                        else {
+                            echo "<th>${i}</th>";
+                        }
                         echo "<td>${row[1]}</td>";
                         echo "<td>${row[2]}</td>";
                         echo "<td>${row[3]}</td>";
