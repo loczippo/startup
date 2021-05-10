@@ -66,31 +66,21 @@
                 </div>
                  </div>
                 <hr/>
-                <div class="row mb-2">
-                    <div class="d-flex">
-                        <div class="p-2">
-                            <input type="submit" class="btn btn-success" id="trangthai" name="trangthai" value="Có nhu cầu">
-                        </div>
-                        <div class="p-2">
-                            <input type="submit" class="btn btn-success" id="trangthai1" name="trangthai" value="Không nhu cầu">
-                        </div>
-                        <div class="p-2">
-                            <input type="submit" class="btn btn-success" id="trangthai2" name="trangthai" value="Khác">
-                        </div>
-                    </div>
-                </div>
-                <div class="row mb-1">
-                    <div class="d-flex">
-                        <div class="p-2">
-                            <input type="submit" class="btn btn-success" id="trangthai3" name="trangthai" value="Hẹn gọi lại">
-                        </div>
-                        <div class="p-2">
-                            <input type="submit" class="btn btn-success" id="trangthai4" name="trangthai" value="Không bắt máy">
-                        </div>
+                <div class="row ">
+                    <div class="col-md-12">
                         
-                        <div class="p-2">
+                            <input type="submit" class="btn btn-success" id="trangthai" name="trangthai" value="Có nhu cầu">
+                       
+                            <input type="submit" class="btn btn-success" id="trangthai1" name="trangthai" value="Không nhu cầu">
+                       
+                            <input type="submit" class="btn btn-success" id="trangthai2" name="trangthai" value="Khác">
+                       
+                            <input type="submit" class="btn btn-success" id="trangthai3" name="trangthai" value="Hẹn gọi lại">
+                       
+                            <input type="submit" class="btn btn-success" id="trangthai4" name="trangthai" value="Không bắt máy">
+                     
                             <input type="submit" class="btn btn-success" id="trangthai5" name="trangthai" value="Chửi">
-                        </div>
+                       
                     </div>
                 </div>
                 <div class="form-floating mt-3">
