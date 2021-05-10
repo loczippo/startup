@@ -54,6 +54,9 @@
                 echo "<input style='' class='mt-4' type='checkbox' id='checkbox-all'/> Chọn tất cả";                    
                 echo "<input type='text' id='myInput' class='form-control' style='width: 200px'>";
             }
+            else {
+                echo "<input type='text' id='myInput' class='form-control mt-3' style='width: 200px'>";
+            }
         ?>
         
         <div class="table-responsive-sm">
@@ -132,7 +135,9 @@
         </table>
         <span>
                     <?php
-                        echo "Tổng cộng có <b>${count}</b> bản ghi";
+                        if($_SESSION['role'] == "admin") {
+                            //echo "Tổng cộng có <b>${count}</b> bản ghi";
+                        }
                     ?>
             </span>
         <?php echo "</form>"; ?>

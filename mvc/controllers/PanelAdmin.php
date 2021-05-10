@@ -1,6 +1,7 @@
 <?php
     class PanelAdmin extends Controller{
         function Index() {
+            if(!isset($_SESSION['role'])) die;
             if($_SESSION['role'] != "admin") die;
             $Account = $this->model("AccountModel");
             $data = mysqli_fetch_all($Account->GetNhanVien());
@@ -12,6 +13,7 @@
         }
         function InsertData() {
             if(!isset($_SESSION['role'])) die;
+            if($_SESSION['role'] != "admin") die;
                 $Account = $this->model("AccountModel");
                 $data = mysqli_fetch_all($Account->GetNhanVien());
             if($_SESSION['role'] == "admin")
@@ -28,6 +30,8 @@
         }
 
         function ViewData() {
+            if(!isset($_SESSION['role'])) die;
+            if($_SESSION['role'] != "admin") die;
             if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['uid']) and isset($_POST['customerIds'])) {
                 $Customer = $this->model("CustomerModel");
                 $userid = $_POST['uid'];
@@ -77,6 +81,22 @@
                     "Nhanvien" => $data1
                 ]);
                 echo $view;
+        }
+        function ManageUser($userid=null) {
+            if(!isset($_SESSION['role'])) die;
+            if($_SESSION['role'] != "admin") die;
+            $Account = $this->model("AccountModel");
+            $url = $_SERVER['REQUEST_URI'];
+            $role = substr(parse_url($url, PHP_URL_QUERY),5);
+            if($userid != null) {
+                $Account->UpdateRole($userid, $role);
+            }
+            $data = mysqli_fetch_all($Account->GetAllAccount());
+            $view = $this->view("Layout1",__CLASS__, [
+                "Page" => "manageuser",
+                "Account" => $data
+            ]);
+            echo $view;
         }
     }
 ?>

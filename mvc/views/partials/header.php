@@ -1,7 +1,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="">Navbar</a>
+    <a class="navbar-brand" href="">CRM</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -10,20 +10,22 @@
         <?php
           if(isset($_SESSION['role'])) {
             if($_SESSION['role'] == "admin") {
-            echo "<a class='nav-link active' href='/PanelAdmin/InsertData'>
+            echo "<a class='nav-link' href='/PanelAdmin/InsertData'>
             Insert Data
+            </a>";
+            echo "<a class='nav-link' href='/PanelAdmin/ManageUser'>
+            Manage User
             </a>";
             }
           }
         ?>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown link
+            <?php echo 'Hi, '.$_SESSION['username']; ?>
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <li><a class="dropdown-item" href="ChangePassword">Đổi mật khẩu</a></li>
+            <li><a class="dropdown-item" href="Logout">Đăng xuất</a></li>
           </ul>
         </li>
         <?php
