@@ -10,7 +10,7 @@
 }
 </style>
 <div class="container-fluid mt-2">
-    <div class="card responsive" style="width:29rem">
+    <div class="card ">
         <div class="card-header">
             <h6><img class="img-fluid" src="public/img/star.gif" alt="" width="40">HOME -> STAFF DATA -> DATA ENTRY</h6>
         </div>
@@ -31,36 +31,40 @@
             }
         ?>
             <form method="POST" action="StaffData/DataEntry/<?php echo $row[0]; ?>/Update" id="update" name="update">
-                <div class="mb-1">
-                    <label for="hoten" class="form-label">Họ và tên: </label>
+                <div class="row">
+                    <div class=" col-md-6 col-lg-4 col-xl-4">
+ <label for="hoten" class="form-label">Họ và tên: </label>
                     <input type="text" class="form-control" id="hoten" name="hoten" value="<?php echo $hoten; ?>">
-                </div>
-                <div class="mb-1">
+                    </div>
+               
+               
+                <div class= "col-md-6 col-lg-4 col-xl-4">
                     <label for="cmnd" class="form-label">CMND: </label>
                     <input type="text" class="form-control" id="cmnd" name="cmnd" value="<?php echo $cmnd; ?>">
                 </div>
-                <div class="row mb-1">
+                <div class=" col-md-6 col-lg-4 col-xl-4">
                     <label for="sodt" class="form-label">Số điện thoại: </label>
                     <div class="d-flex justify-content-between">
                         <input type="text" class="form-control" id="sodt" name="sodt" value="<?php echo $sodt; ?>">
                         <a href="tel:<?php echo $sodt; ?>" type="button" class="btn btn-success" style="margin-left: 10px">Gọi</a>
                     </div>
                 </div>
-                <div class="mb-1">
+                <div class=" col-md-6 col-lg-4 col-xl-4">
                     <label for="hanmuc" class="form-label">Hạn mức: </label>
                     <input type="text" class="form-control" id="hanmuc" name="hanmuc" value="<?php echo $hanmuc; ?>">
                 </div>
-                <div class="mb-1">
+                <div class=" col-md-6 col-lg-4 col-xl-4">
                     <label for="sotien" class="form-label">Số tiền: </label>
                     <input type="text" class="form-control" id="sotien" name="sotien" value="<?php echo $sotien; ?>">
                 </div>
-                <div class="row mb-1">
+                <div class=" col-md-6 col-lg-4 col-xl-4">
                     <label for="ngayhen" class="form-label">Hẹn gọi lại: </label>
                     <div class="d-flex justify-content-between">
                         <input type="date" class="form-control datepicker" id="ngayhen" name="ngayhen" value="<?php echo $newDate; ?>">
                         <button id="clear" style="margin-left: 10px" class="btn btn-success">Clear</button>
                     </div>
                 </div>
+                 </div>
                 <hr/>
                 <div class="row mb-2">
                     <div class="d-flex">
