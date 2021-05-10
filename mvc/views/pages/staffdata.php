@@ -102,7 +102,9 @@
                             }
                         }
                         echo "<tr>";
-                        echo "<th><input type='checkbox' name='customerIds[]' value='${row[0]}'/>${i}</th>";
+                        if($_SESSION['role'] == "admin") {
+                            echo "<th><input type='checkbox' name='customerIds[]' value='${row[0]}'/>${i}</th>";
+                        }
                         echo "<td>${row[1]}</td>";
                         echo "<td>${row[2]}</td>";
                         echo "<td>${row[3]}</td>";
@@ -127,12 +129,7 @@
         </table>
         <span>
                     <?php
-                        if($count==0) {
-                            echo "Tổng cộng có <b>0</b> bản ghi";
-                        }
-                        else {
-                            echo "Tổng cộng có <b>${count}</b> bản ghi";
-                        }
+                        echo "Tổng cộng có <b>${count}</b> bản ghi";
                     ?>
             </span>
         <?php echo "</form>"; ?>
