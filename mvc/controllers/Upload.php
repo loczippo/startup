@@ -1,6 +1,7 @@
 <?php
     class Upload extends Controller{
         function Index() {
+            
             if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_FILES['file'])) {
                 require_once 'PHPExcel/excel.php';
                 $file = $_FILES['file']['tmp_name'];
@@ -31,7 +32,8 @@
                             if($query[2][0] != 0) {
                                 $query[2] = "0" . $query[2];
                             }
-                            $Customer->InsertCustomer($query[0], $query[1], $query[2], $query[3], $_POST['username']);
+                            $today = date("Y-m-d");
+                            $Customer->InsertCustomer($query[0], $query[1], $query[2], $query[3], $today, $_POST['username']);
                         }
                         $i++;
                     }

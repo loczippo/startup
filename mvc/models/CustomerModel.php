@@ -1,8 +1,22 @@
 <?php
     class CustomerModel extends Database {
         
+        public function SearchCustomer($trangthai, $hoten, $cmnd, $sodt, $userid, $ngaybd, $ngaykt) {
+            //nếu if ở đây bị lỗi, chưa có giải pháp
+            $qr="SELECT * FROM CRM_customers where hoten = '${hoten}'";
+            return mysqli_query($this->connection, $qr);
+            
+        }
         public function GetCustomer($userid) {
             $qr = "SELECT * FROM CRM_customers where userid = '${userid}' Order by ngayhen desc, trangthai asc";
+            return mysqli_query($this->connection, $qr);
+        }
+        public function GetAllCustomer($min, $max) {
+            $qr = "SELECT * FROM CRM_customers WHERE customerid BETWEEN $min AND $max";
+            return mysqli_query($this->connection, $qr);
+        }
+        public function GetCountCustomer() {
+            $qr = "SELECT count(customerid) FROM CRM_customers";
             return mysqli_query($this->connection, $qr);
         }
         public function GetCustomer1($userid) {
@@ -17,6 +31,10 @@
             $qr = "SELECT * FROM CRM_customers where userid = '${userid}' and trangthai IS NULL";
             return mysqli_query($this->connection, $qr);
         }
+        public function GetCustomer4($trangthai) {
+            $qr = "SELECT * FROM CRM_customers where trangthai ='${trangthai}'";
+            return mysqli_query($this->connection, $qr);
+        }
         public function GetCustomerForCustomerID($customerID) {
             $qr = "SELECT * FROM CRM_customers where customerid = '${customerID}'";
             return mysqli_query($this->connection, $qr);
@@ -25,8 +43,8 @@
             $qr = "SELECT * FROM CRM_customers where userid = $userid and trangthai IS NULL LIMIT 1";
             return mysqli_query($this->connection, $qr);
         }
-        public function InsertCustomer($hoten, $cmnd, $sodt, $hanmuc, $userid) {
-            $qr = "INSERT INTO CRM_customers(hoten, cmnd, sodt, hanmuc, userid) values ('${hoten}', '${cmnd}', '${sodt}', ${hanmuc}, ${userid})";
+        public function InsertCustomer($hoten, $cmnd, $sodt, $hanmuc, $ngaythem, $userid) {
+            $qr = "INSERT INTO CRM_customers(hoten, cmnd, sodt, hanmuc, ngaythem, userid) values ('${hoten}', '${cmnd}', '${sodt}', ${hanmuc}, '${ngaythem}', ${userid})";
             return mysqli_query($this->connection, $qr);
         }
         public function GetCustomerIDForUserID($userid) {

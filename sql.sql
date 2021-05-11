@@ -63,6 +63,7 @@ CREATE TABLE IF NOT EXISTS `CRM_customers` (
   `sotien` decimal(18,0) DEFAULT NULL,
   `ngayhen` datetime DEFAULT NULL,
   `ngaygoi` datetime DEFAULT NULL,
+  `ngaythem` datetime DEFAULT NULL,
   `userid` int(11) NOT NULL,
   PRIMARY KEY (`customerid`),
   KEY `userid` (`userid`)

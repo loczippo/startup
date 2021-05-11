@@ -20,7 +20,7 @@
           }
         ?>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <?php echo 'Hi, '.$_SESSION['username']; ?>
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -36,12 +36,12 @@
           }
           else {
             if($_SESSION['username'] != "") {
-              echo "<li class='nav-item'>
-            <a class='nav-link' href='!#'>Welcome, $_SESSION[username]</a>
-            </li>";
-            echo "<li class='nav-item'>
-            <a class='nav-link' href='Logout'>Đăng xuất</a>
-            </li>";
+            //   echo "<li class='nav-item'>
+            // <a class='nav-link' href='!#'>Welcome, $_SESSION[username]</a>
+            // </li>";
+            // echo "<li class='nav-item'>
+            // <a class='nav-link' href='Logout'>Đăng xuất</a>
+            // </li>";
             }
             else {
               echo '<li class="nav-item">

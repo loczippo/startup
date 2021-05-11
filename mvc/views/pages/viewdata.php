@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 if(data == 'successfuly') {
                     var b = window.performance.now();
                     var seconds = ((b-a) / 1000).toFixed(1);
-                    sweetalert2('Successfuly','Insert dữ liệu thành công trong '+seconds+' giây','success','HAPPY');
+                    sweetalert2('Successfully','Insert dữ liệu thành công trong '+seconds+' giây','success','HAPPY');
                 }
                 else {
                     sweetalert2('Oops!','Đã có lỗi xảy ra, vui lòng kiểm tra lại','error','OKAY');
