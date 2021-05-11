@@ -191,10 +191,10 @@
                         $money = formatMoney($row[4]);
                         $ngayhen = $row[8];
                         $today = date("Y-m-d H:i:s");
-                        if($_SESSION['role'] != "admin") {
-                            if($row[5] == "Không nhu cầu" || $row[5] == "Có nhu cầu" || $row[5] == "Khác" || $row[5] == "Chửi") {
-                                continue;
-                            }
+                        if($_SESSION['role'] == "nhanvien") {
+                            // if($row[5] == "Không nhu cầu" || $row[5] == "Có nhu cầu" || $row[5] == "Chửi") {
+                            //     continue;
+                            // }
                             if($ngayhen != NULL) {
                                 if(($ngayhen>$today)) {
                                     continue;
@@ -261,6 +261,33 @@
                 
                   echo '<li class="page-item">
                     <a class="page-link" href="PanelAdmin/ViewData/'."${pagenum}".'" aria-label="Trang cuối">
+                      <span aria-hidden="true">&raquo;</span>
+                      <span class="sr-only">Trang cuối</span>
+                    </a>
+                  </li>
+                </ul>
+              </nav>';
+                echo "</div>";
+            }
+            else if($_SESSION['role'] == "nhanvien" && isset($data["Numrows"])) {
+                echo "<div class=''>";
+                $total = $data["Numrows"];
+                $pagenum = intval((($data["Numrows"]/10)+($data["Numrows"]%10>0?1:0)));
+                echo '<nav aria-label="Page navigation example">
+                <ul class="pagination">
+                  <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Previous">
+                      <span aria-hidden="true">&laquo;</span>
+                      <span class="sr-only">Previous</span>
+                    </a>
+                  </li>';
+                  for($i=1;$i<=$pagenum;$i++) {
+                      if($i >= $data['Pagenum']-5 && $i<=$data['Pagenum']+5) {
+                        echo "<li class='page-item'><a class='page-link' href='StaffData/${i}'>${i}</a></li>";
+                        }
+                    }
+                  echo '<li class="page-item">
+                    <a class="page-link" href="StaffData/'."${pagenum}".'" aria-label="Trang cuối">
                       <span aria-hidden="true">&raquo;</span>
                       <span class="sr-only">Trang cuối</span>
                     </a>

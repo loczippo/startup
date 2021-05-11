@@ -31,7 +31,8 @@
         }
         
         function ViewData($page = 1, $limit = 10 ) {
-
+            if(!isset($_SESSION['role'])) die;
+            if($_SESSION['role'] != "admin") die;
             // POST
             if($_SERVER['REQUEST_METHOD'] == "POST") {
                 
@@ -47,7 +48,7 @@
                     $userid = $_POST['userid'];
                     $ngaybd = $_POST['ngaybd'];
                     $ngaykt = $_POST['ngaykt'];
-                    
+
                     // error
                     $data = mysqli_fetch_all($Customer->SearchCustomer($trangthai, $hoten, $cmnd, $sodt, $userid, $ngaybd, $ngaykt));
                     $view = $this->view("Layout1",__CLASS__, [
@@ -58,14 +59,11 @@
                 }
             }
 
-
             // GET
             $Customer = $this->model("CustomerModel");
-            $max = 0;
             $min = 0;
-            $max+=$limit*$page;
-            $min+=($page * $limit)-9;
-            $data = mysqli_fetch_all($Customer->GetAllCustomer($min, $max));
+            $min=($page-1) * $limit;
+            $data = mysqli_fetch_all($Customer->GetAllCustomer($min, $limit));
             $Account = $this->model("AccountModel");
             $data1 = mysqli_fetch_all($Account->GetNhanVien());
             $data2 = $Customer->GetCountCustomer();

@@ -3,16 +3,20 @@
         
         public function SearchCustomer($trangthai, $hoten, $cmnd, $sodt, $userid, $ngaybd, $ngaykt) {
             //nếu if ở đây bị lỗi, chưa có giải pháp
-            $qr="SELECT * FROM CRM_customers where hoten = '${hoten}'";
+            $qr="SELECT * FROM CRM_customers where hoten LIKE N'${hoten}'";
             return mysqli_query($this->connection, $qr);
             
         }
-        public function GetCustomer($userid) {
-            $qr = "SELECT * FROM CRM_customers where userid = '${userid}' Order by ngayhen desc, trangthai asc";
+        public function GetCustomer($userid, $min, $limit) {
+            $qr = "SELECT * FROM CRM_customers where userid = ${userid} and (trangthai IN ('Hẹn gọi lại', 'Không bắt máy') OR trangthai IS NULL) Order by ngayhen desc, trangthai asc LIMIT $min, $limit";
             return mysqli_query($this->connection, $qr);
         }
-        public function GetAllCustomer($min, $max) {
-            $qr = "SELECT * FROM CRM_customers WHERE customerid BETWEEN $min AND $max";
+        public function GetCountCustomerTrangThaiNULL($userid) {
+            $qr = "SELECT count(customerid) FROM CRM_customers where userid = ${userid} and (trangthai IN ('Hẹn gọi lại', 'Không bắt máy') OR trangthai IS NULL) Order by ngayhen desc, trangthai asc";
+            return mysqli_query($this->connection, $qr);
+        }
+        public function GetAllCustomer($min, $limit) {
+            $qr = "SELECT * FROM CRM_customers LIMIT $min, $limit";
             return mysqli_query($this->connection, $qr);
         }
         public function GetCountCustomer() {

@@ -1,7 +1,12 @@
 <?php
     class StaffData extends Controller{
-        function Index() {
+        function Index($page=1, $limit = 10) {
             //view
+            $url = $_SERVER['REQUEST_URI'];
+            $array = explode('/', $url);
+            if(isset($array[2]) && is_numeric($array[2])) {
+                $page = $array[2];
+            }
             if(!isset($_SESSION['username'])) die;
             if(!isset($_SESSION['role'])) die;
             $Customer = $this->model("CustomerModel");
@@ -10,11 +15,19 @@
             if($row = mysqli_fetch_array($user)) {
                 $userid = $row["userid"];
             }
-            $data = mysqli_fetch_all($Customer->GetCustomer($userid));
+            $min = 0;
+            $min=($page-1) * $limit;
+            $data = mysqli_fetch_all($Customer->GetCustomer($userid, $min, $limit));
+            $data2 = $Customer->GetCountCustomerTrangThaiNULL($userid);
+            $rowsnum = 0;
+            $rows = mysqli_fetch_array($data2);
+            $rowsnum = $rows["count(customerid)"];
             if($_SESSION['role'] == "nhanvien")
                 $view = $this->view("Layout1",__CLASS__, [
                     "Page" => "staffdata",
                     "Customer" => $data,
+                    "Numrows" => $rowsnum,
+                    "Pagenum" => $page
                 ]);
             else {
                 $view = $this->view("Layout1", __CLASS__, [
