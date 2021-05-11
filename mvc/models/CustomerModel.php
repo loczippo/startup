@@ -3,7 +3,11 @@
         
         public function SearchCustomer($trangthai, $hoten, $cmnd, $sodt, $userid, $ngaybd, $ngaykt) {
             //nếu if ở đây bị lỗi, chưa có giải pháp
+<<<<<<< HEAD
             $qr="SELECT * FROM CRM_customers where hoten LIKE N'${hoten}'";
+=======
+            $qr="SELECT * FROM CRM_customers where hoten = N'${hoten}'";
+>>>>>>> 62cba1b67bef0ee5841430400658b5b1d7a662f0
             return mysqli_query($this->connection, $qr);
             
         }
