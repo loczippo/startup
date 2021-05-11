@@ -47,6 +47,7 @@
                     $userid = $_POST['userid'];
                     $ngaybd = $_POST['ngaybd'];
                     $ngaykt = $_POST['ngaykt'];
+                    
                     // error
                     $data = mysqli_fetch_all($Customer->SearchCustomer($trangthai, $hoten, $cmnd, $sodt, $userid, $ngaybd, $ngaykt));
                     $view = $this->view("Layout1",__CLASS__, [
