@@ -52,7 +52,17 @@
                 if($row = mysqli_fetch_array($user)) {
                     $userid_account = $row["userid"];
                 }
-                if($userid_customer != $userid_account) die;
+                if($userid_customer != $userid_account){
+                    if($_SESSION['role'] == "admin") {
+                        $data = mysqli_fetch_all($Customer->GetCustomerForCustomerID($customerid));
+                        $view = $this->view("Layout1", __CLASS__, [
+                            "Page" => "dataentry",
+                            "Customer" => $data,
+                        ]);
+                        echo $view;
+                    }
+                    die;
+                }
                 if($param == "Update") $this->Update($customerid, $userid_customer);
                 $data = mysqli_fetch_all($Customer->GetCustomerForCustomerID($customerid));
                 $view = $this->view("Layout1", __CLASS__, [
