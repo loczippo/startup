@@ -8,7 +8,7 @@
             <div class="card-body">
                 <h5 class="card-title">Insert Data Into Database</h5>
                 <p><input type="file" id="file" name="file" accept=".xlsx, .xls" class="form-control"/></p>
-                <div class="form-floating">
+                <div class="form-floating" style="<?php echo $_SESSION['role']=="nhanvien"?"display:none":""; ?>">
                     <select class="form-select" id="username" name="username">
                         <?php
                             foreach($data["Nhanvien"] as $row) {

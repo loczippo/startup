@@ -30,33 +30,85 @@
             echo $view;
         }
         
-        function ViewData($page = 1, $limit = 10 ) {
+        function ViewData($page = 1, $limit = 10) {
             if(!isset($_SESSION['role'])) die;
             if($_SESSION['role'] != "admin") die;
-            // POST
+            // GET nut lọc 
+            $trangthai = "";
+            $cmnd = "";
+            $sodt = "";
+            $userid = "";
+            $ngaybd = "";
+            $ngaykt = "";
+            $data = (explode('=',$_SERVER['REQUEST_URI']));
+            if(isset($data[1])) {
+                $trangthai = substr($data[1],0,-5);
+            }
+            if(isset($data[2])) {
+                $cmnd = substr($data[2],0,-5);
+            }
+            if(isset($data[3])) {
+                $sodt = substr($data[3],0,-7);
+            }
+            if(isset($data[4])) {
+                $userid = substr($data[4],0,-7);
+            }
+            if(isset($data[5])) {
+                $ngaybd = substr($data[5],0,-7);
+            }
+            if(isset($data[6])) {
+                $ngaykt = $data[6];
+            }
+            if($trangthai == "all" && $userid == "all") {
+                if($ngaybd == "" && $ngaykt == "") {
+                    // query theo trạng thái all, userid all, ngày thêm là hôm nay
+                    // die;
+                }
+                // query theo trạng thái all, userid all, ngày thêm là ngày chọn
+            }
+            else {
+                if($ngaybd == "" && $ngaykt == "") {
+                    // query theo trạng thái, userid, ngày thêm là hôm nay
+                    // die;
+                }
+                // query theo trạng thái, userid, ngày thêm là ngày chọn
+                if(isset($data[1])) {
+                    // xuất view
+                    // die;
+                }
+            }
+            
             if($_SERVER['REQUEST_METHOD'] == "POST") {
-                
                 $Account = $this->model("AccountModel");
                 $Customer = $this->model("CustomerModel");
                 // nút lọc ấn
-                if(isset($_POST['trangthai'])) {
-                    $trangthai = $_POST['trangthai'];
-                    $hoten = $_POST['hoten'];
-                    $cmnd = $_POST['cmnd'];
-                    $sodt = $_POST['sodt'];
-                    // userid là nhân viên muốn xem
-                    $userid = $_POST['userid'];
-                    $ngaybd = $_POST['ngaybd'];
-                    $ngaykt = $_POST['ngaykt'];
-
-                    // error
-                    $data = mysqli_fetch_all($Customer->SearchCustomer($trangthai, $hoten, $cmnd, $sodt, $userid, $ngaybd, $ngaykt));
-                    $view = $this->view("Layout1",__CLASS__, [
-                        "Page" => "staffdata",
-                        "Customer" => $data,
-                        ]);
-                    echo $view;
-                }
+                // if(isset($_POST['trangthai'])) {
+                //     $trangthai = $_POST['trangthai'];
+                //     $hoten = $_POST['hoten'];
+                //     $cmnd = $_POST['cmnd'];
+                //     $sodt = $_POST['sodt'];
+                //     // userid là nhân viên muốn xem
+                //     $userid = $_POST['userid'];
+                //     $ngaybd = $_POST['ngaybd'];
+                //     $ngaykt = $_POST['ngaykt'];
+                //     $data1 = mysqli_fetch_all($Account->GetNhanVien());
+                //     // error
+                //     $rowsnum=0;
+                //     $data2 = $Customer->GetCountSearch($trangthai, $hoten, $cmnd, $sodt, $userid, $ngaybd, $ngaykt);
+                //     $rows = mysqli_fetch_array($data2);
+                //     $rowsnum = $rows["count(customerid)"];
+                //     $min = 0;
+                //     $min=($page-1) * $limit;
+                //     $data = mysqli_fetch_all($Customer->SearchCustomer($trangthai, $hoten, $cmnd, $sodt, $userid, $ngaybd, $ngaykt, $min, $limit));
+                //     $view = $this->view("Layout1",__CLASS__, [
+                //         "Page" => "staffdata",
+                //         "Nhanvien" => $data1,
+                //         "Customer" => $data,
+                //         "Numrows" => $rowsnum,
+                //         "Pagenum" => $page
+                //         ]);
+                //     echo $view;
+                // }
             }
 
             // GET

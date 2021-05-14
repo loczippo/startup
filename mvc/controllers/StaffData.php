@@ -72,6 +72,23 @@
                 echo $view;
             }
         }
+
+        function InsertData() {
+            if(!isset($_SESSION['role'])) die;
+                $Account = $this->model("AccountModel");
+                $data = mysqli_fetch_all($Account->GetInfoUser($_SESSION['username']));
+            if($_SESSION['role'] == "nhanvien")
+                $view = $this->view("Layout1",__CLASS__, [
+                    "Page" => "adminpanel",
+                    "Nhanvien" => $data,
+                ]);
+            else {
+                $view = $this->view("Layout1", __CLASS__, [
+                    "Page" => "home",
+                ]);
+            }
+            echo $view;
+        }
         function Update($customerid, $userid) {
             $Customer = $this->model("CustomerModel");
             if(isset($_POST['trangthai'])) {

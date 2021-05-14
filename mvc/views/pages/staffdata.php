@@ -21,27 +21,27 @@
             if($_SESSION['role'] == "admin") {
                 echo "<div>";
                     echo "<div class=''>";
-                        echo "<form method='POST' action=''>
+                        echo "<form method='GET' action=''>
                         <div class='row d-flex'>
                             <div class='col-sm-2'>
                                 <div class='form-floating'>
                                 <select style='width: 150px' class='form-select' id='trangthai' name='trangthai'>
-                                    <option value='Tất cả'>Tất cả</option>
-                                    <option value='Có nhu cầu'>Có nhu cầu</option>
-                                    <option value='Không bắt máy'>Không bắt máy</option>
-                                    <option value='Hẹn gọi lại'>Hẹn gọi lại</option>
-                                    <option value='Khác'>Khác</option>
-                                    <option value='Chửi'>Chửi</option>
+                                    <option value='all'>Tất cả</option>
+                                    <option value='cnc'>Có nhu cầu</option>
+                                    <option value='kbm'>Không bắt máy</option>
+                                    <option value='hgl'>Hẹn gọi lại</option>
+                                    <option value='khac'>Khác</option>
+                                    <option value='chui'>Chửi</option>
                                 </select>
                                 <label for='trangthai'>Trạng thái</label>
                                 </div>
                             </div>
-                            <div class='col-sm-2'>
+                            <!--<div class='col-sm-2'>
                                 <div class='form-floating'>
-                                    <input style='width: 150px' type='text' name='hoten' class='form-control'/>
+                                    <input style='width: 150px' type='text' name='hoten' class='form-control' value='";echo isset($_POST['hoten'])?$_POST['hoten']:'';echo "'/>
                                     <label for='trangthai'>Họ và tên</label>
                                 </div>
-                            </div>
+                            </div>-->
                             <div class='col-sm-2'>
                                 <div class='form-floating'>
                                     <input style='width: 150px' type='text' name='cmnd' class='form-control'/>
@@ -57,7 +57,7 @@
                             <div class='col-sm-2'>
                                 <div class='form-floating'>
                                 <select style='width: 150px' class='form-select' id='userid' name='userid'>";
-                                    echo "<option value=''>Tất cả</option>";
+                                    echo "<option value='all'>Tất cả</option>";
                                     foreach($data["Nhanvien"] as $row) {
                                         echo "<option value='${row[0]}'>${row[1]}</option>";
                                     }
@@ -71,7 +71,7 @@
                                 <label for='trangthai'>Ngày bắt đầu</label>
                                 </div>
                             </div>
-                            <div class='col-sm-2 mt-2'>
+                            <div class='col-sm-2'>
                                 <div class='form-floating'>
                                     <input style='width: 180px' type='date' class='form-control datepicker' id='ngaykt' name='ngaykt'>
                                 <label for='trangthai'>Ngày kết thúc</label>
@@ -102,28 +102,27 @@
             else if($_SESSION['role'] == "nhanvien") {
                 echo "<div>";
                     echo "<div class=''>";
-                        echo "<form method='POST' action=''>
+                        echo "<form method='GET' action=''>
                         <div class='row d-flex'>
                             <div class='col-sm-2'>
                                 <div class='form-floating'>
                                 <select style='width: 150px' class='form-select' id='trangthai' name='trangthai'>
-                                    <option value='Tất cả'>Tất cả</option>
-                                    <option value='Chưa cập nhật'>Chưa cập nhật</option>
-                                    <option value='Có nhu cầu'>Có nhu cầu</option>
-                                    <option value='Không bắt máy'>Không bắt máy</option>
-                                    <option value='Hẹn gọi lại'>Hẹn gọi lại</option>
-                                    <option value='Khác'>Khác</option>
-                                    <option value='Chửi'>Chửi</option>
+                                    <option value='all'>Tất cả</option>
+                                    <option value='cnc'>Có nhu cầu</option>
+                                    <option value='kbm'>Không bắt máy</option>
+                                    <option value='hgl'>Hẹn gọi lại</option>
+                                    <option value='khac'>Khác</option>
+                                    <option value='chui'>Chửi</option>
                                 </select>
                                 <label for='trangthai'>Trạng thái</label>
                                 </div>
                             </div>
-                            <div class='col-sm-2'>
+                            <!--<div class='col-sm-2'>
                                 <div class='form-floating'>
                                     <input style='width: 150px' type='text' name='hoten' class='form-control'/>
                                     <label for='trangthai'>Họ và tên</label>
                                 </div>
-                            </div>
+                            </div>-->
                             <div class='col-sm-2'>
                                 <div class='form-floating'>
                                     <input style='width: 150px' type='text' name='cmnd' class='form-control'/>
@@ -259,14 +258,16 @@
                         }
                     }
                 
-                  echo '<li class="page-item">
-                    <a class="page-link" href="PanelAdmin/ViewData/'."${pagenum}".'" aria-label="Trang cuối">
-                      <span aria-hidden="true">&raquo;</span>
-                      <span class="sr-only">Trang cuối</span>
-                    </a>
-                  </li>
-                </ul>
-              </nav>';
+                  if($pagenum > 0) {
+                    echo '<li class="page-item">
+                            <a class="page-link" href="PanelAdmin/ViewData/'."${pagenum}".'" aria-label="Trang cuối">
+                            <span aria-hidden="true">&raquo;</span>
+                            <span class="sr-only">Trang cuối</span>
+                            </a>
+                        </li>
+                        </ul>
+                    </nav>';
+                  }
                 echo "</div>";
             }
             else if($_SESSION['role'] == "nhanvien" && isset($data["Numrows"])) {

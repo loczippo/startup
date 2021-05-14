@@ -17,6 +17,11 @@
             Manage User
             </a>";
             }
+            else {
+              echo "<a class='nav-link' href='/StaffData/InsertData'>
+            Insert Data
+            </a>";
+            }
           }
         ?>
         <li class="nav-item dropdown">

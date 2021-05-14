@@ -21,6 +21,10 @@
             $qr = "SELECT userid FROM CRM_accounts where username = '${username}'";
             return mysqli_query($this->connection, $qr);
         }
+        public function GetInfoUser($username) {
+            $qr = "SELECT * FROM CRM_accounts where username = '${username}'";
+            return mysqli_query($this->connection, $qr);
+        }
         public function UpdatePassword($username, $pass) {
             $qr = "UPDATE CRM_accounts SET password = '${pass}' WHERE username = '${username}'";
             return mysqli_query($this->connection, $qr);
