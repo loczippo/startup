@@ -33,6 +33,8 @@
         function ViewData($page = 1, $limit = 10) {
             if(!isset($_SESSION['role'])) die;
             if($_SESSION['role'] != "admin") die;
+            $Customer = $this->model("CustomerModel");
+            $Account = $this->model("AccountModel");
             // GET nut lọc 
             $trangthai = "";
             $cmnd = "";
@@ -43,6 +45,11 @@
             $data = (explode('=',$_SERVER['REQUEST_URI']));
             if(isset($data[1])) {
                 $trangthai = substr($data[1],0,-5);
+                if($trangthai == "cnc") $trangthai = "Có nhu cầu";
+                if($trangthai == "kbm") $trangthai = "Không bắt máy";
+                if($trangthai == "hgl") $trangthai = "Hẹn gọi lại";
+                if($trangthai == "khac") $trangthai = "Khác";
+                if($trangthai == "chui") $trangthai = "Chửi";
             }
             if(isset($data[2])) {
                 $cmnd = substr($data[2],0,-5);
@@ -59,23 +66,163 @@
             if(isset($data[6])) {
                 $ngaykt = $data[6];
             }
+            $min = 0;
+            $min=($page-1) * $limit;
             if($trangthai == "all" && $userid == "all") {
-                if($ngaybd == "" && $ngaykt == "") {
-                    // query theo trạng thái all, userid all, ngày thêm là hôm nay
-                    // die;
+                if($cmnd == "" && $sodt == "") {
+                    if($ngaybd == "" || $ngaykt == "") {
+                        $today = date("Y-m-d");
+                        $qr = "SELECT * FROM CRM_customers where ngaythem='${today}'";
+                    }
+                    else {
+                        $qr="SELECT * FROM `CRM_customers` WHERE ngaythem >= '${ngaybd}' and ngaythem <= '${ngaykt}'  LIMIT ${min}, ${limit}";
+                    }
                 }
-                // query theo trạng thái all, userid all, ngày thêm là ngày chọn
+                else if($cmnd != "" && $sodt == "") {
+                    if($ngaybd == "" || $ngaykt == "") {
+                        $today = date("Y-m-d");
+                        $qr = "SELECT * FROM CRM_customers where cmnd='${cmnd}' and ngaythem='${today}'";
+                    }
+                    else {
+                        $qr="SELECT * FROM CRM_customers where cmnd='${cmnd}' and ngaythem >= '${ngaybd}' and ngaythem <= '${ngaykt}'";
+                    }
+                }
+                else if($cmnd == "" && $sodt != "") {
+                    if($ngaybd == "" || $ngaykt == "") {
+                        $today = date("Y-m-d");
+                        $qr = "SELECT * FROM CRM_customers where sodt='${sodt}' and ngaythem='${today}'";
+                    }
+                    else {
+                        $qr="SELECT * FROM CRM_customers where sodt='${sodt}' and ngaythem >= '${ngaybd}' and ngaythem <= '${ngaykt}'";
+                    }
+                }
+                else if($cmnd != "" && $sodt != "") {
+                    if($ngaybd == "" || $ngaykt == "") {
+                        $today = date("Y-m-d");
+                        $qr = "SELECT * FROM CRM_customers where sodt='${sodt}' and cmnd='${cmnd}' and ngaythem='${today}'";
+                    }
+                    else {
+                        $qr="SELECT * FROM CRM_customers where sodt='${sodt}' and cmnd='${cmnd}' and ngaythem >= '${ngaybd}' and ngaythem <= '${ngaykt}'";
+                    }
+                }
             }
-            else {
-                if($ngaybd == "" && $ngaykt == "") {
-                    // query theo trạng thái, userid, ngày thêm là hôm nay
-                    // die;
+            else if($trangthai != "all" && $userid == "all") {
+                if($cmnd == "" && $sodt == "") {
+                    if($ngaybd == "" || $ngaykt == "") {
+                        $today = date("Y-m-d");
+                        $qr = "SELECT * FROM CRM_customers where trangthai='${trangthai}' and ngaythem='${today}'";
+                    }
+                    else {
+                        $qr="SELECT * FROM `CRM_customers` WHERE trangthai='${trangthai}' and ngaythem >= '${ngaybd}' and ngaythem <= '${ngaykt}'";
+                    }
                 }
-                // query theo trạng thái, userid, ngày thêm là ngày chọn
-                if(isset($data[1])) {
-                    // xuất view
-                    // die;
+                else if($cmnd != "" && $sodt == "") {
+                    if($ngaybd == "" || $ngaykt == "") {
+                        $today = date("Y-m-d");
+                        $qr = "SELECT * FROM CRM_customers where trangthai='${trangthai}' and cmnd='${cmnd}' and ngaythem='${today}'";
+                    }
+                    else {
+                        $qr="SELECT * FROM CRM_customers where trangthai='${trangthai}' and cmnd='${cmnd}' and ngaythem >= '${ngaybd}' and ngaythem <= '${ngaykt}'";
+                    }
                 }
+                else if($cmnd == "" && $sodt != "") {
+                    if($ngaybd == "" || $ngaykt == "") {
+                        $today = date("Y-m-d");
+                        $qr = "SELECT * FROM CRM_customers where trangthai='${trangthai}' and sodt='${sodt}' and ngaythem='${today}'";
+                    }
+                    else {
+                        $qr="SELECT * FROM CRM_customers where trangthai='${trangthai}' and sodt='${sodt}' and ngaythem >= '${ngaybd}' and ngaythem <= '${ngaykt}'";
+                    }
+                }
+                else if($cmnd != "" && $sodt != "") {
+                    if($ngaybd == "" || $ngaykt == "") {
+                        $today = date("Y-m-d");
+                        $qr = "SELECT * FROM CRM_customers where trangthai='${trangthai}' and sodt='${sodt}' and cmnd='${cmnd}' and ngaythem='${today}'";
+                    }
+                    else {
+                        $qr="SELECT * FROM CRM_customers where trangthai='${trangthai}' and sodt='${sodt}' and cmnd='${cmnd}' and ngaythem >= '${ngaybd}' and ngaythem <= '${ngaykt}'";
+                    }
+                }
+            }
+            else if($trangthai == "all" && $userid != "all") {
+                if($cmnd == "" && $sodt == "") {
+                    if($ngaybd == "" || $ngaykt == "") {
+                        $today = date("Y-m-d");
+                        $qr = "SELECT * FROM CRM_customers where userid=${userid} and ngaythem='${today}'";
+                    }
+                    else {
+                        $qr="SELECT * FROM `CRM_customers` WHERE userid=${userid} and ngaythem >= '${ngaybd}' and ngaythem <= '${ngaykt}'";
+                    }
+                }
+                else if($cmnd != "" && $sodt == "") {
+                    if($ngaybd == "" || $ngaykt == "") {
+                        $today = date("Y-m-d");
+                        $qr = "SELECT * FROM CRM_customers where userid=${userid} and cmnd='${cmnd}' and ngaythem='${today}'";
+                    }
+                    else {
+                        $qr="SELECT * FROM CRM_customers where userid=${userid} and cmnd='${cmnd}' and ngaythem >= '${ngaybd}' and ngaythem <= '${ngaykt}'";
+                    }
+                }
+                else if($cmnd == "" && $sodt != "") {
+                    if($ngaybd == "" || $ngaykt == "") {
+                        $today = date("Y-m-d");
+                        $qr = "SELECT * FROM CRM_customers where userid=${userid} and sodt='${sodt}' and ngaythem='${today}'";
+                    }
+                    else {
+                        $qr="SELECT * FROM CRM_customers where userid=${userid} and sodt='${sodt}' and ngaythem >= '${ngaybd}' and ngaythem <= '${ngaykt}'";
+                    }
+                }
+            }
+            else if($trangthai != "all" && $userid != "all") {
+                if($cmnd == "" && $sodt == "") {
+                    if($ngaybd == "" || $ngaykt == "") {
+                        $today = date("Y-m-d");
+                        $qr = "SELECT * FROM CRM_customers where trangthai='${trangthai}' and userid=${userid} and ngaythem='${today}'";
+                    }
+                    else {
+                        $qr="SELECT * FROM `CRM_customers` WHERE trangthai='${trangthai}' and userid=${userid} and ngaythem >= '${ngaybd}' and ngaythem <= '${ngaykt}'";
+                    }
+                }
+                else if($cmnd != "" && $sodt == "") {
+                    if($ngaybd == "" || $ngaykt == "") {
+                        $today = date("Y-m-d");
+                        $qr = "SELECT * FROM CRM_customers where trangthai='${trangthai}' and userid=${userid} and cmnd='${cmnd}' and ngaythem='${today}'";
+                    }
+                    else {
+                        $qr="SELECT * FROM CRM_customers where trangthai='${trangthai}' and userid=${userid} and cmnd='${cmnd}' and ngaythem >= '${ngaybd}' and ngaythem <= '${ngaykt}'";
+                    }
+                }
+                else if($cmnd == "" && $sodt != "") {
+                    if($ngaybd == "" || $ngaykt == "") {
+                        $today = date("Y-m-d");
+                        $qr = "SELECT * FROM CRM_customers where trangthai='${trangthai}' and userid=${userid} and sodt='${sodt}' and ngaythem='${today}'";
+                    }
+                    else {
+                        $qr="SELECT * FROM CRM_customers where trangthai='${trangthai}' and userid=${userid} and sodt='${sodt}' and ngaythem >= '${ngaybd}' and ngaythem <= '${ngaykt}'";
+                    }
+                }
+            }
+            
+            if(isset($data[1])) {
+                $data1 = mysqli_fetch_all($Account->GetNhanVien());
+                $data = mysqli_fetch_all($Customer->Query($qr));
+                $rows = mysqli_fetch_array($Customer->Query(str_replace('SELECT *','SELECT count(customerid)',$qr)));
+                $rowsnum = $rows["count(customerid)"];
+                    $view = $this->view("Layout1",__CLASS__, [
+                        "Page" => "staffdata",
+                        "Nhanvien" => $data1,
+                        "Customer" => $data,
+                        "Numrows" => $rowsnum,
+                        "Pagenum" => $page,
+                        "Trangthai" => $trangthai,
+                        "Cmnd" => $cmnd,
+                        "Sodt" => $sodt,
+                        "Userid" => $userid,
+                        "Ngaybd" => $ngaybd,
+                        "Ngaykt" => $ngaykt
+                        ]);
+                    echo $view;
+                    die;
             }
             
             if($_SERVER['REQUEST_METHOD'] == "POST") {

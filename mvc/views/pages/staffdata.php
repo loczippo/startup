@@ -254,7 +254,12 @@
                   </li>';
                   for($i=1;$i<=$pagenum;$i++) {
                       if($i >= $data['Pagenum']-5 && $i<=$data['Pagenum']+5) {
-                        echo "<li class='page-item'><a class='page-link' href='PanelAdmin/ViewData/${i}'>${i}</a></li>";
+                        if(!isset($data['Trangthai'])) {
+                            echo "<li class='page-item'><a class='page-link' href='PanelAdmin/ViewData/${i}'>${i}</a></li>";
+                        }
+                        else {
+                            echo "<li class='page-item'><a class='page-link' href='PanelAdmin/ViewData/${i}?trangthai=${data['Trangthai']}&cmnd=${data['Cmnd']}&sodt=${data['Sodt']}&userid=${data['Userid']}&ngaybd=${data['Ngaybd']}&ngaykt=${data['Ngaykt']}'>${i}</a></li>";
+                        }
                         }
                     }
                 
