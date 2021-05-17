@@ -1,4 +1,8 @@
 
+<?php
+
+//echo $data['trangthai'];
+?>
 <div class="container-fluid mt-3">
     <div class="card">
         <div class="card-header">
@@ -6,6 +10,7 @@
         </div>
         <div class="card-body">
         <?php
+        
             if($_SESSION['role'] == "nhanvien") {
                 foreach($data["Customer"] as $row) {
                     if($row == "") {
@@ -26,12 +31,14 @@
                             <div class='col-sm-2'>
                                 <div class='form-floating'>
                                 <select style='width: 150px' class='form-select' id='trangthai' name='trangthai'>
-                                    <option value='all'>Tất cả</option>
-                                    <option value='cnc'>Có nhu cầu</option>
-                                    <option value='kbm'>Không bắt máy</option>
-                                    <option value='hgl'>Hẹn gọi lại</option>
-                                    <option value='khac'>Khác</option>
-                                    <option value='chui'>Chửi</option>
+                                    <option value='all' ";echo  ($data['Trangthai']=='all'?'selected':'');echo" >Tất cả</option>
+                                    <option value='new' ";echo  ($data['Trangthai']=='new'?'selected':'');echo" >Chưa gọi</option>
+                                    
+                                    <option value='cnc' ";echo  ($data['Trangthai']=='cnc'?'selected':'');echo" >Có nhu cầu</option>
+                                    <option value='kbm' ";echo ($data['Trangthai']=='kbm'?'selected':'');echo" >Không bắt máy</option>
+                                    <option value='hgl' ";echo  ($data['Trangthai']=='hgl'?'selected':'');echo" >Hẹn gọi lại</option>
+                                    <option value='khac' ";echo  ($data['Trangthai']=='khac'?'selected':'');echo" >Khác</option>
+                                    <option value='chui' ";echo ($data['Trangthai']=='chui'?'selected':'');echo" >Chửi</option>
                                 </select>
                                 <label for='trangthai'>Trạng thái</label>
                                 </div>

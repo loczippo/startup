@@ -45,12 +45,22 @@
             $data = (explode('=',$_SERVER['REQUEST_URI']));
             if(isset($data[1])) {
                 $trangthai = substr($data[1],0,-5);
-                if($trangthai == "cnc") $trangthai = "Có nhu cầu";
-                if($trangthai == "kbm") $trangthai = "Không bắt máy";
-                if($trangthai == "hgl") $trangthai = "Hẹn gọi lại";
-                if($trangthai == "khac") $trangthai = "Khác";
-                if($trangthai == "chui") $trangthai = "Chửi";
+                if($trangthai=="all"){
+                     $qr = "SELECT * FROM CRM_customers where 1=1";
+                }
+                else if($trangthai=='new'){
+                    $qr = "SELECT * FROM CRM_customers where trangthai is null";
+                }
+                else{
+                   
+                 $qr = "SELECT * FROM CRM_customers where trangthai ='$trangthai'";
+                }
+                
             }
+            else{
+                $qr = "SELECT * FROM CRM_customers where trangthai is null";
+            }
+            
             if(isset($data[2])) {
                 $cmnd = substr($data[2],0,-5);
             }
@@ -68,140 +78,142 @@
             }
             $min = 0;
             $min=($page-1) * $limit;
-            if($trangthai == "all" && $userid == "all") {
-                if($cmnd == "" && $sodt == "") {
-                    if($ngaybd == "" || $ngaykt == "") {
-                        $today = date("Y-m-d");
-                        $qr = "SELECT * FROM CRM_customers where ngaythem='${today}'";
-                    }
-                    else {
-                        $qr="SELECT * FROM `CRM_customers` WHERE ngaythem >= '${ngaybd}' and ngaythem <= '${ngaykt}'  LIMIT ${min}, ${limit}";
-                    }
-                }
-                else if($cmnd != "" && $sodt == "") {
-                    if($ngaybd == "" || $ngaykt == "") {
-                        $today = date("Y-m-d");
-                        $qr = "SELECT * FROM CRM_customers where cmnd='${cmnd}' and ngaythem='${today}'";
-                    }
-                    else {
-                        $qr="SELECT * FROM CRM_customers where cmnd='${cmnd}' and ngaythem >= '${ngaybd}' and ngaythem <= '${ngaykt}'";
-                    }
-                }
-                else if($cmnd == "" && $sodt != "") {
-                    if($ngaybd == "" || $ngaykt == "") {
-                        $today = date("Y-m-d");
-                        $qr = "SELECT * FROM CRM_customers where sodt='${sodt}' and ngaythem='${today}'";
-                    }
-                    else {
-                        $qr="SELECT * FROM CRM_customers where sodt='${sodt}' and ngaythem >= '${ngaybd}' and ngaythem <= '${ngaykt}'";
-                    }
-                }
-                else if($cmnd != "" && $sodt != "") {
-                    if($ngaybd == "" || $ngaykt == "") {
-                        $today = date("Y-m-d");
-                        $qr = "SELECT * FROM CRM_customers where sodt='${sodt}' and cmnd='${cmnd}' and ngaythem='${today}'";
-                    }
-                    else {
-                        $qr="SELECT * FROM CRM_customers where sodt='${sodt}' and cmnd='${cmnd}' and ngaythem >= '${ngaybd}' and ngaythem <= '${ngaykt}'";
-                    }
-                }
-            }
-            else if($trangthai != "all" && $userid == "all") {
-                if($cmnd == "" && $sodt == "") {
-                    if($ngaybd == "" || $ngaykt == "") {
-                        $today = date("Y-m-d");
-                        $qr = "SELECT * FROM CRM_customers where trangthai='${trangthai}' and ngaythem='${today}'";
-                    }
-                    else {
-                        $qr="SELECT * FROM `CRM_customers` WHERE trangthai='${trangthai}' and ngaythem >= '${ngaybd}' and ngaythem <= '${ngaykt}'";
-                    }
-                }
-                else if($cmnd != "" && $sodt == "") {
-                    if($ngaybd == "" || $ngaykt == "") {
-                        $today = date("Y-m-d");
-                        $qr = "SELECT * FROM CRM_customers where trangthai='${trangthai}' and cmnd='${cmnd}' and ngaythem='${today}'";
-                    }
-                    else {
-                        $qr="SELECT * FROM CRM_customers where trangthai='${trangthai}' and cmnd='${cmnd}' and ngaythem >= '${ngaybd}' and ngaythem <= '${ngaykt}'";
-                    }
-                }
-                else if($cmnd == "" && $sodt != "") {
-                    if($ngaybd == "" || $ngaykt == "") {
-                        $today = date("Y-m-d");
-                        $qr = "SELECT * FROM CRM_customers where trangthai='${trangthai}' and sodt='${sodt}' and ngaythem='${today}'";
-                    }
-                    else {
-                        $qr="SELECT * FROM CRM_customers where trangthai='${trangthai}' and sodt='${sodt}' and ngaythem >= '${ngaybd}' and ngaythem <= '${ngaykt}'";
-                    }
-                }
-                else if($cmnd != "" && $sodt != "") {
-                    if($ngaybd == "" || $ngaykt == "") {
-                        $today = date("Y-m-d");
-                        $qr = "SELECT * FROM CRM_customers where trangthai='${trangthai}' and sodt='${sodt}' and cmnd='${cmnd}' and ngaythem='${today}'";
-                    }
-                    else {
-                        $qr="SELECT * FROM CRM_customers where trangthai='${trangthai}' and sodt='${sodt}' and cmnd='${cmnd}' and ngaythem >= '${ngaybd}' and ngaythem <= '${ngaykt}'";
-                    }
-                }
-            }
-            else if($trangthai == "all" && $userid != "all") {
-                if($cmnd == "" && $sodt == "") {
-                    if($ngaybd == "" || $ngaykt == "") {
-                        $today = date("Y-m-d");
-                        $qr = "SELECT * FROM CRM_customers where userid=${userid} and ngaythem='${today}'";
-                    }
-                    else {
-                        $qr="SELECT * FROM `CRM_customers` WHERE userid=${userid} and ngaythem >= '${ngaybd}' and ngaythem <= '${ngaykt}'";
-                    }
-                }
-                else if($cmnd != "" && $sodt == "") {
-                    if($ngaybd == "" || $ngaykt == "") {
-                        $today = date("Y-m-d");
-                        $qr = "SELECT * FROM CRM_customers where userid=${userid} and cmnd='${cmnd}' and ngaythem='${today}'";
-                    }
-                    else {
-                        $qr="SELECT * FROM CRM_customers where userid=${userid} and cmnd='${cmnd}' and ngaythem >= '${ngaybd}' and ngaythem <= '${ngaykt}'";
-                    }
-                }
-                else if($cmnd == "" && $sodt != "") {
-                    if($ngaybd == "" || $ngaykt == "") {
-                        $today = date("Y-m-d");
-                        $qr = "SELECT * FROM CRM_customers where userid=${userid} and sodt='${sodt}' and ngaythem='${today}'";
-                    }
-                    else {
-                        $qr="SELECT * FROM CRM_customers where userid=${userid} and sodt='${sodt}' and ngaythem >= '${ngaybd}' and ngaythem <= '${ngaykt}'";
-                    }
-                }
-            }
-            else if($trangthai != "all" && $userid != "all") {
-                if($cmnd == "" && $sodt == "") {
-                    if($ngaybd == "" || $ngaykt == "") {
-                        $today = date("Y-m-d");
-                        $qr = "SELECT * FROM CRM_customers where trangthai='${trangthai}' and userid=${userid} and ngaythem='${today}'";
-                    }
-                    else {
-                        $qr="SELECT * FROM `CRM_customers` WHERE trangthai='${trangthai}' and userid=${userid} and ngaythem >= '${ngaybd}' and ngaythem <= '${ngaykt}'";
-                    }
-                }
-                else if($cmnd != "" && $sodt == "") {
-                    if($ngaybd == "" || $ngaykt == "") {
-                        $today = date("Y-m-d");
-                        $qr = "SELECT * FROM CRM_customers where trangthai='${trangthai}' and userid=${userid} and cmnd='${cmnd}' and ngaythem='${today}'";
-                    }
-                    else {
-                        $qr="SELECT * FROM CRM_customers where trangthai='${trangthai}' and userid=${userid} and cmnd='${cmnd}' and ngaythem >= '${ngaybd}' and ngaythem <= '${ngaykt}'";
-                    }
-                }
-                else if($cmnd == "" && $sodt != "") {
-                    if($ngaybd == "" || $ngaykt == "") {
-                        $today = date("Y-m-d");
-                        $qr = "SELECT * FROM CRM_customers where trangthai='${trangthai}' and userid=${userid} and sodt='${sodt}' and ngaythem='${today}'";
-                    }
-                    else {
-                        $qr="SELECT * FROM CRM_customers where trangthai='${trangthai}' and userid=${userid} and sodt='${sodt}' and ngaythem >= '${ngaybd}' and ngaythem <= '${ngaykt}'";
-                    }
-                }
-            }
+            $qr.=" LIMIT ${min}, ${limit}";
+            echo $qr;
+            // if($trangthai == "all" && $userid == "all") {
+            //     if($cmnd == "" && $sodt == "") {
+            //         if($ngaybd == "" || $ngaykt == "") {
+            //             $today = date("Y-m-d");
+            //             $qr = "SELECT * FROM CRM_customers where ngaythem='${today}'";
+            //         }
+            //         else {
+            //             $qr="SELECT * FROM `CRM_customers` WHERE ngaythem >= '${ngaybd}' and ngaythem <= '${ngaykt}'  LIMIT ${min}, ${limit}";
+            //         }
+            //     }
+            //     else if($cmnd != "" && $sodt == "") {
+            //         if($ngaybd == "" || $ngaykt == "") {
+            //             $today = date("Y-m-d");
+            //             $qr = "SELECT * FROM CRM_customers where cmnd='${cmnd}' and ngaythem='${today}'";
+            //         }
+            //         else {
+            //             $qr="SELECT * FROM CRM_customers where cmnd='${cmnd}' and ngaythem >= '${ngaybd}' and ngaythem <= '${ngaykt}'";
+            //         }
+            //     }
+            //     else if($cmnd == "" && $sodt != "") {
+            //         if($ngaybd == "" || $ngaykt == "") {
+            //             $today = date("Y-m-d");
+            //             $qr = "SELECT * FROM CRM_customers where sodt='${sodt}' and ngaythem='${today}'";
+            //         }
+            //         else {
+            //             $qr="SELECT * FROM CRM_customers where sodt='${sodt}' and ngaythem >= '${ngaybd}' and ngaythem <= '${ngaykt}'";
+            //         }
+            //     }
+            //     else if($cmnd != "" && $sodt != "") {
+            //         if($ngaybd == "" || $ngaykt == "") {
+            //             $today = date("Y-m-d");
+            //             $qr = "SELECT * FROM CRM_customers where sodt='${sodt}' and cmnd='${cmnd}' and ngaythem='${today}'";
+            //         }
+            //         else {
+            //             $qr="SELECT * FROM CRM_customers where sodt='${sodt}' and cmnd='${cmnd}' and ngaythem >= '${ngaybd}' and ngaythem <= '${ngaykt}'";
+            //         }
+            //     }
+            // }
+            // else if($trangthai != "all" && $userid == "all") {
+            //     if($cmnd == "" && $sodt == "") {
+            //         if($ngaybd == "" || $ngaykt == "") {
+            //             $today = date("Y-m-d");
+            //             $qr = "SELECT * FROM CRM_customers where trangthai='${trangthai}' and ngaythem='${today}'";
+            //         }
+            //         else {
+            //             $qr="SELECT * FROM `CRM_customers` WHERE trangthai='${trangthai}' and ngaythem >= '${ngaybd}' and ngaythem <= '${ngaykt}'";
+            //         }
+            //     }
+            //     else if($cmnd != "" && $sodt == "") {
+            //         if($ngaybd == "" || $ngaykt == "") {
+            //             $today = date("Y-m-d");
+            //             $qr = "SELECT * FROM CRM_customers where trangthai='${trangthai}' and cmnd='${cmnd}' and ngaythem='${today}'";
+            //         }
+            //         else {
+            //             $qr="SELECT * FROM CRM_customers where trangthai='${trangthai}' and cmnd='${cmnd}' and ngaythem >= '${ngaybd}' and ngaythem <= '${ngaykt}'";
+            //         }
+            //     }
+            //     else if($cmnd == "" && $sodt != "") {
+            //         if($ngaybd == "" || $ngaykt == "") {
+            //             $today = date("Y-m-d");
+            //             $qr = "SELECT * FROM CRM_customers where trangthai='${trangthai}' and sodt='${sodt}' and ngaythem='${today}'";
+            //         }
+            //         else {
+            //             $qr="SELECT * FROM CRM_customers where trangthai='${trangthai}' and sodt='${sodt}' and ngaythem >= '${ngaybd}' and ngaythem <= '${ngaykt}'";
+            //         }
+            //     }
+            //     else if($cmnd != "" && $sodt != "") {
+            //         if($ngaybd == "" || $ngaykt == "") {
+            //             $today = date("Y-m-d");
+            //             $qr = "SELECT * FROM CRM_customers where trangthai='${trangthai}' and sodt='${sodt}' and cmnd='${cmnd}' and ngaythem='${today}'";
+            //         }
+            //         else {
+            //             $qr="SELECT * FROM CRM_customers where trangthai='${trangthai}' and sodt='${sodt}' and cmnd='${cmnd}' and ngaythem >= '${ngaybd}' and ngaythem <= '${ngaykt}'";
+            //         }
+            //     }
+            // }
+            // else if($trangthai == "all" && $userid != "all") {
+            //     if($cmnd == "" && $sodt == "") {
+            //         if($ngaybd == "" || $ngaykt == "") {
+            //             $today = date("Y-m-d");
+            //             $qr = "SELECT * FROM CRM_customers where userid=${userid} and ngaythem='${today}'";
+            //         }
+            //         else {
+            //             $qr="SELECT * FROM `CRM_customers` WHERE userid=${userid} and ngaythem >= '${ngaybd}' and ngaythem <= '${ngaykt}'";
+            //         }
+            //     }
+            //     else if($cmnd != "" && $sodt == "") {
+            //         if($ngaybd == "" || $ngaykt == "") {
+            //             $today = date("Y-m-d");
+            //             $qr = "SELECT * FROM CRM_customers where userid=${userid} and cmnd='${cmnd}' and ngaythem='${today}'";
+            //         }
+            //         else {
+            //             $qr="SELECT * FROM CRM_customers where userid=${userid} and cmnd='${cmnd}' and ngaythem >= '${ngaybd}' and ngaythem <= '${ngaykt}'";
+            //         }
+            //     }
+            //     else if($cmnd == "" && $sodt != "") {
+            //         if($ngaybd == "" || $ngaykt == "") {
+            //             $today = date("Y-m-d");
+            //             $qr = "SELECT * FROM CRM_customers where userid=${userid} and sodt='${sodt}' and ngaythem='${today}'";
+            //         }
+            //         else {
+            //             $qr="SELECT * FROM CRM_customers where userid=${userid} and sodt='${sodt}' and ngaythem >= '${ngaybd}' and ngaythem <= '${ngaykt}'";
+            //         }
+            //     }
+            // }
+            // else if($trangthai != "all" && $userid != "all") {
+            //     if($cmnd == "" && $sodt == "") {
+            //         if($ngaybd == "" || $ngaykt == "") {
+            //             $today = date("Y-m-d");
+            //             $qr = "SELECT * FROM CRM_customers where trangthai='${trangthai}' and userid=${userid} and ngaythem='${today}'";
+            //         }
+            //         else {
+            //             $qr="SELECT * FROM `CRM_customers` WHERE trangthai='${trangthai}' and userid=${userid} and ngaythem >= '${ngaybd}' and ngaythem <= '${ngaykt}'";
+            //         }
+            //     }
+            //     else if($cmnd != "" && $sodt == "") {
+            //         if($ngaybd == "" || $ngaykt == "") {
+            //             $today = date("Y-m-d");
+            //             $qr = "SELECT * FROM CRM_customers where trangthai='${trangthai}' and userid=${userid} and cmnd='${cmnd}' and ngaythem='${today}'";
+            //         }
+            //         else {
+            //             $qr="SELECT * FROM CRM_customers where trangthai='${trangthai}' and userid=${userid} and cmnd='${cmnd}' and ngaythem >= '${ngaybd}' and ngaythem <= '${ngaykt}'";
+            //         }
+            //     }
+            //     else if($cmnd == "" && $sodt != "") {
+            //         if($ngaybd == "" || $ngaykt == "") {
+            //             $today = date("Y-m-d");
+            //             $qr = "SELECT * FROM CRM_customers where trangthai='${trangthai}' and userid=${userid} and sodt='${sodt}' and ngaythem='${today}'";
+            //         }
+            //         else {
+            //             $qr="SELECT * FROM CRM_customers where trangthai='${trangthai}' and userid=${userid} and sodt='${sodt}' and ngaythem >= '${ngaybd}' and ngaythem <= '${ngaykt}'";
+            //         }
+            //     }
+            // }
             
             if(isset($data[1])) {
                 $data1 = mysqli_fetch_all($Account->GetNhanVien());

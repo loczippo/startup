@@ -70,17 +70,17 @@
                 <div class="row ">
                     <div class="col-md-12">
                         
-                            <input type="submit" class="btn btn-success" id="trangthai" name="trangthai" value="Có nhu cầu">
+                            <input type="submit" class="btn btn-success" id="trangthai" name="trangthai" value="cnc">
                        
-                            <input type="submit" class="btn btn-success" id="trangthai1" name="trangthai" value="Không nhu cầu">
+                            <input type="submit" class="btn btn-success" id="trangthai1" name="trangthai" value="knc">
                        
-                            <input type="submit" class="btn btn-success" id="trangthai2" name="trangthai" value="Khác">
+                            <input type="submit" class="btn btn-success" id="trangthai2" name="trangthai" value="khac">
                        
-                            <input type="submit" class="btn btn-success" id="trangthai3" name="trangthai" value="Hẹn gọi lại">
+                            <input type="submit" class="btn btn-success" id="trangthai3" name="trangthai" value="hgl">
                        
-                            <input type="submit" class="btn btn-success" id="trangthai4" name="trangthai" value="Không bắt máy">
+                            <input type="submit" class="btn btn-success" id="trangthai4" name="trangthai" value="kbm">
                      
-                            <input type="submit" class="btn btn-success" id="trangthai5" name="trangthai" value="Chửi">
+                            <input type="submit" class="btn btn-success" id="trangthai5" name="trangthai" value="chui">
                        
                     </div>
                 </div>
