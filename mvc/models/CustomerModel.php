@@ -10,11 +10,11 @@
             
         }
         public function GetCountSearch($trangthai, $hoten, $cmnd, $sodt, $userid, $ngaybd, $ngaykt) {
-            $qr="SELECT count(customerid) FROM CRM_customers where hoten LIKE '${hoten}%'";
+            $qr="SELECT count(customerid) FROM CRM_customers where hoten LIKE '%${hoten}%'";
             return mysqli_query($this->connection, $qr);
         }
         public function GetCustomer($userid, $min, $limit) {
-            $qr = "SELECT * FROM CRM_customers where userid = ${userid} and (trangthai IN ('Hẹn gọi lại', 'Không bắt máy') OR trangthai IS NULL) Order by ngayhen desc, trangthai asc LIMIT $min, $limit";
+            $qr = "SELECT * FROM CRM_customers where userid = ${userid} and (trangthai IN ('hgl', 'kbm') OR trangthai IS NULL) Order by ngayhen desc, trangthai asc LIMIT $min, $limit";
             return mysqli_query($this->connection, $qr);
         }
         public function GetCountCustomerTrangThaiNULL($userid) {

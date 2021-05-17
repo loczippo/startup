@@ -1,6 +1,93 @@
 <?php
     class StaffData extends Controller{
         function Index($page=1, $limit = 10) {
+            $Customer = $this->model("CustomerModel");
+            $Account = $this->model("AccountModel");
+            $trangthai = "";
+            $hoten = "";
+            $cmnd = "";
+            $sodt = "";
+            $userid = "";
+            $ngaybd = "";
+            $ngaykt = "";
+            $qr="";
+            $page1=1;
+            $data = (explode('=',urldecode($_SERVER['REQUEST_URI'])));
+            if(isset($data[1])) {
+                $trangthai = substr($data[1],0,-6);
+                if($trangthai=="all"){
+                     $qr = "SELECT * FROM CRM_customers where 1=1";
+                }
+                else if($trangthai=='new'){
+                    $qr = "SELECT * FROM CRM_customers where trangthai is null";
+                }
+                else{
+                 $qr = "SELECT * FROM CRM_customers where trangthai ='$trangthai'";
+                }
+            }
+            if(isset($data[2])) {
+                $hoten = substr($data[2],0,-5);
+                if($hoten != "") $qr.=" and hoten LIKE '%${hoten}%'";
+            }
+            if(isset($data[3])) {
+                $cmnd = substr($data[3],0,-5);
+                if($cmnd != "") $qr.=" and cmnd='${cmnd}'";
+            }
+            if(isset($data[4])) {
+                $sodt = substr($data[4],0,-7);
+                if($sodt != "") $qr.=" and sodt='${sodt}'";
+            }
+            if(isset($data[5])) {
+                $ngaybd = substr($data[5],0,-7);
+            }
+            if(isset($data[6])) {
+                $ngaykt = $data[6];
+            }
+            if(isset($data[7])) {
+                $ngaykt = substr($ngaykt, 0, -5);
+                $page1 = $data[7];
+            }
+            $today = date("Y-m-d");
+            if($ngaybd == "") $qr.=" and ngaythem >= '${today}'";
+            else $qr.=" and ngaythem >= '${ngaybd}'";
+            if($ngaykt == "") $qr.=" and ngaythem <= '${today}'";
+            else if($ngaykt != "") $qr.=" and ngaythem <= '${ngaykt}'";
+            else if($ngaybd == "" && $ngaykt == "") $qr.=" and ngaythem ='${today}'";
+            $min = 0;
+            $min=($page1-1) * $limit;
+            $user = $Account->GetUserID($_SESSION['username']);
+            if($row = mysqli_fetch_array($user)) {
+                $userid = $row["userid"];
+            }
+            $qr.= " and userid = ${userid}";
+            $qr1 = $qr;
+            $qr.=" LIMIT ${min}, ${limit}";
+            if($trangthai != "") {
+                $page1 = intval($page1);
+                $array = explode('/', $_SERVER['REQUEST_URI']);
+                if(isset($array[2])) {
+                    $page = substr($array[2],0,-10);
+                }
+                if($page != 1) header("Location: /StaffData?trangthai=${trangthai}&cmnd=${cmnd}&sodt=${sodt}&ngaybd=${ngaybd}&ngaykt=${ngaykt}");
+                $data = mysqli_fetch_all($Customer->Query($qr));
+                $rows = mysqli_fetch_array($Customer->Query(str_replace('SELECT *','SELECT count(customerid)', $qr1)));
+                $rowsnum = $rows["count(customerid)"];
+                $view = $this->view("Layout1",__CLASS__, [
+                    "Page" => "staffdata",
+                    "Customer" => $data,
+                    "Numrows" => $rowsnum,
+                    "Pagenum" => $page1,
+                    "Trangthai" => $trangthai,
+                    "Hoten" => $hoten,
+                    "Cmnd" => $cmnd,
+                    "Sodt" => $sodt,
+                    "Ngaybd" => $ngaybd,
+                    "Ngaykt" => $ngaykt
+                    ]);
+                echo $view;
+                die;
+            }
+            // Không Lọc
             //view
             $url = $_SERVER['REQUEST_URI'];
             $array = explode('/', $url);

@@ -37,6 +37,7 @@
             $Account = $this->model("AccountModel");
             // GET nut lọc 
             $trangthai = "";
+            $hoten = "";
             $cmnd = "";
             $sodt = "";
             $userid = "";
@@ -44,9 +45,9 @@
             $ngaykt = "";
             $qr="";
             $page1=1;
-            $data = (explode('=',$_SERVER['REQUEST_URI']));
+            $data = (explode('=',urldecode($_SERVER['REQUEST_URI'])));
             if(isset($data[1])) {
-                $trangthai = substr($data[1],0,-5);
+                $trangthai = substr($data[1],0,-6);
                 if($trangthai=="all"){
                      $qr = "SELECT * FROM CRM_customers where 1=1";
                 }
@@ -57,28 +58,31 @@
                  $qr = "SELECT * FROM CRM_customers where trangthai ='$trangthai'";
                 }
             }
-            
             if(isset($data[2])) {
-                $cmnd = substr($data[2],0,-5);
-                if($cmnd != "") $qr.=" and cmnd='${cmnd}'";
+                $hoten = substr($data[2],0,-5);
+                if($hoten != "") $qr.=" and hoten LIKE '%${hoten}%'";
             }
             if(isset($data[3])) {
-                $sodt = substr($data[3],0,-7);
-                if($sodt != "") $qr.=" and cmnd='${sodt}'";
+                $cmnd = substr($data[3],0,-5);
+                if($cmnd != "") $qr.=" and cmnd='${cmnd}'";
             }
             if(isset($data[4])) {
-                $userid = substr($data[4],0,-7);
-                if($userid != "all") $qr.=" and userid=${userid}";
+                $sodt = substr($data[4],0,-7);
+                if($sodt != "") $qr.=" and cmnd='${sodt}'";
             }
             if(isset($data[5])) {
-                $ngaybd = substr($data[5],0,-7);
+                $userid = substr($data[5],0,-7);
+                if($userid != "all") $qr.=" and userid=${userid}";
             }
             if(isset($data[6])) {
-                $ngaykt = $data[6];
+                $ngaybd = substr($data[6],0,-7);
             }
             if(isset($data[7])) {
+                $ngaykt = $data[7];
+            }
+            if(isset($data[8])) {
                 $ngaykt = substr($ngaykt, 0, -5);
-                $page1 = $data[7];
+                $page1 = $data[8];
             }
             $today = date("Y-m-d");
             if($ngaybd == "") $qr.=" and ngaythem >= '${today}'";
@@ -238,6 +242,7 @@
                         "Numrows" => $rowsnum,
                         "Pagenum" => $page1,
                         "Trangthai" => $trangthai,
+                        "Hoten" => $hoten,
                         "Cmnd" => $cmnd,
                         "Sodt" => $sodt,
                         "Userid" => $userid,

@@ -73,15 +73,15 @@
                     <div class="col-md-12">
                            <input type="hidden" class="btn btn-success" id="trangthai" name="trangthai" value="knc">
                        <input type="submit" name="btnsubmit" style="display: none;" id='btnsubmit'>
-                        <a href="javascript:;" class="btn btn-success btn-trangthai" data-value='cnc'>Có nhu cầu</a>
-                        <a href="javascript:;" class="btn btn-warning btn-trangthai" data-value='knc'>Không có nhu cầu</a>
-                        <a href="javascript:;" class="btn btn-primary btn-trangthai" data-value='hgl'>Hẹn gọi lại</a>
+                        <a href="javascript:;" class="btn btn-success btn-trangthai" id="trangthai1" data-value='cnc'>Có nhu cầu</a>
+                        <a href="javascript:;" class="btn btn-warning btn-trangthai" id="trangthai2" data-value='knc'>Không có nhu cầu</a>
+                        <a href="javascript:;" class="btn btn-primary btn-trangthai" id="trangthai3" data-value='hgl'>Hẹn gọi lại</a>
 
-                        <a href="javascript:;" class="btn btn-warning btn-trangthai" data-value='kbm'>Không bắt máy</a>
+                        <a href="javascript:;" class="btn btn-warning btn-trangthai" id="trangthai4" data-value='kbm'>Không bắt máy</a>
 
-                        <a href="javascript:;" class="btn btn-danger btn-trangthai" data-value='chui'>Chửi</a>
+                        <a href="javascript:;" class="btn btn-danger btn-trangthai" id="trangthai5" data-value='chui'>Chửi</a>
 
-                        <a href="javascript:;" class="btn btn-info btn-trangthai" data-value='khac'>Khác</a>
+                        <a href="javascript:;" class="btn btn-info btn-trangthai" id="trangthai6" data-value='khac'>Khác</a>
 
                                         <script type="text/javascript">
                                            
@@ -110,7 +110,7 @@
     document.addEventListener('DOMContentLoaded', (event) => {
         $(document).ready(function(){
             
-            $('#trangthai, #trangthai1, #trangthai2, #trangthai3, #trangthai4, #trangthai5').click(function() {
+            $('#trangthai, #trangthai1, #trangthai2, #trangthai3, #trangthai4, #trangthai5, #trangthai6').click(function() {
                     let hanmuc = document.getElementById("hanmuc");
                     let convert = hanmuc.value.replaceAll(',', '');
                     hanmuc.value = convert;
