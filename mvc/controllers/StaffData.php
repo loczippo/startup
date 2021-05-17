@@ -101,18 +101,18 @@
                 $sotien = $_POST['sotien'];
                 $ngayhen = $_POST['ngayhen'];
                 $ngaygoi = date("Y-m-d");
-                if(strlen($sotien) !=0 && $trangthai=="Có nhu cầu") {
+                if(strlen($sotien) !=0 && $trangthai=="cnc") {
                     $Customer->UpdateCustomerCNC($customerid, $hoten, $cmnd, $sodt, $hanmuc, $trangthai, $ghichu, $sotien, $ngaygoi);
                 }
-                if($trangthai=="Không nhu cầu") {
+                if($trangthai=="knc") {
                     $Customer->UpdateCustomerKNC($customerid, $hoten, $cmnd, $sodt, $hanmuc, $trangthai, $ghichu, $ngaygoi);
                 }
-                if($trangthai == 'Không bắt máy') {
+                if($trangthai == 'kbm') {
                     $ngayhen1 = date("Y-m-d");
                     $tomorrow = date('Y-m-d', strtotime($ngayhen1 . "+3 days"));
                     $Customer->UpdateCustomerKBM($customerid, $hoten, $cmnd, $sodt, $hanmuc, $trangthai, $ghichu, $tomorrow, $ngaygoi);
                 }
-                if(strlen($ngayhen) !=0 && $trangthai== 'Hẹn gọi lại') {
+                if(strlen($ngayhen) !=0 && $trangthai== 'hgl') {
                     $Customer->UpdateCustomerHGL($customerid, $hoten, $cmnd, $sodt, $hanmuc, $trangthai, $ghichu, $ngayhen, $ngaygoi);
                 }
                 else {
