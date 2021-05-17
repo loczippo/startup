@@ -9,6 +9,8 @@
   }
 }
 </style>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <div class="container-fluid mt-2">
     <div class="card ">
         <div class="card-header">
@@ -69,18 +71,27 @@
                 <hr/>
                 <div class="row ">
                     <div class="col-md-12">
-                        
-                            <input type="submit" class="btn btn-success" id="trangthai" name="trangthai" value="cnc">
-                       
-                            <input type="submit" class="btn btn-success" id="trangthai1" name="trangthai" value="knc">
-                       
-                            <input type="submit" class="btn btn-success" id="trangthai2" name="trangthai" value="khac">
-                       
-                            <input type="submit" class="btn btn-success" id="trangthai3" name="trangthai" value="hgl">
-                       
-                            <input type="submit" class="btn btn-success" id="trangthai4" name="trangthai" value="kbm">
-                     
-                            <input type="submit" class="btn btn-success" id="trangthai5" name="trangthai" value="chui">
+                           <input type="hidden" class="btn btn-success" id="trangthai" name="trangthai" value="knc">
+                       <input type="submit" name="btnsubmit" style="display: none;" id='btnsubmit'>
+                        <a href="javascript:;" class="btn btn-success btn-trangthai" data-value='cnc'>Có nhu cầu</a>
+                        <a href="javascript:;" class="btn btn-warning btn-trangthai" data-value='knc'>Không có nhu cầu</a>
+                        <a href="javascript:;" class="btn btn-primary btn-trangthai" data-value='hgl'>Hẹn gọi lại</a>
+
+                        <a href="javascript:;" class="btn btn-warning btn-trangthai" data-value='kbm'>Không bắt máy</a>
+
+                        <a href="javascript:;" class="btn btn-danger btn-trangthai" data-value='chui'>Chửi</a>
+
+                        <a href="javascript:;" class="btn btn-info btn-trangthai" data-value='khac'>Khác</a>
+
+                                        <script type="text/javascript">
+                                            $(".btn-trangthai").click(function(){
+                                                var trangthai=$(this).data("value");
+                                                $("#trangthai").val(trangthai);
+                                                $("#btnsubmit").trigger("click");
+                                            });
+                                        </script>       
+                          
+                    
                        
                     </div>
                 </div>
