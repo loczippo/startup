@@ -33,7 +33,7 @@
             <form method="POST" action="StaffData/DataEntry/<?php echo $row[0]; ?>/Update" id="update" name="update">
                 <div class="row">
                     <div class=" col-md-6 col-lg-4 col-xl-4">
- <label for="hoten" class="form-label">Họ và tên: </label>
+                    <label for="hoten" class="form-label">Họ và tên: </label>
                     <input type="text" class="form-control" id="hoten" name="hoten" value="<?php echo $hoten; ?>">
                     </div>
                

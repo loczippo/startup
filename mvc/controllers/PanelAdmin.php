@@ -42,33 +42,33 @@
             $userid = "";
             $ngaybd = "";
             $ngaykt = "";
+            $qr="";
+            $page1=1;
             $data = (explode('=',$_SERVER['REQUEST_URI']));
             if(isset($data[1])) {
                 $trangthai = substr($data[1],0,-5);
                 if($trangthai=="all"){
                      $qr = "SELECT * FROM CRM_customers where 1=1";
                 }
-                else if($trangthai=='new' || $trangthai==''){
+                else if($trangthai=='new'){
                     $qr = "SELECT * FROM CRM_customers where trangthai is null";
                 }
                 else{
-                   
                  $qr = "SELECT * FROM CRM_customers where trangthai ='$trangthai'";
                 }
-                
-            }
-            else{
-                $qr = "SELECT * FROM CRM_customers where trangthai is null";
             }
             
             if(isset($data[2])) {
                 $cmnd = substr($data[2],0,-5);
+                if($cmnd != "") $qr.=" and cmnd='${cmnd}'";
             }
             if(isset($data[3])) {
                 $sodt = substr($data[3],0,-7);
+                if($sodt != "") $qr.=" and cmnd='${sodt}'";
             }
             if(isset($data[4])) {
                 $userid = substr($data[4],0,-7);
+                if($userid != "all") $qr.=" and userid=${userid}";
             }
             if(isset($data[5])) {
                 $ngaybd = substr($data[5],0,-7);
@@ -76,10 +76,20 @@
             if(isset($data[6])) {
                 $ngaykt = $data[6];
             }
+            if(isset($data[7])) {
+                $ngaykt = substr($ngaykt, 0, -5);
+                $page1 = $data[7];
+            }
+            $today = date("Y-m-d");
+            if($ngaybd == "") $qr.=" and ngaythem >= '${today}'";
+            else $qr.=" and ngaythem >= '${ngaybd}'";
+            if($ngaykt == "") $qr.=" and ngaythem <= '${today}'";
+            else if($ngaykt != "") $qr.=" and ngaythem <= '${ngaykt}'";
+            else if($ngaybd == "" && $ngaykt == "") $qr.=" and ngaythem ='${today}'";
             $min = 0;
-            $min=($page-1) * $limit;
+            $min=($page1-1) * $limit;
+            $qr1 = $qr;
             $qr.=" LIMIT ${min}, ${limit}";
-            //echo $qr;
             // if($trangthai == "all" && $userid == "all") {
             //     if($cmnd == "" && $sodt == "") {
             //         if($ngaybd == "" || $ngaykt == "") {
@@ -214,18 +224,19 @@
             //         }
             //     }
             // }
-            
-           // if(isset($data[1])) {
+           if($trangthai != "") {
+                $page1 = intval($page1);
+                if($page != 1) header("Location: /PanelAdmin/ViewData?trangthai=${trangthai}&cmnd=${cmnd}&sodt=${sodt}&userid=${userid}&ngaybd=${ngaybd}&ngaykt=${ngaykt}");
                 $data1 = mysqli_fetch_all($Account->GetNhanVien());
                 $data = mysqli_fetch_all($Customer->Query($qr));
-                $rows = mysqli_fetch_array($Customer->Query(str_replace('SELECT *','SELECT count(customerid)',$qr)));
+                $rows = mysqli_fetch_array($Customer->Query(str_replace('SELECT *','SELECT count(customerid)', $qr1)));
                 $rowsnum = $rows["count(customerid)"];
                     $view = $this->view("Layout1",__CLASS__, [
                         "Page" => "staffdata",
                         "Nhanvien" => $data1,
                         "Customer" => $data,
                         "Numrows" => $rowsnum,
-                        "Pagenum" => $page,
+                        "Pagenum" => $page1,
                         "Trangthai" => $trangthai,
                         "Cmnd" => $cmnd,
                         "Sodt" => $sodt,
@@ -235,11 +246,11 @@
                         ]);
                     echo $view;
                     die;
-           // }
+           }
             
-            if($_SERVER['REQUEST_METHOD'] == "POST") {
-                $Account = $this->model("AccountModel");
-                $Customer = $this->model("CustomerModel");
+            //if($_SERVER['REQUEST_METHOD'] == "POST") {
+                //$Account = $this->model("AccountModel");
+                //$Customer = $this->model("CustomerModel");
                 // nút lọc ấn
                 // if(isset($_POST['trangthai'])) {
                 //     $trangthai = $_POST['trangthai'];
@@ -268,7 +279,7 @@
                 //         ]);
                 //     echo $view;
                 // }
-            }
+            //}
 
             // GET
             $Customer = $this->model("CustomerModel");

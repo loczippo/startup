@@ -2,7 +2,7 @@
 <div class="container-fluid mt-3">
     <div class="card">
         <div class="card-header">
-            <h6><img class="img-fluid" src="public/img/star.gif" alt="" width="40">HOME -> ADMIN PANEL -> INSERT DATA</h6>
+            <h6><img class="img-fluid" src="public/img/star.gif" alt="" width="40">HOME -> INSERT DATA</h6>
         </div>
         <form method="POST" name="upload" id="upload" enctype="multipart/form-data">
             <div class="card-body">

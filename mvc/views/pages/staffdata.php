@@ -45,19 +45,19 @@
                             </div>
                             <!--<div class='col-sm-2'>
                                 <div class='form-floating'>
-                                    <input style='width: 150px' type='text' name='hoten' class='form-control' value='";echo isset($_POST['hoten'])?$_POST['hoten']:'';echo "'/>
+                                    <input style='width: 150px' type='text' name='hoten' class='form-control' value='";echo isset($data['Cmnd'])?$data['Cmnd']:'';echo "'/>
                                     <label for='trangthai'>Họ và tên</label>
                                 </div>
                             </div>-->
                             <div class='col-sm-2'>
                                 <div class='form-floating'>
-                                    <input style='width: 150px' type='text' name='cmnd' class='form-control'/>
+                                    <input style='width: 150px' type='text' name='cmnd' class='form-control' value='";echo isset($data['Cmnd'])?$data['Cmnd']:'';echo "'/>
                                     <label for='trangthai'>CMND</label>
                                 </div>
                             </div>
                             <div class='col-sm-2'>
                                 <div class='form-floating'>
-                                    <input style='width: 150px' type='text' name='sodt' class='form-control'/>
+                                    <input style='width: 150px' type='text' name='sodt' class='form-control' value='";echo isset($data['Sodt'])?$data['Sodt']:'';echo "'/>
                                     <label for='trangthai'>Số điện thoại</label>
                                 </div>
                             </div>
@@ -72,15 +72,16 @@
                                 <label for='trangthai'>Chọn NV muốn xem</label>
                                 </div>
                             </div>
+                            <script>document.getElementById('userid').value = '";echo isset($data['Userid'])?$data['Userid']:'all';echo "'</script>
                             <div class='col-sm-2'>
                                 <div class='form-floating'>
-                                    <input style='width: 180px' type='date' class='form-control datepicker' id='ngaybd' name='ngaybd'>
+                                    <input style='width: 180px' type='date' class='form-control datepicker' id='ngaybd' name='ngaybd' value='";echo isset($data['Ngaybd'])?$data['Ngaybd']:'';echo "'/>
                                 <label for='trangthai'>Ngày bắt đầu</label>
                                 </div>
                             </div>
                             <div class='col-sm-2'>
                                 <div class='form-floating'>
-                                    <input style='width: 180px' type='date' class='form-control datepicker' id='ngaykt' name='ngaykt'>
+                                    <input style='width: 180px' type='date' class='form-control datepicker' id='ngaykt' name='ngaykt' value='";echo isset($data['Ngaykt'])?$data['Ngaykt']:'';echo "'/>
                                 <label for='trangthai'>Ngày kết thúc</label>
                                 </div>
                             </div>
@@ -217,14 +218,13 @@
                         echo "<td>${row[1]}</td>";
                         echo "<td>${row[2]}</td>";
                         echo "<td>${row[3]}</td>";
-                        if($row[5] == NULL)
-                        {
-                            $status="Chưa cập nhật";
-                            echo "<td>${status}</td>";
-                        } 
-                        else {
-                            echo "<td>${row[5]}</td>";
-                        }
+                        if($row[5] == NULL) echo "<td>Chưa cập nhật</td>";
+                        if($row[5] == "cnc") echo "<td>Có nhu cầu</td>";
+                        if($row[5] == "knc") echo "<td>Không nhu cầu</td>";
+                        if($row[5] == "khac") echo "<td>Khác</td>";
+                        if($row[5] == "hgl") echo "<td>Hẹn gọi lại</td>";
+                        if($row[5] == "kbm") echo "<td>Không bắt máy</td>";
+                        if($row[5] == "chui") echo "<td>Chửi</td>";
                         echo "<td><a href='StaffData/DataEntry/${row[0]}' class='btn btn-success' type='button'>Nhập</a></td>";
                         echo "</tr>";
                         $i++;
@@ -261,17 +261,29 @@
                   </li>';
                   for($i=1;$i<=$pagenum;$i++) {
                       if($i >= $data['Pagenum']-5 && $i<=$data['Pagenum']+5) {
-                        if(!isset($data['Trangthai'])) {
-                            echo "<li class='page-item'><a class='page-link' href='PanelAdmin/ViewData/${i}'>${i}</a></li>";
-                        }
-                        else {
-                            echo "<li class='page-item'><a class='page-link' href='PanelAdmin/ViewData/${i}?trangthai=${data['Trangthai']}&cmnd=${data['Cmnd']}&sodt=${data['Sodt']}&userid=${data['Userid']}&ngaybd=${data['Ngaybd']}&ngaykt=${data['Ngaykt']}'>${i}</a></li>";
-                        }
+                            if(isset($data['Trangthai'])) {
+                                echo "<li class='page-item'><a class='page-link' href='PanelAdmin/ViewData?trangthai=${data['Trangthai']}&cmnd=${data['Cmnd']}&sodt=${data['Sodt']}&userid=${data['Userid']}&ngaybd=${data['Ngaybd']}&ngaykt=${data['Ngaykt']}&page=${i}'>${i}</a></li>";
+                            }
+                            else {
+                                echo "<li class='page-item'><a class='page-link' href='PanelAdmin/ViewData/${i}'>${i}</a></li>";
+                            }
                         }
                     }
                 
                   if($pagenum > 0) {
-                    echo '<li class="page-item">
+                      $pagenum = intval($pagenum);
+                    if(isset($data['Trangthai'])) {
+                        echo "<li class='page-item'>
+                            <a class='page-link' href='PanelAdmin/ViewData?trangthai=${data['Trangthai']}&cmnd=${data['Cmnd']}&sodt=${data['Sodt']}&userid=${data['Userid']}&ngaybd=${data['Ngaybd']}&ngaykt=${data['Ngaykt']}&page=${pagenum}' aria-label='Trang cuối'>
+                            <span aria-hidden='true'>&raquo;</span>
+                            <span class='sr-only'>Trang cuối</span>
+                            </a>
+                        </li>
+                        </ul>
+                    </nav>";
+                    }
+                    else {
+                        echo '<li class="page-item">
                             <a class="page-link" href="PanelAdmin/ViewData/'."${pagenum}".'" aria-label="Trang cuối">
                             <span aria-hidden="true">&raquo;</span>
                             <span class="sr-only">Trang cuối</span>
@@ -279,6 +291,7 @@
                         </li>
                         </ul>
                     </nav>';
+                    }
                   }
                 echo "</div>";
             }
