@@ -79,7 +79,7 @@
             $min = 0;
             $min=($page-1) * $limit;
             $qr.=" LIMIT ${min}, ${limit}";
-            echo $qr;
+            //echo $qr;
             // if($trangthai == "all" && $userid == "all") {
             //     if($cmnd == "" && $sodt == "") {
             //         if($ngaybd == "" || $ngaykt == "") {
