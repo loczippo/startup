@@ -48,7 +48,7 @@
                 if($trangthai=="all"){
                      $qr = "SELECT * FROM CRM_customers where 1=1";
                 }
-                else if($trangthai=='new'){
+                else if($trangthai=='new' || $trangthai==''){
                     $qr = "SELECT * FROM CRM_customers where trangthai is null";
                 }
                 else{
@@ -215,7 +215,7 @@
             //     }
             // }
             
-            if(isset($data[1])) {
+           // if(isset($data[1])) {
                 $data1 = mysqli_fetch_all($Account->GetNhanVien());
                 $data = mysqli_fetch_all($Customer->Query($qr));
                 $rows = mysqli_fetch_array($Customer->Query(str_replace('SELECT *','SELECT count(customerid)',$qr)));
@@ -235,7 +235,7 @@
                         ]);
                     echo $view;
                     die;
-            }
+           // }
             
             if($_SERVER['REQUEST_METHOD'] == "POST") {
                 $Account = $this->model("AccountModel");
