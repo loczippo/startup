@@ -84,11 +84,7 @@
                         <a href="javascript:;" class="btn btn-info btn-trangthai" data-value='khac'>Khác</a>
 
                                         <script type="text/javascript">
-                                            $(".btn-trangthai").click(function(){
-                                                var trangthai=$(this).data("value");
-                                                $("#trangthai").val(trangthai);
-                                                $("#btnsubmit").trigger("click");
-                                            });
+                                           
                                         </script>       
                           
                     
@@ -139,6 +135,11 @@
                 e.preventDefault();
                 document.getElementById("ngayhen").value = "";
             })
+             $(".btn-trangthai").click(function(){
+                var trangthai=$(this).data("value");
+                $("#trangthai").val(trangthai);
+                $("#btnsubmit").trigger("click");
+            });
             
         });
         
