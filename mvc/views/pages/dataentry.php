@@ -26,8 +26,8 @@
                 $ghichu = $row[6];
                 $sotien = $row[7];
                 $ngayhen = $row[8];
-                $newDate = date("Y-m-d", strtotime($ngayhen));
-                if($newDate == "1970-01-01") {
+                $newDate = date("Y-m-d\TH:i:s", strtotime($ngayhen));
+                if($newDate == "1970-01-01T08:00:00") {
                     $newDate='';
                 }
             }
@@ -63,7 +63,7 @@
                 <div class=" col-md-6 col-lg-4 col-xl-4">
                     <label for="ngayhen" class="form-label">Hẹn gọi lại: </label>
                     <div class="d-flex justify-content-between">
-                        <input type="date" class="form-control datepicker" id="ngayhen" name="ngayhen" value="<?php echo $newDate; ?>">
+                        <input type="datetime-local" class="form-control datepicker" id="ngayhen" name="ngayhen" value="<?php echo $newDate; ?>">
                         <button id="clear" style="margin-left: 10px" class="btn btn-success">Clear</button>
                     </div>
                 </div>

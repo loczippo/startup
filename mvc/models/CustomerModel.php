@@ -18,7 +18,7 @@
             return mysqli_query($this->connection, $qr);
         }
         public function GetCountCustomerTrangThaiNULL($userid) {
-            $qr = "SELECT count(customerid) FROM CRM_customers where userid = ${userid} and (trangthai IN ('Hẹn gọi lại', 'Không bắt máy') OR trangthai IS NULL) Order by ngayhen desc, trangthai asc";
+            $qr = "SELECT count(customerid) FROM CRM_customers where userid = ${userid} and (trangthai IN ('hgl', 'kbm') OR trangthai IS NULL) Order by ngayhen desc, trangthai asc";
             return mysqli_query($this->connection, $qr);
         }
         public function GetAllCustomer($min, $limit) {

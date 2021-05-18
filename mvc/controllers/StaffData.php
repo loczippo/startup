@@ -187,6 +187,7 @@
                 $ghichu = $_POST['ghichu'];
                 $sotien = $_POST['sotien'];
                 $ngayhen = $_POST['ngayhen'];
+                $ngayhen =  date('Y-m-d H:i:s', strtotime($ngayhen));
                 $ngaygoi = date("Y-m-d");
                 if(strlen($sotien) !=0 && $trangthai=="cnc") {
                     $Customer->UpdateCustomerCNC($customerid, $hoten, $cmnd, $sodt, $hanmuc, $trangthai, $ghichu, $sotien, $ngaygoi);
