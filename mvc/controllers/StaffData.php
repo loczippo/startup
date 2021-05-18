@@ -208,11 +208,18 @@
                 
             }
             $data = mysqli_fetch_all($Customer->GetCustomerForCustomerID_LIMIT($userid));
-            if($data == null) {
-                header("Location: /StaffData");
+            if($_SESSION['role'] == "nhanvien") {
+                if($data == null) {
+                    header("Location: /StaffData");
+                }
+            }
+            else if($_SESSION['role'] == "admin") {
+                if($data == null) {
+                    header("Location: /PanelAdmin");
+                }
             }
             foreach($data as $row) {
-
+                
                 if(isset($row[0])) {
                     header("Location: /StaffData/DataEntry/${row[0]}");
                 }

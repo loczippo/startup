@@ -10,7 +10,7 @@
             return mysqli_query($this->connection, $qr);
         }
         public function GetNhanVien() {
-            $qr = "SELECT * FROM CRM_accounts where role = 'nhanvien'";
+            $qr = "SELECT * FROM CRM_accounts";
             return mysqli_query($this->connection, $qr);
         }
         public function GetNhanVien1($userid) {

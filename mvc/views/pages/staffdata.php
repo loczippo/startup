@@ -23,6 +23,18 @@
                     }
                 }
             }
+            else if($_SESSION['role'] == "admin") {
+                foreach($data["Customer1"] as $row) {
+                    if($row == "") {
+                        break;
+                    }
+                    
+                    if($row[5] == NULL) {
+                        echo "<a href='StaffData/DataEntry/${row[0]}' class='btn btn-success mb-2' type='button'>Nhập Data</a>";
+                        break;
+                    }
+                }
+            }
             if($_SESSION['role'] == "admin") {
                 echo "<div>";
                     echo "<div class=''>";

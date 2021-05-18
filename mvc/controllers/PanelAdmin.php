@@ -235,10 +235,16 @@
                 $data = mysqli_fetch_all($Customer->Query($qr));
                 $rows = mysqli_fetch_array($Customer->Query(str_replace('SELECT *','SELECT count(customerid)', $qr1)));
                 $rowsnum = $rows["count(customerid)"];
+                $user = $Account->GetUserID($_SESSION['username']);
+                if($row = mysqli_fetch_array($user)) {
+                    $userid = $row["userid"];
+                }
+                $data3 = mysqli_fetch_all($Customer->GetCustomer($userid, $min, $limit));
                     $view = $this->view("Layout1",__CLASS__, [
                         "Page" => "staffdata",
                         "Nhanvien" => $data1,
                         "Customer" => $data,
+                        "Customer1" => $data3,
                         "Numrows" => $rowsnum,
                         "Pagenum" => $page1,
                         "Trangthai" => $trangthai,
@@ -295,11 +301,17 @@
             $data1 = mysqli_fetch_all($Account->GetNhanVien());
             $data2 = $Customer->GetCountCustomer();
             $rowsnum = 0;
+            $user = $Account->GetUserID($_SESSION['username']);
+            if($row = mysqli_fetch_array($user)) {
+                $userid = $row["userid"];
+            }
+            $data3 = mysqli_fetch_all($Customer->GetCustomer($userid, $min, $limit));
             $rows = mysqli_fetch_array($data2);
             $rowsnum = $rows["count(customerid)"];
             $view = $this->view("Layout1",__CLASS__, [
                 "Page" => "staffdata",
                 "Customer" => $data,
+                "Customer1" => $data3,
                 "Nhanvien" => $data1,
                 "Numrows" => $rowsnum,
                 "Pagenum" => $page
