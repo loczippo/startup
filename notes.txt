@@ -4,6 +4,7 @@ Lỗi ----------------
 
 số tiền lỗi (import nhập số vào lỗi)
 coi lại họ tên (mất ký tự)
+admin nhập dữ liệu không lưu
 
 Quan trọng: fix cho đến khi hết lỗi
 
@@ -18,7 +19,6 @@ xóa khách hàng theo lựa chọn
 nút zalo cho qua tab khác
 số tài khoản (thêm field import thôi)
 chỉ có số điện thoại là bắt buộc
-admin nhập dữ liệu không lưu
 cho chọn số dòng/trang                      (Bình xong)
 hiển thị lại grid cho hợp lý                (Bình xong)
 
