@@ -1,15 +1,29 @@
-gọi theo nhà mạng
-số tiền lỗi
-coi lại họ tên
-chưa hiện ghi chú, số tiền, tên nhân viên lên list
-chia đều dữ liệu cho nhân viên
+
+
+Lỗi ----------------
+
+số tiền lỗi (import nhập số vào lỗi)
+coi lại họ tên (mất ký tự)
+admin nhập dữ liệu không lưu
+
+Quan trọng: fix cho đến khi hết lỗi
+
+
+
+Cập nhật bắt buộc ----------------------
+
 hẹn gọi lại: theo giờ và ngày
-cho chọn số dòng/trang
-reset mật khẩu cho nhân viên
+admin reset mật khẩu cho nhân viên
 thêm người dùng
 xóa khách hàng theo lựa chọn
 nút zalo cho qua tab khác
-số tài khoản 
-- có thể chỉ có số điện thoại không
-- kiểm tra lại cập nhật
-admin nhập dữ liệu không lưu
+số tài khoản (thêm field import thôi)
+chỉ có số điện thoại là bắt buộc
+cho chọn số dòng/trang                      (Bình xong)
+hiển thị lại grid cho hợp lý                (Bình xong)
+
+Chức năng mới ->>>>>>>>>> để Bình làm
+
+gọi theo nhà mạng
+chia đều dữ liệu cho nhân viên
+
