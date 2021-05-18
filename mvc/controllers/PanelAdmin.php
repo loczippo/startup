@@ -1,7 +1,7 @@
 <?php
     class PanelAdmin extends Controller{
         function Index() {
-            header('Location: PanelAdmin/ViewData');
+            header('Location: /PanelAdmin/ViewData');
             if(!isset($_SESSION['role'])) die;
             if($_SESSION['role'] != "admin") die;
             $Account = $this->model("AccountModel");
@@ -456,6 +456,33 @@
             $view = $this->view("Layout1",__CLASS__, [
                 "Page" => "manageuser",
                 "Account" => $data
+            ]);
+            echo $view;
+        }
+        function NewUser() {
+            if($_SERVER['REQUEST_METHOD'] == "POST") {
+                $Account = $this->model("AccountModel");
+                $username = $_POST['username'];
+                $oldpass = $_POST['oldpass'];
+                $newpass = $_POST['newpass'];
+                if($oldpass != $newpass) {
+                    echo 'failed1';
+                    die;
+                }
+                // check username ton tai
+                $qr = "SELECT * FROM CRM_accounts where username = '${username}'";
+                $data = $Account -> Query($qr);
+                if($data->num_rows > 0) {
+                    echo 'failed';
+                    die;
+                }
+                $qr = "INSERT INTO CRM_accounts (username, password, role) VALUES ('${username}', '${oldpass}', 'nhanvien')";
+                $data = $Account -> Query($qr);
+                echo 'successfuly';
+                die;
+            }
+            $view = $this->view("Layout1",__CLASS__, [
+                "Page" => "newuser"
             ]);
             echo $view;
         }

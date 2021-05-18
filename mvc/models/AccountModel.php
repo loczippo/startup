@@ -1,6 +1,9 @@
 <?php
     class AccountModel extends Database {
         
+        public function Query($qr) {
+            return mysqli_query($this->connection, $qr);
+        }
         public function GetAccount($username, $password) {
             $qr = "SELECT * FROM CRM_accounts where username='${username}' AND password ='${password}'";
             return mysqli_query($this->connection, $qr);
