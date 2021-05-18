@@ -1,11 +1,3 @@
-Chức năng mới ->>>>>>>>>> để Bình làm
-
-gọi theo nhà mạng
-chia đều dữ liệu cho nhân viên
-xong ---------------------
-cho chọn số dòng/trang
-hiển thị lại grid cho hợp lý
-
 
 
 Lỗi ----------------
@@ -13,15 +5,25 @@ Lỗi ----------------
 số tiền lỗi (import nhập số vào lỗi)
 coi lại họ tên (mất ký tự)
 
+Quan trọng: fix cho đến khi hết lỗi
+
 
 
 Cập nhật bắt buộc ----------------------
 
 hẹn gọi lại: theo giờ và ngày
-reset mật khẩu cho nhân viên
+admin reset mật khẩu cho nhân viên
 thêm người dùng
 xóa khách hàng theo lựa chọn
 nút zalo cho qua tab khác
 số tài khoản (thêm field import thôi)
 chỉ có số điện thoại là bắt buộc
 admin nhập dữ liệu không lưu
+cho chọn số dòng/trang                      (Bình xong)
+hiển thị lại grid cho hợp lý                (Bình xong)
+
+Chức năng mới ->>>>>>>>>> để Bình làm
+
+gọi theo nhà mạng
+chia đều dữ liệu cho nhân viên
+
