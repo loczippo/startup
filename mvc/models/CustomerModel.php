@@ -55,6 +55,7 @@
         }
         public function InsertCustomer($hoten, $cmnd, $sodt, $hanmuc, $ngaythem, $userid) {
             $qr = "INSERT INTO CRM_customers(hoten, cmnd, sodt, hanmuc, ngaythem, userid) values ('${hoten}', '${cmnd}', '${sodt}', ${hanmuc}, '${ngaythem}', ${userid})";
+            echo $qr;
             return mysqli_query($this->connection, $qr);
         }
         public function GetCustomerIDForUserID($userid) {
