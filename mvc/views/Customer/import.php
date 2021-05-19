@@ -68,6 +68,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             type: 'POST',
             data: formData,
             success: function (data) {
+                console.log(data);
                 if(data == 'successfuly') {
                     var b = window.performance.now();
                     var seconds = ((b-a) / 1000).toFixed(1);

@@ -12,7 +12,6 @@
                     foreach($excel -> rows() as $key => $row) {
                         $q="";
                         foreach($row as $key => $cell) {
-                            print_r ($cell);
                             if($i==0) {
                                 $q.=$cell. "varchar(50)";
                             }
@@ -20,8 +19,9 @@
                                 $q.=$cell. "|";
                             }
                         }
-                        //print_r ($q);
                         if($i !=0) {
+                            // $data = $query = explode("|", $q);
+                            // print_r ($data);
                             $index = strpos(rtrim($q,"|")," ")-5;
                             $query = substr(rtrim($q, "|"), $index);
                             $query = explode("|", $query);
@@ -71,21 +71,23 @@
                 $Customer = $this->model("CustomerModel");
                 if($excel !== false) {
                     foreach($excel -> rows() as $key => $row) {
-                        
-                       $hoten=$row[0];
-                       //echo $hoten." - ";
-                       $cmnd=$row[1];
-                       //echo $cmnd." - ";
-                       $sodt=$row[2];
-                       //echo $sodt." - ";
-                       $hanmuc=$row[3];
-                       //echo $hanmuc." - ";
-                       $sotk=$row[4];
-                       //echo $sotk." - ";
-                           
-                        $today = date("Y-m-d");
-                        $Customer->InsertCustomer($hoten, $cmnd, $sodt, $hanmuc, $today, $_POST['username']);
-                        $i++;
+                        // nếu có header
+                      if( $i!= 0) {
+                        $hoten=$row[0];
+                        //echo $hoten." - ";
+                        $cmnd=$row[1];
+                        //echo $cmnd." - ";
+                        $sodt=$row[2];
+                        //echo $sodt." - ";
+                        $hanmuc=$row[3];
+                        //echo $hanmuc." - ";
+                         //$sotk=$row[4];
+                        //echo $sotk." - ";
+                            
+                         $today = date("Y-m-d");
+                         $Customer->InsertCustomer($hoten, $cmnd, $sodt, $hanmuc, $today, $_POST['username']);
+                         $i++;
+                      }
                        
                     }
                     echo "successfuly"; //success

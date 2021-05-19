@@ -6,11 +6,6 @@
                 $Account = $this->model("AccountModel");
                 $username = $_POST['username'];
                 $password = $_POST['password'];
-                $input = $_POST['captcha'];
-                if($input != $_SESSION['captcha']) {
-                    echo "sai captcha";
-                    die;
-                }
                 $qr = "UPDATE CRM_accounts SET password = '${password}' WHERE username='${username}'";
                 $data = $Account -> Query($qr);
                 header("Location: PanelAdmin/ManageUser");

@@ -10,7 +10,7 @@
         <?php
           if(isset($_SESSION['role'])) {
             if($_SESSION['role'] == "admin") {
-            echo "<a class='nav-link' href='/PanelAdmin/InsertData'>
+            echo "<a class='nav-link' href='/Customers/Import'>
             Insert Data
             </a>";
             echo "<a class='nav-link' href='/PanelAdmin/ManageUser'>
@@ -18,7 +18,7 @@
             </a>";
             }
             else {
-              echo "<a class='nav-link' href='/StaffData/InsertData'>
+              echo "<a class='nav-link' href='/Customers/Import'>
             Insert Data
             </a>";
             }

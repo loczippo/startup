@@ -156,7 +156,7 @@
                     $i=1;
                     $count=0;
                     foreach($data["Customers"] as $row) {
-                        $money = formatMoney($row[4]);
+                        $hanmuc = formatMoney($row[4]);
                         $ngayhen = $row[8];
                         $today = date("Y-m-d H:i:s");
                         if($_SESSION['role'] == "nhanvien") {
@@ -187,7 +187,7 @@
                         echo "<td>${row[1]}</td>";
                         echo "<td>${row[2]}</td>";
                         echo "<td>${row[3]}</td>";
-                         echo "<td>${row[4]}</td>";
+                         echo "<td>${hanmuc}</td>";
                         if($row[5] == NULL) echo "<td>Chưa cập nhật</td>";
                         if($row[5] == "cnc") echo "<td>Có nhu cầu</td>";
                         if($row[5] == "knc") echo "<td>Không nhu cầu</td>";

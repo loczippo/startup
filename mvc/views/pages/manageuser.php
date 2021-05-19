@@ -69,11 +69,8 @@
         </div>
         <div class="modal-body">
             <input type="text" id="username" name="username" value="" hidden>
-            <input style="padding-left: 25px" type="text" name="password" class="form-control" placeholder="Nhập mật khẩu mới" required>
-            <div class="mt-2 d-flex justify-content-between">
-                <input style="padding-left: 25px" class="form-control" type="text" name="captcha" placeholder="Nhập mã captcha" required>
-                <img class="captcha100" src="public/captcha/captcha.php" title="" alt="" width='80' />
-            </div>
+            <input style="padding-left: 25px" type="password" id="password" name="password" class="form-control" placeholder="Nhập mật khẩu mới" required>
+            <input style="padding-left: 25px" type="password" id="confirm_password" name="confirm_password" class="mt-2 form-control" placeholder="Nhập lại mật khẩu mới" required>
         </div>
         <div class="modal-footer">
             <button id="changepass" type="submit" class="btn btn-danger">Đổi</button>
@@ -96,6 +93,12 @@
         $("form#doipass").submit(function(e) {  
             var formData = new FormData(this);
             document.getElementById("username").value = courseID;
+            var pass = document.getElementById("password");
+            var nhaplaipass = document.getElementById("confirm_password");
+            if(pass.value != nhaplaipass.value) {
+                alert("2 mật khẩu không giống nhau");
+                e.preventDefault();
+            }
         })
 })
 </script>

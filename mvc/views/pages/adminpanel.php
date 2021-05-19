@@ -4,7 +4,7 @@
         <div class="card-header">
             <h6><img class="img-fluid" src="public/img/star.gif" alt="" width="40">HOME -> INSERT DATA</h6>
         </div>
-        <form method="POST" name="upload" id="upload" enctype="multipart/form-data">
+        <form method="POST" action="Upload" name="upload" id="upload" enctype="multipart/form-data">
             <div class="card-body">
                 <h5 class="card-title">Insert Data Into Database</h5>
                 <p><input type="file" id="file" name="file" accept=".xlsx, .xls" class="form-control"/></p>
@@ -57,7 +57,7 @@
     </div> -->
 </div>
 
-<script>
+<!-- <script>
 document.addEventListener('DOMContentLoaded', (event) => {
     $("form#upload").submit(function(e) {
         e.preventDefault();    
@@ -111,4 +111,4 @@ document.addEventListener('DOMContentLoaded', (event) => {
         })
     }
 });
-</script>
+</script> -->
