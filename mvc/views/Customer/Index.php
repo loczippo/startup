@@ -89,11 +89,12 @@
                                   >Import  </a>
                         </form>";
                     echo "</div>";
+                    
                      echo "<div class='mt-2 ml-2'".($data["Role"]!="admin"?"style='display:none;'":"").">";
                         echo "<form method='POST' action='/PanelAdmin/ChuyenData' name='handing' id='handing'>
                                 <div class='form-floating'>
                                     <select style='width: 220px' class='form-select' id='uid' name='uid'>";
-                                        foreach($data["NhanvienList"] as $row) {
+                                        foreach($data["NhanVienList"] as $row) {
                                             echo "<option value='${row[0]}'>${row[1]}</option>";
                                         }
                                     echo "</select>
@@ -105,23 +106,11 @@
                              ";
                     echo "</div>";
                 echo "</div>";
-                echo "<input style='' class='mt-4' type='checkbox' id='checkbox-all'/> Chọn tất cả";               echo"<a href='javascript:;' id='btn-delete' class='btn btn-danger mt-1'>Xóa</a>";   
-                   
-                                                   
-            
-        ?>
-      <span style="margin-left:20px">Số dòng/Trang</span>
-      <select id='limit' name="limit">
-          <option value="10" <?php echo ($data["limit"]==10?"selected":"")?> >10</option>
-          <option value="20" <?php echo ($data["limit"]==20?"selected":"")?> >20</option>
-          <option value="30" <?php echo ($data["limit"]==30?"selected":"")?> >30</option>
-          <option value="40" <?php echo ($data["limit"]==40?"selected":"")?> >40</option>
-          <option value="50" <?php echo ($data["limit"]==50?"selected":"")?> >50</option>
-          <option value="100" <?php echo ($data["limit"]==100?"selected":"")?> >100</option>
-          <option value="200" <?php echo ($data["limit"]==200?"selected":"")?> >200</option>
-          
-      </select>
+                echo "<div class='d-flex align-items-center'><div class='form-check' style='padding-left:0'><input style='' class='mt-4' type='checkbox' id='checkbox-all'/><label class='form-check-label' for='checkbox-all'>Chọn tất cả</label></div>";
+                echo "<a href='javascript:;' id='btn-delete' class='btn btn-danger mt-1'>Xóa</a></div>";   
 
+        ?>
+    
         <div class="table-responsive-sm">
         <table class="table table-sm mb-3 mx-auto table-hover">
             <thead>
@@ -158,6 +147,7 @@
                     $count=0;
                     foreach($data["Customers"] as $row) {
                         $hanmuc = formatMoney($row[4]);
+                        $nhucau = formatMoney($row[7]);
                         $ngayhen = $row[8];
                         $today = date("Y-m-d H:i:s");
                         if($_SESSION['role'] == "nhanvien") {
@@ -197,7 +187,7 @@
                         if($row[5] == "kbm") echo "<td>Không bắt máy</td>";
                         if($row[5] == "chui") echo "<td>Chửi</td>";
                         echo "<td>${row[6]}</td>";
-                        echo "<td>${row[7]}</td>";
+                        echo "<td>${nhucau}</td>";
                         echo "<td>${row[10]}</td>";
                         echo "<td><a href='StaffData/DataEntry/${row[0]}' class='btn btn-success' type='button'>Nhập</a></td>";
                         echo "</tr>";
@@ -219,6 +209,19 @@
             </span>
        
         </div>
+        <div class="form-floating" style="width: 200px">
+        <select class="form-select" id='limit' name="limit">
+            <option value="10" <?php echo ($data["limit"]==10?"selected":"")?> >10</option>
+            <option value="20" <?php echo ($data["limit"]==20?"selected":"")?> >20</option>
+            <option value="30" <?php echo ($data["limit"]==30?"selected":"")?> >30</option>
+            <option value="40" <?php echo ($data["limit"]==40?"selected":"")?> >40</option>
+            <option value="50" <?php echo ($data["limit"]==50?"selected":"")?> >50</option>
+            <option value="100" <?php echo ($data["limit"]==100?"selected":"")?> >100</option>
+            <option value="200" <?php echo ($data["limit"]==200?"selected":"")?> >200</option>
+            
+        </select>
+        <label for="limit">Số dòng/Trang</label>
+    </div>
         </div>
         <?php
             if(isset($data["Customers"])) {

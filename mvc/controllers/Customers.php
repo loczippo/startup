@@ -107,15 +107,14 @@
             if($row = mysqli_fetch_array($user)) {
                 $curentuserid = $row["userid"];
             }
-            $data = mysqli_fetch_all($Account->GetNhanVien());
-        
+            if($role == "admin") $data = mysqli_fetch_all($Account->GetNhanVien());
+            if($role == "nhanvien") $data = mysqli_fetch_all($Account->GetAccountInUserID($curentuserid));
             $view = $this->view("LayoutBinh",__CLASS__, [
                 "Controller" => "Customer",
                 "View" => "Import",
                 "NhanvienList" => $data,
                 "Role"=>$role,
                 "Userid"=>$curentuserid,
-
             ]);
        
             echo $view;

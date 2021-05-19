@@ -12,6 +12,10 @@
             $qr = "SELECT * FROM CRM_accounts";
             return mysqli_query($this->connection, $qr);
         }
+        public function GetAccountInUserID($userid) {
+            $qr = "SELECT * FROM CRM_accounts WHERE userid = ${userid}";
+            return mysqli_query($this->connection, $qr);
+        }
         public function GetNhanVien() {
             $qr = "SELECT * FROM CRM_accounts";
             return mysqli_query($this->connection, $qr);
