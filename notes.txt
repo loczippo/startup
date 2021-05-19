@@ -1,14 +1,14 @@
 
 
 Lỗi -------------------------------------------------------------------------
-số tiền lỗi (import nhập số vào lỗi)		Bình 			đang làm
+số tiền lỗi (import nhập số vào lỗi)		Bình 			xong
 coi lại họ tên (mất ký tự)                  Bình 			xong
 admin nhập dữ liệu không lưu				Lộc				xong
 Cập nhật bắt buộc -------------------------------------------------------------------------
-hẹn gọi lại: theo giờ và ngày				Lộc      xong hôm qua
-admin reset mật khẩu cho nhân viên			Lộc      xong 	
-thêm người dùng								Lộc      xong 			(Chuyển nút thêm vào giao diện danh sách người dùng)
-xóa khách hàng theo lựa chọn				Bình 			
+hẹn gọi lại: theo giờ và ngày				Lộc      		xong hôm qua
+admin reset mật khẩu cho nhân viên			Lộc      		sửa lại thành confirm password	
+thêm người dùng								Lộc      		xong 			
+xóa khách hàng theo lựa chọn				Bình			xong 			
 nút zalo cho qua tab khách 					Bình			xong
 số tài khoản (thêm field import thôi)		Bình 			đang làm
 chỉ có số điện thoại là bắt buộc			Bình			Xong
