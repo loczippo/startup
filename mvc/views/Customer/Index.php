@@ -81,9 +81,12 @@
                                 </div>
                             </div>
                         </div>
-                        <a href='javascript:;' class='btn btn-success' data-container='form'
+                        <a href='javascript:;' class='btn btn-primary' data-container='form'
                               id='btnLoc'
                                   >Lọc  </a>
+                                   <a href='/Customers/Import' class='btn btn-success' 
+                              id='btnLoc'
+                                  >Import  </a>
                         </form>";
                     echo "</div>";
                     

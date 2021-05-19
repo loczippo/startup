@@ -1,29 +1,20 @@
 
 
-Lỗi ----------------
-
-số tiền lỗi (import nhập số vào lỗi)
-coi lại họ tên (mất ký tự)
-admin nhập dữ liệu không lưu
-
-Quan trọng: fix cho đến khi hết lỗi
-
-
-
-Cập nhật bắt buộc ----------------------
-
-hẹn gọi lại: theo giờ và ngày
-admin reset mật khẩu cho nhân viên
-thêm người dùng
-xóa khách hàng theo lựa chọn
-nút zalo cho qua tab khác
-số tài khoản (thêm field import thôi)
-chỉ có số điện thoại là bắt buộc
-cho chọn số dòng/trang                      (Bình xong)
-hiển thị lại grid cho hợp lý                (Bình xong)
-
-Chức năng mới ->>>>>>>>>> để Bình làm
-
-gọi theo nhà mạng
-chia đều dữ liệu cho nhân viên
+Lỗi -------------------------------------------------------------------------
+số tiền lỗi (import nhập số vào lỗi)		Bình 			đang làm
+coi lại họ tên (mất ký tự)                  Bình 			xong
+admin nhập dữ liệu không lưu				Lộc						
+Cập nhật bắt buộc -------------------------------------------------------------------------
+hẹn gọi lại: theo giờ và ngày				Lộc      xong hôm qua
+admin reset mật khẩu cho nhân viên			Lộc      xong 	
+thêm người dùng								Lộc      xong 			(Chuyển nút thêm vào giao diện danh sách người dùng)
+xóa khách hàng theo lựa chọn				Bình 			
+nút zalo cho qua tab khách 					Lộc
+số tài khoản (thêm field import thôi)		Bình 			đang làm
+chỉ có số điện thoại là bắt buộc			Bình			Xong
+cho chọn số dòng/trang                      Bình 			xong
+hiển thị lại grid cho hợp lý                Bình 			xong
+Chức năng mới ->>>>>>>>>> để Bình làm-----------------------------------------------------
+gọi theo nhà mạng							Bình			
+chia đều dữ liệu cho nhân viên				Bình 			đang làm
 
