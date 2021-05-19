@@ -71,8 +71,7 @@
                 $Customer = $this->model("CustomerModel");
                 if($excel !== false) {
                     foreach($excel -> rows() as $key => $row) {
-                        // nếu có header
-                      if( $i!= 0) {
+                       
                         $hoten=$row[0];
                         //echo $hoten." - ";
                         $cmnd=$row[1];
@@ -87,7 +86,6 @@
                          $today = date("Y-m-d");
                          $Customer->InsertCustomer($hoten, $cmnd, $sodt, $hanmuc, $today, $_POST['username']);
                          $i++;
-                      }
                        
                     }
                     echo "successfuly"; //success

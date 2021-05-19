@@ -93,7 +93,7 @@
                         echo "<form method='POST' action='/PanelAdmin/ChuyenData' name='handing' id='handing'>
                                 <div class='form-floating'>
                                     <select style='width: 220px' class='form-select' id='uid' name='uid'>";
-                                        foreach($data["Nhanvien"] as $row) {
+                                        foreach($data["NhanvienList"] as $row) {
                                             echo "<option value='${row[0]}'>${row[1]}</option>";
                                         }
                                     echo "</select>
