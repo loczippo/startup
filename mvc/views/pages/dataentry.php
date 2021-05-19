@@ -49,7 +49,7 @@
                     <div class="d-flex justify-content-between">
                         <input type="text" class="form-control" id="sodt" name="sodt" value="<?php echo $sodt; ?>">
                         <a href="tel:<?php echo $sodt; ?>" type="button" class="btn btn-success" style="margin-left: 10px">Gọi</a>
-                        <a href="https://zalo.me/<?php echo $sodt; ?>" type="button" class="btn btn-success" style="margin-left: 10px">Gọi Zalo</a>
+                        <a href="https://zalo.me/<?php echo $sodt; ?>" type="button" target="_blank" class="btn btn-success" style="margin-left: 10px">Gọi Zalo</a>
                     </div>
                 </div>
                 <div class=" col-md-6 col-lg-4 col-xl-4">
