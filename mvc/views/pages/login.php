@@ -34,9 +34,9 @@
 
 					<div class="text-center p-t-12">
 						
-						<a class="txt2" href="/Recovery">
+						<!-- <a class="txt2" href="/Recovery">
 							Quên mật khẩu?
-						</a>
+						</a> -->
 					</div>
 
 					<!-- <div class="text-center p-t-136">

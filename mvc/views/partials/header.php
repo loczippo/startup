@@ -13,9 +13,6 @@
             echo "<a class='nav-link' href='/PanelAdmin/InsertData'>
             Insert Data
             </a>";
-            echo "<a class='nav-link' href='/PanelAdmin/NewUser'>
-            New User
-            </a>";
             echo "<a class='nav-link' href='/PanelAdmin/ManageUser'>
             Manage User
             </a>";

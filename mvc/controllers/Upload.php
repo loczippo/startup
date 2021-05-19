@@ -43,15 +43,15 @@
                     echo "failed"; //check dữ liệu k hợp lệ
                 }
             }
-            // bàn giao
-            if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['username-new'])) {
-                $Customer = $this->model("CustomerModel");
-                $data = ($Customer->GetCustomerIDForUserID($_POST['username']));
-                while($row = mysqli_fetch_array($data)) {
-                    ($Customer->UpdateUseridInCustomer($_POST['username-new'], $row["customerid"]));
-                }
-                echo "successfuly";
-            }
+            // // bàn giao
+            // if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['username-new'])) {
+            //     $Customer = $this->model("CustomerModel");
+            //     $data = ($Customer->GetCustomerIDForUserID($_POST['username']));
+            //     while($row = mysqli_fetch_array($data)) {
+            //         ($Customer->UpdateUseridInCustomer($_POST['username-new'], $row["customerid"]));
+            //     }
+            //     echo "successfuly";
+            // }
         }
     }
 ?>
