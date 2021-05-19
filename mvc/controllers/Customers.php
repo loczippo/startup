@@ -134,6 +134,19 @@
                 echo "successfuly";
             }
         }
+        function DeleteMany(){
+             if(!isset($_SESSION['role'])) die;
+            if($_SESSION['role'] != "admin") die;
+            if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['customerIds'])) {
+                $Customer = $this->model("CustomerModel");
+                $customerIdsarr =explode(",", $_POST['customerIds']);
+                foreach($customerIdsarr as $customerid) {
+                    if($customerid!=null && $customerid!="")
+                        $Customer->DeleteCustomer( $customerid);
+                }
+                echo "successfuly";
+            }
+        }
         
     }
 ?>
