@@ -1,0 +1,1 @@
+ALTER TABLE `crm_customers` ADD `Sotk` VARCHAR(50) NULL AFTER `ngaythem`;

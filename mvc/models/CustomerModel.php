@@ -55,7 +55,7 @@
         }
         public function InsertCustomer($hoten, $cmnd, $sodt, $hanmuc, $ngaythem, $userid) {
             $qr = "INSERT INTO CRM_customers(hoten, cmnd, sodt, hanmuc, ngaythem, userid) values ('${hoten}', '${cmnd}', '${sodt}', ${hanmuc}, '${ngaythem}', ${userid})";
-            echo $qr;
+            
             return mysqli_query($this->connection, $qr);
         }
         public function GetCustomerIDForUserID($userid) {
@@ -84,6 +84,10 @@
         }
         public function UpdateCustomerHGL($customerid, $hoten, $cmnd, $sodt, $hanmuc, $trangthai, $ghichu, $ngayhen, $ngaygoi) {
             $qr = "UPDATE CRM_customers set hoten = '${hoten}', cmnd='${cmnd}', sodt='${sodt}', hanmuc='${hanmuc}', trangthai='${trangthai}', ghichu='${ghichu}', ngayhen='${ngayhen}', ngaygoi='${ngaygoi}' where customerid=${customerid}";
+            return mysqli_query($this->connection, $qr);
+        }
+        public function DeleteCustomer($customerid) {
+            $qr = "DELETE FROM CRM_customers  where customerid=${customerid}";
             return mysqli_query($this->connection, $qr);
         }
     }

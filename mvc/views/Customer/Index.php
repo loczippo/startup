@@ -89,24 +89,25 @@
                                   >Import  </a>
                         </form>";
                     echo "</div>";
-                    
-                    echo "<div class='mt-2 ml-2' ".($data["Role"]!="admin"?"style='display:none;'":"").">";
+                     echo "<div class='mt-2 ml-2'".($data["Role"]!="admin"?"style='display:none;'":"").">";
                         echo "<form method='POST' action='/PanelAdmin/ChuyenData' name='handing' id='handing'>
                                 <div class='form-floating'>
                                     <select style='width: 220px' class='form-select' id='uid' name='uid'>";
-                                        foreach($data["NhanVienList"] as $row) {
-                                            echo "<option value='${row[0]}' ".($data["Userid"]==$row[0]?"selected":"").">${row[1]}</option>";
+                                        foreach($data["Nhanvien"] as $row) {
+                                            echo "<option value='${row[0]}'>${row[1]}</option>";
                                         }
                                     echo "</select>
                                     <label for='trangthai'>Chọn NV muốn chuyển</label>
                                 </div>
                                 
                                 <button type='submit' id='checkall-btn-submit' class='btn btn-success mt-1'>Chuyển</button>
-                                <br/>";
+
+                             ";
                     echo "</div>";
-                   
                 echo "</div>";
-                echo "<input style='' class='mt-4' type='checkbox' id='checkbox-all'/> Chọn tất cả";                                    
+                echo "<input style='' class='mt-4' type='checkbox' id='checkbox-all'/> Chọn tất cả";               echo"<a href='javascript:;' id='btn-delete' class='btn btn-danger mt-1'>Xóa</a>";   
+                   
+                                                   
             
         ?>
       <span style="margin-left:20px">Số dòng/Trang</span>
@@ -300,6 +301,22 @@
                 checkAllSubmitBtn.attr('disabled', true);
             }
         }
+        $("#btn-delete").click(function(){
+                var checkedList = $('input[name="customerIds[]"]:checked');
+                var customerIds ="";
+                $.each(checkedList, function( index, input ) {
+                    customerIds+=input.value+",";
+                }); 
+                
+                $.ajax({
+                      method: "POST",
+                      url: "Customers/DeleteMany",
+                      data: { customerIds: customerIds }
+                    })
+                      .done(function( msg ) {
+                        window.location.reload();
+                });
+        });
         $(document).ready(function(){
             $("form#handing").submit(function(e) {
                 e.preventDefault();    
