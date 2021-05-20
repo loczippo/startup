@@ -11,19 +11,19 @@
           if(isset($_SESSION['role'])) {
             if($_SESSION['role'] == "admin") {
             echo "<a class='nav-link' href='/PanelAdmin/ManageUser'>
-            Manage User
+            Quản lý nhân viên
             </a>";
             }
             else {
-              echo "<a class='nav-link' href='/Customers/Import'>
-            Insert Data
-            </a>";
+            //   echo "<a class='nav-link' href='/Customers/Import'>
+            // Insert Data
+            // </a>";
             }
           }
         ?>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <?php echo 'Hi, '.$_SESSION['username']; ?>
+            <?php echo 'Chào, '.$_SESSION['username']; ?>
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <li><a class="dropdown-item" href="ChangePassword">Đổi mật khẩu</a></li>
