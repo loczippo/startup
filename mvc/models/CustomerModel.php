@@ -66,24 +66,24 @@
             $qr = "UPDATE CRM_customers set userid = $userid where customerid = $customerid";
             return mysqli_query($this->connection, $qr);
         }
-        public function UpdateCustomerTrangThai($customerid, $hoten, $cmnd, $sodt, $hanmuc, $trangthai, $ghichu, $ngaygoi) {
-            $qr = "UPDATE CRM_customers set hoten = '${hoten}', cmnd='${cmnd}', sodt='${sodt}', hanmuc='${hanmuc}', trangthai='${trangthai}', ghichu='${ghichu}', ngaygoi='${ngaygoi}' where customerid=${customerid}";
+        public function UpdateCustomerTrangThai($customerid, $hoten, $cmnd, $sodt, $hanmuc, $trangthai, $ghichu, $sotk, $diachi, $ngaygoi) {
+            $qr = "UPDATE CRM_customers set hoten = '${hoten}', cmnd='${cmnd}', sodt='${sodt}', hanmuc='${hanmuc}', trangthai='${trangthai}', ghichu='${ghichu}', sotk='${sotk}', diachi='${diachi}', ngaygoi='${ngaygoi}' where customerid=${customerid}";
             return mysqli_query($this->connection, $qr);
         }
-        public function UpdateCustomerCNC($customerid, $hoten, $cmnd, $sodt, $hanmuc, $trangthai, $ghichu, $sotien, $ngaygoi) {
-            $qr = "UPDATE CRM_customers set hoten = '${hoten}', cmnd='${cmnd}', sodt='${sodt}', hanmuc='${hanmuc}', trangthai='${trangthai}', ghichu='${ghichu}', sotien='${sotien}', ngaygoi='${ngaygoi}', ngayhen=NULL where customerid=${customerid}";
+        public function UpdateCustomerCNC($customerid, $hoten, $cmnd, $sodt, $hanmuc, $trangthai, $ghichu, $sotien, $sotk, $diachi, $ngaygoi) {
+            $qr = "UPDATE CRM_customers set hoten = '${hoten}', cmnd='${cmnd}', sodt='${sodt}', hanmuc='${hanmuc}', trangthai='${trangthai}', ghichu='${ghichu}',sotk='${sotk}', diachi='${diachi}', sotien='${sotien}', ngaygoi='${ngaygoi}', ngayhen=NULL where customerid=${customerid}";
             return mysqli_query($this->connection, $qr);
         }
-        public function UpdateCustomerKNC($customerid, $hoten, $cmnd, $sodt, $hanmuc, $trangthai, $ghichu, $ngaygoi) {
-            $qr = "UPDATE CRM_customers set hoten = '${hoten}', cmnd='${cmnd}', sodt='${sodt}', hanmuc='${hanmuc}', trangthai='${trangthai}', ghichu='${ghichu}', sotien=NULL, ngaygoi='${ngaygoi}', ngayhen=NULL where customerid=${customerid}";
+        public function UpdateCustomerKNC($customerid, $hoten, $cmnd, $sodt, $hanmuc, $trangthai, $ghichu, $sotk, $diachi, $ngaygoi) {
+            $qr = "UPDATE CRM_customers set hoten = '${hoten}', cmnd='${cmnd}', sodt='${sodt}', hanmuc='${hanmuc}', trangthai='${trangthai}', ghichu='${ghichu}',sotk='${sotk}', diachi='${diachi}', sotien=NULL, ngaygoi='${ngaygoi}', ngayhen=NULL where customerid=${customerid}";
             return mysqli_query($this->connection, $qr);
         }
-        public function UpdateCustomerKBM($customerid, $hoten, $cmnd, $sodt, $hanmuc, $trangthai, $ghichu, $ngayhen, $ngaygoi) {
-            $qr = "UPDATE CRM_customers set hoten = '${hoten}', cmnd='${cmnd}', sodt='${sodt}', hanmuc='${hanmuc}', trangthai='${trangthai}', ghichu='${ghichu}', ngayhen='${ngayhen}', ngaygoi='${ngaygoi}' where customerid=${customerid}";
+        public function UpdateCustomerKBM($customerid, $hoten, $cmnd, $sodt, $hanmuc, $trangthai, $ghichu, $ngayhen, $sotk, $diachi, $ngaygoi) {
+            $qr = "UPDATE CRM_customers set hoten = '${hoten}', cmnd='${cmnd}', sodt='${sodt}', hanmuc='${hanmuc}', trangthai='${trangthai}', ghichu='${ghichu}',sotk='${sotk}', diachi='${diachi}', ngayhen='${ngayhen}', ngaygoi='${ngaygoi}' where customerid=${customerid}";
             return mysqli_query($this->connection, $qr);
         }
-        public function UpdateCustomerHGL($customerid, $hoten, $cmnd, $sodt, $hanmuc, $trangthai, $ghichu, $ngayhen, $ngaygoi) {
-            $qr = "UPDATE CRM_customers set hoten = '${hoten}', cmnd='${cmnd}', sodt='${sodt}', hanmuc='${hanmuc}', trangthai='${trangthai}', ghichu='${ghichu}', ngayhen='${ngayhen}', ngaygoi='${ngaygoi}' where customerid=${customerid}";
+        public function UpdateCustomerHGL($customerid, $hoten, $cmnd, $sodt, $hanmuc, $trangthai, $ghichu, $ngayhen, $sotk, $diachi, $ngaygoi) {
+            $qr = "UPDATE CRM_customers set hoten = '${hoten}', cmnd='${cmnd}', sodt='${sodt}', hanmuc='${hanmuc}', trangthai='${trangthai}', ghichu='${ghichu}',sotk='${sotk}', diachi='${diachi}', ngayhen='${ngayhen}', ngaygoi='${ngaygoi}' where customerid=${customerid}";
             return mysqli_query($this->connection, $qr);
         }
         public function DeleteCustomer($customerid) {

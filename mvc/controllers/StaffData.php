@@ -141,14 +141,18 @@
                 }
                 if($userid_customer != $userid_account){
                     if($_SESSION['role'] == "admin") {
-                        $data = mysqli_fetch_all($Customer->GetCustomerForCustomerID($customerid));
-                        $view = $this->view("Layout1", __CLASS__, [
-                            "Page" => "dataentry",
-                            "Customer" => $data,
-                        ]);
-                        echo $view;
+                        $user = $Account->GetUserID($_SESSION['username']);
+                        if($row = mysqli_fetch_array($user)) {
+                            $userid_account = $row["userid"];
+                        }
+                        // $data = mysqli_fetch_all($Customer->GetCustomerForCustomerID($customerid));
+                        // $view = $this->view("Layout1", __CLASS__, [
+                        //     "Page" => "dataentry",
+                        //     "Customer" => $data,
+                        // ]);
+                        // echo $view;
                     }
-                    die;
+                    if($_SESSION['role'] != 'admin') die;
                 }
                 if($param == "Update") $this->Update($customerid, $userid_customer);
                 $data = mysqli_fetch_all($Customer->GetCustomerForCustomerID($customerid));
@@ -187,24 +191,26 @@
                 $ghichu = $_POST['ghichu'];
                 $sotien = $_POST['sotien'];
                 $ngayhen = $_POST['ngayhen'];
+                $sotk = $_POST['sotaikhoan'];
+                $diachi = $_POST['diachi'];
                 $ngayhen =  date('Y-m-d H:i:s', strtotime($ngayhen));
                 $ngaygoi = date("Y-m-d");
                 if(strlen($sotien) !=0 && $trangthai=="cnc") {
-                    $Customer->UpdateCustomerCNC($customerid, $hoten, $cmnd, $sodt, $hanmuc, $trangthai, $ghichu, $sotien, $ngaygoi);
+                    $Customer->UpdateCustomerCNC($customerid, $hoten, $cmnd, $sodt, $hanmuc, $trangthai, $ghichu, $sotien, $sotk, $diachi, $ngaygoi);
                 }
                 if($trangthai=="knc") {
-                    $Customer->UpdateCustomerKNC($customerid, $hoten, $cmnd, $sodt, $hanmuc, $trangthai, $ghichu, $ngaygoi);
+                    $Customer->UpdateCustomerKNC($customerid, $hoten, $cmnd, $sodt, $hanmuc, $trangthai, $ghichu, $sotk, $diachi, $ngaygoi);
                 }
                 if($trangthai == 'kbm') {
                     $ngayhen1 = date("Y-m-d");
                     $tomorrow = date('Y-m-d', strtotime($ngayhen1 . "+3 days"));
-                    $Customer->UpdateCustomerKBM($customerid, $hoten, $cmnd, $sodt, $hanmuc, $trangthai, $ghichu, $tomorrow, $ngaygoi);
+                    $Customer->UpdateCustomerKBM($customerid, $hoten, $cmnd, $sodt, $hanmuc, $trangthai, $ghichu, $tomorrow, $sotk, $diachi, $ngaygoi);
                 }
                 if(strlen($ngayhen) !=0 && $trangthai== 'hgl') {
-                    $Customer->UpdateCustomerHGL($customerid, $hoten, $cmnd, $sodt, $hanmuc, $trangthai, $ghichu, $ngayhen, $ngaygoi);
+                    $Customer->UpdateCustomerHGL($customerid, $hoten, $cmnd, $sodt, $hanmuc, $trangthai, $ghichu, $ngayhen, $sotk, $diachi, $ngaygoi);
                 }
                 else {
-                    $Customer->UpdateCustomerTrangThai($customerid, $hoten, $cmnd, $sodt, $hanmuc, $trangthai, $ghichu, $ngaygoi);
+                    $Customer->UpdateCustomerTrangThai($customerid, $hoten, $cmnd, $sodt, $hanmuc, $trangthai, $ghichu, $sotk, $diachi, $ngaygoi);
                 }
                 
             }
