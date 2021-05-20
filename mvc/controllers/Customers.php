@@ -1,18 +1,6 @@
 <?php
     class Customers extends Controller{
-        function getQueryParam($name){
-            $url=$_SERVER["REQUEST_URI"];
-            if(strpos($url, '?') == false) return "";
-            $url= explode("?", $url)[1];
-            $arr=explode("&", $url);
-            foreach ($arr as $pairstr) {
-                $pair=explode("=", $pairstr);
-                if($pair[0]==$name){
-                    return $pair[1];
-                }
-            }
-            return "";
-        }
+        
         function Index() {
            
             if(!isset($_SESSION['role'])) die;

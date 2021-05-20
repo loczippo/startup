@@ -5,7 +5,7 @@ số tiền lỗi (import nhập số vào lỗi)		Bình 			xong
 coi lại họ tên (mất ký tự)                  Bình 			xong
 admin nhập dữ liệu không lưu				Lộc				xong
 Cập nhật bắt buộc -------------------------------------------------------------------------
-hẹn gọi lại: theo giờ và ngày				Lộc      		xong hôm qua
+hẹn gọi lại: theo giờ và ngày				Lộc      		xong 
 admin reset mật khẩu cho nhân viên			Lộc      		sửa lại thành confirm password	
 thêm người dùng								Lộc      		xong 			
 xóa khách hàng theo lựa chọn				Bình			xong 			

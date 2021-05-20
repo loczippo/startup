@@ -53,8 +53,8 @@
             $qr = "SELECT * FROM CRM_customers where userid = $userid and trangthai IS NULL LIMIT 1";
             return mysqli_query($this->connection, $qr);
         }
-        public function InsertCustomer($hoten, $cmnd, $sodt, $hanmuc, $ngaythem, $userid) {
-            $qr = "INSERT INTO CRM_customers(hoten, cmnd, sodt, hanmuc, ngaythem, userid) values ('${hoten}', '${cmnd}', '${sodt}', ${hanmuc}, '${ngaythem}', ${userid})";
+        public function InsertCustomer($hoten, $cmnd, $sodt, $hanmuc, $ngaythem,$sotk,$DiaChi, $userid) {
+            $qr = "INSERT INTO CRM_customers(hoten, cmnd, sodt, hanmuc, ngaythem, Sotk,DiaChi, userid) values ('${hoten}', '${cmnd}', '${sodt}', ${hanmuc}, '${ngaythem}','${sotk}','${DiaChi}', ${userid})";
             
             return mysqli_query($this->connection, $qr);
         }

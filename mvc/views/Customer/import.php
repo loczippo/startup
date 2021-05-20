@@ -8,7 +8,7 @@
             <div class="card-body">
                 <h5 class="card-title">Import dữ liệu</h5>
                 <p><input type="file" id="file" name="file" accept=".xlsx, .xls" class="form-control"/></p>
-                <div class="form-floating" style="<?php echo $_SESSION['role']=="nhanvien"?"display:none":""; ?>">
+                <div class="form-floating" style="display: none;"; ?>">
                     <select class="form-select" id="username" name="username">
                         <?php
                             foreach($data["NhanvienList"] as $row) {
@@ -18,8 +18,38 @@
                         ?>
                     </select>
                     <label for="username">Chọn một nhân viên</label>
+                    <button class="btn btn-success mt-2">Lưu</button>
                 </div>
-                <button class="btn btn-success mt-2">Thêm dữ liệu</button>
+                
+                <div class="row">
+                    <?php if($data["Role"]=="admin"){
+                        ?>
+                        <div class="col-md-5">
+                            <input type="hidden" id="UserIds" name="UserIds" class="form-control">
+                            <input type="text" id="UserNames" name="UserNames" class="form-control" disabled>
+                        </div>
+                        <div class="col-md-7">
+                          
+                           <a href="javascript:;" class="btn btn-primary" id="btn-add">
+                                <<
+                           </a>
+                            <a href="javascript:;" class="btn btn-danger" id="btn-remove">
+                                X
+                           </a>
+                           <select id="UserId" name="UserId">
+                                <?php
+                                    foreach($data["NhanvienList"] as $row) {
+                                        echo "<option value='${row[0]}'>${row[1]}</option>";
+                                    }
+                                    
+                                ?>
+                            </select>
+                            <button class="btn btn-success">Lưu</button>
+                        </div>
+                        <?php
+                     
+                    }?>
+                </div>
             </div>
         </form>
     </div>
@@ -102,6 +132,46 @@ document.addEventListener('DOMContentLoaded', (event) => {
             contentType: false,
             processData: false
         });
+    });
+    $("#btn-add").click(function(){
+        var strUserIds=$("#UserIds").val();
+        var strUserNames=$("#UserNames").val();
+
+        var arrUserIds=strUserIds.split(",");
+        var arrUserNames=strUserIds.split(",");
+        var UserId=$("#UserId").val();
+        if(!arrUserIds.includes(UserId)){
+            strUserIds+=","+UserId;
+            strUserNames+=","+$("#UserId  option:selected").text();
+            if(strUserIds.startsWith(",")){
+                strUserIds=  strUserIds.slice(1);
+                strUserNames=  strUserNames.slice(1);
+               
+            }
+            $("#UserIds").val(strUserIds);
+            $("#UserNames").val(strUserNames);
+        }
+
+    });
+    $("#btn-remove").click(function(){
+        var strUserIds=$("#UserIds").val();
+        var strUserNames=$("#UserNames").val();
+
+        var arrUserIds=strUserIds.split(",");
+        var arrUserNames=strUserNames.split(",");
+        var UserId=$("#UserId").val();
+        if(arrUserIds.includes(UserId)){
+            arrUserIds = $.grep(arrUserIds, function(value) {
+                return value != UserId;
+            });
+            arrUserNames = $.grep(arrUserNames, function(value) {
+                return value != $("#UserId  option:selected").text();
+            });
+            
+            $("#UserIds").val(arrUserIds.toString());
+            $("#UserNames").val(arrUserNames.toString());
+        }
+
     });
     function sweetalert2(title, text, action, btn){
         Swal({

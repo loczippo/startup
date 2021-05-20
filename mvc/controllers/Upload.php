@@ -69,24 +69,61 @@
                 $excel = SimpleXLSX::parse($file);
                 $i=0;
                 $Customer = $this->model("CustomerModel");
+                $Role= $_SESSION['role'];
+
                 if($excel !== false) {
-                    foreach($excel -> rows() as $key => $row) {
-                       
-                        $hoten=$row[0];
-                        //echo $hoten." - ";
-                        $cmnd=$row[1];
-                        //echo $cmnd." - ";
-                        $sodt=$row[2];
-                        //echo $sodt." - ";
-                        $hanmuc=$row[3];
-                        //echo $hanmuc." - ";
-                         //$sotk=$row[4];
-                        //echo $sotk." - ";
-                            
-                         $today = date("Y-m-d");
-                         $Customer->InsertCustomer($hoten, $cmnd, $sodt, $hanmuc, $today, $_POST['username']);
-                         $i++;
-                       
+                    if($Role=="nhanvien"){
+                        foreach($excel -> rows() as $key => $row) {
+                           
+                            $hoten=$row[0];
+                            //echo $hoten." - ";
+                            $cmnd=$row[1];
+                            //echo $cmnd." - ";
+                            $sodt=$row[2];
+                            //echo $sodt." - ";
+                            $hanmuc=$row[3];
+                            //echo $hanmuc." - ";
+                             $sotk=$row[4];
+                            //echo $sotk." - ";
+                              $DiaChi=$row[5];
+                                
+                             $today = date("Y-m-d");
+                             $Customer->InsertCustomer($hoten, $cmnd, $sodt, $hanmuc, $today,$sotk,$DiaChi, $_POST['username']);
+                             $i++;
+                           
+                        }
+                    }
+                    else{
+                        $strUserIds=$_POST["UserIds"];
+                       //echo $strUserIds;
+                        $UserIds =explode(",", $strUserIds);
+                        $iuser=0;
+                        $usercount= count($UserIds);
+                        if($usercount)
+                        foreach($excel -> rows() as $key => $row) {
+                            if($i!=0) {
+                                $hoten=$row[0];
+                                //echo $hoten." - ";
+                                $cmnd=$row[1];
+                                //echo $cmnd." - ";
+                                $sodt=$row[2];
+                                //echo $sodt." - ";
+                                $hanmuc=$row[3];
+                                //echo $hanmuc." - ";
+                                 $sotk=$row[4];
+                                //echo $sotk." - ";
+                                   $DiaChi=$row[5];
+                                    
+                                $today = date("Y-m-d");
+                                $UserId=$UserIds[$iuser];
+                                $Customer->InsertCustomer($hoten, $cmnd, $sodt, $hanmuc, $today,$sotk,$DiaChi, $UserId);
+                                $iuser++;
+                                if($iuser==$usercount) $iuser =0;
+                                $i++;
+                            }
+                            $i++;
+                           
+                        }
                     }
                     echo "successfuly"; //success
                 }
