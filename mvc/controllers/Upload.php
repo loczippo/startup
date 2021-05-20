@@ -62,7 +62,7 @@
 
 
         function Import() {
-            
+            //echo "import";
             if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_FILES['file'])) {
                 require_once 'PHPExcel/excel.php';
                 $file = $_FILES['file']['tmp_name'];
@@ -70,7 +70,7 @@
                 $i=0;
                 $Customer = $this->model("CustomerModel");
                 $Role= $_SESSION['role'];
-
+                //echo $Role;
                 if($excel !== false) {
                     if($Role=="nhanvien"){
                         foreach($excel -> rows() as $key => $row) {
@@ -82,8 +82,13 @@
                             $sodt=$row[2];
                             //echo $sodt." - ";
                             $hanmuc=$row[3];
+                            
+                            if(!isset($hanmuc)|| $hanmuc==" " || $hanmuc==''){
+                             $hanmuc="null";
+                            }
                             //echo $hanmuc." - ";
                              $sotk=$row[4];
+                            
                             //echo $sotk." - ";
                               $DiaChi=$row[5];
                                 
@@ -114,7 +119,7 @@
                                  $sotk=$row[4];
                                 //echo $sotk." - ";
                                    $DiaChi=$row[5];
-                                    
+                                 //   echo $iuser."----------";
                                 $today = date("Y-m-d");
                                 $UserId=$UserIds[$iuser];
                                 $Customer->InsertCustomer($hoten, $cmnd, $sodt, $hanmuc, $today,$sotk,$DiaChi, $UserId);
