@@ -31,10 +31,9 @@
         ?>
         <div class="content">
             <?php
-            echo "layout binh -----------";
-            echo "Controller: ".$data["Controller"]."------------";
-            echo  "View: ".$data["View"]."------------";
-                require_once "./mvc/views/".$data["Controller"]."/".$data["View"].".php";
+            $url="./mvc/views/".$data["Controller"]."/".$data["View"].".php";
+            echo $url;
+                require_once $url;
             ?>
         </div>
         <div class="footer"></div>

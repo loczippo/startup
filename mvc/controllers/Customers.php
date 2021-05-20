@@ -97,8 +97,6 @@
             }
             if($role == "admin") $data = mysqli_fetch_all($Account->GetNhanVien());
             if($role == "nhanvien") $data = mysqli_fetch_all($Account->GetAccountInUserID($curentuserid));
-            
-            echo "action Import      ------------------";
             $view = $this->view("LayoutBinh",__CLASS__, [
                 "Controller" => "Customer",
                 "View" => "Import",
