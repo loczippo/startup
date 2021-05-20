@@ -32,7 +32,7 @@
         <div class="content">
             <?php
             $url="./mvc/views/".$data["Controller"]."/".$data["View"].".php";
-            echo $url;
+            //echo $url;
                 require_once $url;
             ?>
         </div>
