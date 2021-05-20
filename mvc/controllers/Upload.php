@@ -107,6 +107,7 @@
                                 $cmnd=$row[1];
                                 //echo $cmnd." - ";
                                 $sodt=$row[2];
+                                if($sodt==null || $sodt=="") continue;
                                 //echo $sodt." - ";
                                 $hanmuc=$row[3];
                                 //echo $hanmuc." - ";
