@@ -1,7 +1,7 @@
 <?php
     class ChangePassword extends Controller{
         function Index(){
-            $view = $this->view("Layout1",__CLASS__, [
+            $view = $this->view("Layout3",__CLASS__, [
                 "Page" => "changepass"
             ]);
             echo $view;

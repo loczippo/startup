@@ -67,6 +67,18 @@
                         <button id="clear" style="margin-left: 10px" class="btn btn-success">Clear</button>
                     </div>
                 </div>
+                <div class=" col-md-6 col-lg-4 col-xl-4">
+                    <label for="sotaikhoan" class="form-label">Số tài khoản: </label>
+                    <div class="d-flex justify-content-between">
+                        <input type="text" class="form-control" id="sotaikhoan" name="sotaikhoan" value="<?php //echo $newDate; ?>">
+                    </div>
+                </div>
+                <div class=" col-md-6 col-lg-4 col-xl-4">
+                    <label for="diachi" class="form-label">Địa chỉ: </label>
+                    <div class="d-flex justify-content-between">
+                    <textarea class="form-control" placeholder="" rows="2" id="diachi" name="diachi"><?php //echo $ghichu ?></textarea>
+                    </div>
+                </div>
                  </div>
                 <hr/>
                 <div class="row ">

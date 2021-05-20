@@ -31,6 +31,7 @@
                 success: function (data) {
                     if(data == 'successfuly') {
                         sweetalert2('Successfully','Thêm thành công','success','HAPPY');
+                        
                     }
                     else if(data == 'failed') {
                         sweetalert2('Oops!','Tên tài khoản đã được sử dụng','error','OKAY');

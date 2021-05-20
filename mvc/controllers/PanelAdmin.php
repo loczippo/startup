@@ -481,7 +481,7 @@
                 echo 'successfuly';
                 die;
             }
-            $view = $this->view("Layout1",__CLASS__, [
+            $view = $this->view("Layout3",__CLASS__, [
                 "Page" => "newuser"
             ]);
             echo $view;

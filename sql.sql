@@ -55,8 +55,8 @@ DROP TABLE IF EXISTS `CRM_customers`;
 CREATE TABLE IF NOT EXISTS `CRM_customers` (
   `customerid` int(11) NOT NULL AUTO_INCREMENT,
   `hoten` varchar(30) NOT NULL,
-  `cmnd` varchar(11) NOT NULL,
-  `sodt` varchar(11) NOT NULL,
+  `cmnd` varchar(15) NOT NULL,
+  `sodt` varchar(15) NOT NULL,
   `hanmuc` decimal(18,0) NOT NULL,
   `trangthai` varchar(30) DEFAULT NULL,
   `ghichu` varchar(30) DEFAULT NULL,
