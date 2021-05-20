@@ -3,6 +3,12 @@
 
 //echo $data['trangthai'];
 ?>
+<style>
+    .disable {
+   pointer-events: none;
+   cursor: default;
+}
+</style>
 <div class="container-fluid mt-3">
     <div class="card">
         <div class="card-header">
@@ -91,6 +97,7 @@
                     echo "</div>";
                     
                      echo "<div class='mt-2 ml-2'".($data["Role"]!="admin"?"style='display:none;'":"").">";
+                     echo "<div class='form-check' style='padding-left:0'><input style='' class='mt-4' type='checkbox' id='checkbox-all'/><label class='form-check-label' for='checkbox-all'>Chọn tất cả</label></div>";
                         echo "<form method='POST' action='/PanelAdmin/ChuyenData' name='handing' id='handing'>
                                 <div class='form-floating'>
                                     <select style='width: 220px' class='form-select' id='uid' name='uid'>";
@@ -101,13 +108,15 @@
                                     <label for='trangthai'>Chọn NV muốn chuyển</label>
                                 </div>
                                 
-                                <button type='submit' id='checkall-btn-submit' class='btn btn-success mt-1'>Chuyển</button>
+                                <button type='submit' id='checkall-btn-submit' class='btn btn-success mt-1' disabled>Chuyển</button>
 
                              ";
+                             echo "<a href='javascript:;' id='btn-delete' class='btn btn-danger mt-1 disabled'>Xóa</a>";   
                     echo "</div>";
                 echo "</div>";
-                echo "<div class='d-flex align-items-center'><div class='form-check' style='padding-left:0'><input style='' class='mt-4' type='checkbox' id='checkbox-all'/><label class='form-check-label' for='checkbox-all'>Chọn tất cả</label></div>";
-                echo "<a href='javascript:;' id='btn-delete' class='btn btn-danger mt-1'>Xóa</a></div>";   
+                //echo "<div class='d-flex align-items-center'><div class='form-check' style='padding-left:0'><input style='' class='mt-4' type='checkbox' id='checkbox-all'/><label class='form-check-label' for='checkbox-all'>Chọn tất cả</label></div>";
+                echo "</div>";
+                // echo "<a href='javascript:;' id='btn-delete' class='btn btn-danger mt-1'>Xóa</a></div>";   
 
         ?>
     
@@ -282,6 +291,7 @@
     document.addEventListener('DOMContentLoaded', function() {
         var checkboxAll = $('#checkbox-all');
         var checkAllSubmitBtn = $('#checkall-btn-submit');
+        var deleteBtn = $('#btn-delete');
         var customerItemCheckbox = $('input[name="customerIds[]"]')
         //console.log(customerItemCheckbox)
         // check click
@@ -299,12 +309,15 @@
             var checkedCount = $('input[name="customerIds[]"]:checked').length;
             if(checkedCount >0) {
                 checkAllSubmitBtn.attr('disabled', false);
+                deleteBtn.removeClass('disabled');
             }
             else {
                 checkAllSubmitBtn.attr('disabled', true);
+                deleteBtn.addClass('disabled');
             }
         }
         $("#btn-delete").click(function(){
+            console.log('test')
                 var checkedList = $('input[name="customerIds[]"]:checked');
                 var customerIds ="";
                 $.each(checkedList, function( index, input ) {

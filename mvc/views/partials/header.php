@@ -10,9 +10,6 @@
         <?php
           if(isset($_SESSION['role'])) {
             if($_SESSION['role'] == "admin") {
-            echo "<a class='nav-link' href='/Customers/Import'>
-            Insert Data
-            </a>";
             echo "<a class='nav-link' href='/PanelAdmin/ManageUser'>
             Manage User
             </a>";
@@ -57,18 +54,18 @@
         ?>
       </ul>
       <?php
-        if(isset($_SESSION['role'])) {
-          if($_SESSION['role'] == "admin") {
-          echo "<a class='navbar-text' href='/PanelAdmin'>
-          ADMIN PANEL
-          </a>";
-          }
-          else if($_SESSION['role'] == "nhanvien") {
-            echo "<a class='navbar-text' href='/StaffData'>
-            STAFF DATA
-            </a>";
-            }
-        }
+        // if(isset($_SESSION['role'])) {
+        //   if($_SESSION['role'] == "admin") {
+        //   echo "<a class='navbar-text' href='/PanelAdmin'>
+        //   ADMIN PANEL
+        //   </a>";
+        //   }
+        //   else if($_SESSION['role'] == "nhanvien") {
+        //     echo "<a class='navbar-text' href='/StaffData'>
+        //     STAFF DATA
+        //     </a>";
+        //     }
+        // }
       ?>
       
     </div>
