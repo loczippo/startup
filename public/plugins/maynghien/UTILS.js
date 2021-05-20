@@ -83,9 +83,9 @@ function disableCtrlKeyCombination(e, forbiddenKeys) {
 
 //chuẩn bị
 $(document).ready(function () {
-    $(".datepicker").datepicker({
-        dateFormat: "dd/mm/yy",
-    });
+    // $(".datepicker").datepicker({
+    //     dateFormat: "dd/mm/yy",
+    // });
 
 });
 //end chuẩn bị
