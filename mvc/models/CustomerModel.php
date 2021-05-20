@@ -53,6 +53,10 @@
             $qr = "SELECT * FROM CRM_customers where userid = $userid and trangthai IS NULL LIMIT 1";
             return mysqli_query($this->connection, $qr);
         }
+        public function GetCustomerTrangThaiNULL_LIMIT() {
+            $qr = "SELECT * FROM CRM_customers where trangthai IS NULL LIMIT 1";
+            return mysqli_query($this->connection, $qr);
+        }
         public function InsertCustomer($hoten, $cmnd, $sodt, $hanmuc, $ngaythem,$sotk,$DiaChi, $userid) {
             $qr = "INSERT INTO CRM_customers(hoten, cmnd, sodt, hanmuc, ngaythem, Sotk,DiaChi, userid) values ('${hoten}', '${cmnd}', '${sodt}', ${hanmuc}, '${ngaythem}','${sotk}','${DiaChi}', ${userid})";
             $qr= str_replace(", ,",",null,",$qr);

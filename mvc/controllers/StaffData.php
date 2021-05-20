@@ -214,19 +214,20 @@
                 }
                 
             }
-            $data = mysqli_fetch_all($Customer->GetCustomerForCustomerID_LIMIT($userid));
             if($_SESSION['role'] == "nhanvien") {
+                $data = mysqli_fetch_all($Customer->GetCustomerForCustomerID_LIMIT($userid));
                 if($data == null) {
                     header("Location: /StaffData");
                 }
+                
             }
             else if($_SESSION['role'] == "admin") {
+                $data = mysqli_fetch_all($Customer->GetCustomerTrangThaiNULL_LIMIT());
                 if($data == null) {
-                    header("Location: /PanelAdmin");
+                    header("Location: /Customers");
                 }
             }
             foreach($data as $row) {
-                
                 if(isset($row[0])) {
                     header("Location: /StaffData/DataEntry/${row[0]}");
                 }
