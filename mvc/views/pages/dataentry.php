@@ -14,7 +14,7 @@
 <div class="container-fluid mt-2">
     <div class="card ">
         <div class="card-header">
-            <h6><img class="img-fluid" src="public/img/star.gif" alt="" width="40">HOME -> STAFF DATA -> DATA ENTRY</h6>
+            <h6><img class="img-fluid" src="public/img/star.gif" alt="" width="40">Trang chủ -> Dữ liệu -> Nhập thông tin</h6>
         </div>
         <div class="card-body">
         <?php

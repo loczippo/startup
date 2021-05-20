@@ -2,7 +2,7 @@
 <div class="container-fluid mt-3">
     <div class="card">
         <div class="card-header">
-            <h6><img class="img-fluid" src="public/img/star.gif" alt="" width="40">HOME -> ADMIN PANEL -> MANAGE USER</h6>
+            <h6><img class="img-fluid" src="public/img/star.gif" alt="" width="40">Trang chủ -> Quản lý nhân viên</h6>
         </div>
         <div class="card-body">
             <a type="button" class="btn btn-success" href="/PanelAdmin/NewUser">Thêm tài khoản</a>

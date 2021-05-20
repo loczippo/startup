@@ -8,7 +8,7 @@
 
 				<form id="login" class="login100-form validate-form" method="POST" action="Login/Confirm">
 					<h3 class="login100-form-title">
-						LOGIN
+						ĐĂNG NHẬP
 					</h3>
 					<div class="wrap-input100 validate-input">
 						<input class="input100" type="text" name="username" placeholder="Tên tài khoản" required>
