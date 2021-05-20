@@ -99,7 +99,7 @@
             if($role == "nhanvien") $data = mysqli_fetch_all($Account->GetAccountInUserID($curentuserid));
             $view = $this->view("LayoutBinh",__CLASS__, [
                 "Controller" => "Customer",
-                "View" => "Import",
+                "View" => "import",
                 "NhanvienList" => $data,
                 "Role"=>$role,
                 "Userid"=>$curentuserid,
