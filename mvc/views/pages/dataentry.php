@@ -30,6 +30,8 @@
                 if($newDate == "1970-01-01T08:00:00") {
                     $newDate='';
                 }
+                $sotk = $row[11];
+                $diachi = $row[12];
             }
         ?>
             <form method="POST" action="StaffData/DataEntry/<?php echo $row[0]; ?>/Update" id="update" name="update">
@@ -70,13 +72,13 @@
                 <div class=" col-md-6 col-lg-4 col-xl-4">
                     <label for="sotaikhoan" class="form-label">Số tài khoản: </label>
                     <div class="d-flex justify-content-between">
-                        <input type="text" class="form-control" id="sotaikhoan" name="sotaikhoan" value="<?php //echo $newDate; ?>">
+                        <input type="text" class="form-control" id="sotaikhoan" name="sotaikhoan" value="<?php echo $sotk; ?>">
                     </div>
                 </div>
                 <div class=" col-md-6 col-lg-4 col-xl-4">
                     <label for="diachi" class="form-label">Địa chỉ: </label>
                     <div class="d-flex justify-content-between">
-                    <textarea class="form-control" placeholder="" rows="2" id="diachi" name="diachi"><?php //echo $ghichu ?></textarea>
+                    <textarea class="form-control" placeholder="" rows="2" id="diachi" name="diachi"><?php echo $diachi ?></textarea>
                     </div>
                 </div>
                  </div>

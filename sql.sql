@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS `CRM_customers` (
   `hoten` varchar(30) NOT NULL,
   `cmnd` varchar(15) NOT NULL,
   `sodt` varchar(15) NOT NULL,
-  `hanmuc` decimal(18,0) NOT NULL,
+  `hanmuc` decimal(18,0) DEFAULT NULL,
   `trangthai` varchar(30) DEFAULT NULL,
   `ghichu` varchar(30) DEFAULT NULL,
   `sotien` decimal(18,0) DEFAULT NULL,
