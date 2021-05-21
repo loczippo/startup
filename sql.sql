@@ -54,9 +54,9 @@ INSERT INTO `CRM_accounts` (`userid`, `username`, `password`, `role`) VALUES
 DROP TABLE IF EXISTS `CRM_customers`;
 CREATE TABLE IF NOT EXISTS `CRM_customers` (
   `customerid` int(11) NOT NULL AUTO_INCREMENT,
-  `hoten` varchar(30) NOT NULL,
-  `cmnd` varchar(15) NOT NULL,
-  `sodt` varchar(15) NOT NULL,
+  `hoten` varchar(30) DEFAULT NULL,
+  `cmnd` varchar(15) DEFAULT NULL,
+  `sodt` varchar(15) null NULL,
   `hanmuc` decimal(18,0) DEFAULT NULL,
   `trangthai` varchar(30) DEFAULT NULL,
   `ghichu` varchar(30) DEFAULT NULL,

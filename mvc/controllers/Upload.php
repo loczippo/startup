@@ -34,7 +34,8 @@
                                 $query[2] = "0" . $query[2];
                             }
                             $today = date("Y-m-d");
-                            $Customer->InsertCustomer($query[0], $query[1], $query[2], $query[3], $today, $_POST['username']);
+                            $ACTION=  $Customer->InsertCustomer($query[0], $query[1], $query[2], $query[3], $today, $_POST['username']);
+
                         }
                         $i++;
                     }
@@ -122,7 +123,8 @@
                                  //   echo $iuser."----------";
                                 $today = date("Y-m-d");
                                 $UserId=$UserIds[$iuser];
-                                $Customer->InsertCustomer($hoten, $cmnd, $sodt, $hanmuc, $today,$sotk,$DiaChi, $UserId);
+                                 $ACTION = $Customer->InsertCustomer($hoten, $cmnd, $sodt, $hanmuc, $today,$sotk,$DiaChi, $UserId);
+                                echo $ACTION;
                                 $iuser++;
                                 if($iuser==$usercount) $iuser =0;
                                 $i++;
