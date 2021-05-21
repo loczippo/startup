@@ -61,10 +61,10 @@
             $qr = "INSERT INTO CRM_customers(hoten, cmnd, sodt, hanmuc, ngaythem, Sotk,DiaChi, userid) values ('${hoten}', '${cmnd}', '${sodt}', ${hanmuc}, '${ngaythem}','${sotk}','${DiaChi}', ${userid})";
             $qr= str_replace(", ,",",null,",$qr);
             $qr= str_replace(",,",",null,",$qr);
-            echo $qr;
-            
+            //echo $qr;
+
             $result =  mysqli_query($this->connection, $qr);
-            echo mysqli_errno($this->connection);
+            //echo mysqli_errno($this->connection);
         }
         public function GetCustomerIDForUserID($userid) {
             $qr = "SELECT * FROM CRM_customers where trangthai IS NULL and ghichu IS NULL and sotien IS NULL and ngayhen IS NULL and ngaygoi IS NULL and userid = '${userid}'";
