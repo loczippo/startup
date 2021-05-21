@@ -62,7 +62,9 @@
             $qr= str_replace(", ,",",null,",$qr);
             $qr= str_replace(",,",",null,",$qr);
             echo $qr;
-            return mysqli_query($this->connection, $qr);
+            
+            $result =  mysqli_query($this->connection, $qr);
+            echo mysqli_errno($this->connection);
         }
         public function GetCustomerIDForUserID($userid) {
             $qr = "SELECT * FROM CRM_customers where trangthai IS NULL and ghichu IS NULL and sotien IS NULL and ngayhen IS NULL and ngaygoi IS NULL and userid = '${userid}'";
