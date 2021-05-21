@@ -65,6 +65,7 @@
             $min = 0;
             $min=($page-1) * $limit;
             $query.=" LIMIT ${min}, ${limit}";
+            // có vấn đề
             $data = mysqli_fetch_all($Customer->Query("SELECT customerid, hoten,cmnd,sodt,hanmuc,trangthai, ghichu,sotien,ngayhen, ngaygoi, username from CRM_customers c left join CRM_accounts a on c.userid=a.userid  ".$query));
             // echo $totalrows[0];
             $view = $this->view("LayoutBinh", __CLASS__, [
