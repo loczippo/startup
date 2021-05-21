@@ -4,6 +4,8 @@ Lỗi -------------------------------------------------------------------------
 số tiền lỗi (import nhập số vào lỗi)		Bình 			xong
 coi lại họ tên (mất ký tự)                  Bình 			xong
 admin nhập dữ liệu không lưu				Lộc				xong
+lỗi nút trang cuối							Bình
+lỗi import									Bình			xong
 Cập nhật bắt buộc -------------------------------------------------------------------------
 hẹn gọi lại: theo giờ và ngày				Lộc      		xong 
 admin reset mật khẩu cho nhân viên			Lộc      		xong
