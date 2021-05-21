@@ -195,29 +195,142 @@
                 $diachi = $_POST['diachi'];
                 $ngayhen =  date('Y-m-d H:i:s', strtotime($ngayhen));
                 $ngaygoi = date("Y-m-d");
-                if(strlen($sotien) !=0 && $trangthai=="cnc") {
-                    $Customer->UpdateCustomerCNC($customerid, $hoten, $cmnd, $sodt, $hanmuc, $trangthai, $ghichu, $sotien, $sotk, $diachi, $ngaygoi);
+                $qr = "UPDATE CRM_customers";
+                if($trangthai=="cnc") {
+                    $qr.="  set trangthai='cnc'";
+                    if(strlen($hanmuc) == 0) {
+                        $qr.=", hanmuc=NULL";
+                    }
+                    else {
+                        $qr.=", hanmuc='${hanmuc}'";
+                    }
+                    if(strlen($ngayhen) ==0) {
+                        $qr.=", ngayhen=NULL";
+                    }
+                    else {
+                        $qr.=", ngayhen='${ngayhen}'";
+                    }
+                    if(strlen($sotien) ==0) {
+                        $qr.=", sotien=NULL";
+                    }
+                    else {
+                        $qr.=", sotien='${sotien}'";
+                    }
+                    $qr.=" , hoten = '${hoten}', cmnd='${cmnd}', sodt='${sodt}', ghichu='${ghichu}', sotk='${sotk}', diachi='${diachi}', ngaygoi='${ngaygoi}'";
+                    $qr.=" where customerid=${customerid}";
+                    $Customer->Query($qr);
+                    // $Customer->UpdateCustomerCNC($customerid, $hoten, $cmnd, $sodt, $hanmuc, $trangthai, $ghichu, $sotien, $sotk, $diachi, $ngaygoi);
                 }
                 if($trangthai=="knc") {
-                    $Customer->UpdateCustomerKNC($customerid, $hoten, $cmnd, $sodt, $hanmuc, $trangthai, $ghichu, $sotk, $diachi, $ngaygoi);
+                    $qr.="  set trangthai='knc'";
+                    if(strlen($hanmuc) == 0) {
+                        $qr.=", hanmuc=NULL";
+                    }
+                    else {
+                        $qr.=", hanmuc='${hanmuc}'";
+                    }
+                    if(strlen($ngayhen) ==0) {
+                        $qr.=", ngayhen=NULL";
+                    }
+                    else {
+                        $qr.=", ngayhen='${ngayhen}'";
+                    }
+                    if(strlen($sotien) ==0) {
+                        $qr.=", sotien=NULL";
+                    }
+                    else {
+                        $qr.=", sotien='${sotien}'";
+                    }
+                    $qr.=" , hoten = '${hoten}', cmnd='${cmnd}', sodt='${sodt}', ghichu='${ghichu}', sotk='${sotk}', diachi='${diachi}', ngaygoi='${ngaygoi}'";
+                    $qr.=" where customerid=${customerid}";
+                    $Customer->Query($qr);
+                    //$Customer->UpdateCustomerKNC($customerid, $hoten, $cmnd, $sodt, $hanmuc, $trangthai, $ghichu, $sotk, $diachi, $ngaygoi);
                 }
                 if($trangthai == 'kbm') {
-                    $ngayhen1 = date("Y-m-d");
-                    $tomorrow = date('Y-m-d', strtotime($ngayhen1 . "+3 days"));
-                    $Customer->UpdateCustomerKBM($customerid, $hoten, $cmnd, $sodt, $hanmuc, $trangthai, $ghichu, $tomorrow, $sotk, $diachi, $ngaygoi);
+                    $qr.="  set trangthai='kbm'";
+                    if(strlen($hanmuc) == 0) {
+                        $qr.=", hanmuc=NULL";
+                    }
+                    else {
+                        $qr.=", hanmuc='${hanmuc}'";
+                    }
+                    if(strlen($ngayhen) ==0) {
+                        $qr.=", ngayhen=NULL";
+                    }
+                    else {
+                        $ngayhen1 = date("Y-m-d");
+                        $tomorrow = date('Y-m-d', strtotime($ngayhen1 . "+3 days"));
+                        $qr.=", ngayhen='${tomorrow}'";
+                    }
+                    if(strlen($sotien) ==0) {
+                        $qr.=", sotien=NULL";
+                    }
+                    else {
+                        $qr.=", sotien='${sotien}'";
+                    }
+                    $qr.=" , hoten = '${hoten}', cmnd='${cmnd}', sodt='${sodt}', ghichu='${ghichu}', sotk='${sotk}', diachi='${diachi}', ngaygoi='${ngaygoi}'";
+                    $qr.=" where customerid=${customerid}";
+                    $Customer->Query($qr);
+                    //$Customer->UpdateCustomerKBM($customerid, $hoten, $cmnd, $sodt, $hanmuc, $trangthai, $ghichu, $tomorrow, $sotk, $diachi, $ngaygoi);
                 }
-                if(strlen($ngayhen) !=0 && $trangthai== 'hgl') {
-                    $Customer->UpdateCustomerHGL($customerid, $hoten, $cmnd, $sodt, $hanmuc, $trangthai, $ghichu, $ngayhen, $sotk, $diachi, $ngaygoi);
+                if($trangthai== 'hgl') {
+                    $qr.="  set trangthai='hgl'";
+                    if(strlen($hanmuc) == 0) {
+                        $qr.=", hanmuc=NULL";
+                    }
+                    else {
+                        $qr.=", hanmuc='${hanmuc}'";
+                    }
+                    if(strlen($ngayhen) ==0) {
+                        // $qr.=", ngayhen=NULL";
+                    }
+                    else {
+                        $qr.=", ngayhen='${ngayhen}'";
+                    }
+                    if(strlen($sotien) ==0) {
+                        $qr.=", sotien=NULL";
+                    }
+                    else {
+                        $qr.=", sotien='${sotien}'";
+                    }
+                    $qr.=" , hoten = '${hoten}', cmnd='${cmnd}', sodt='${sodt}', ghichu='${ghichu}', sotk='${sotk}', diachi='${diachi}', ngaygoi='${ngaygoi}'";
+                    $qr.=" where customerid=${customerid}";
+                    $Customer->Query($qr);
+                    //$Customer->UpdateCustomerHGL($customerid, $hoten, $cmnd, $sodt, $hanmuc, $trangthai, $ghichu, $ngayhen, $sotk, $diachi, $ngaygoi);
                 }
-                else {
-                    $Customer->UpdateCustomerTrangThai($customerid, $hoten, $cmnd, $sodt, $hanmuc, $trangthai, $ghichu, $sotk, $diachi, $ngaygoi);
+                if($trangthai == "khac") {
+                    $qr.="  set trangthai='khac'";
+                    if(strlen($hanmuc) == 0) {
+                        $qr.=", hanmuc=NULL";
+                    }
+                    else {
+                        $qr.=", hanmuc='${hanmuc}'";
+                    }
+                    if(strlen($ngayhen) ==0) {
+                        $qr.=", ngayhen=NULL";
+                    }
+                    else {
+                        $qr.=", ngayhen='${ngayhen}'";
+                    }
+                    if(strlen($sotien) ==0) {
+                        $qr.=", sotien=NULL";
+                    }
+                    else {
+                        $qr.=", sotien='${sotien}'";
+                    }
+                    $qr.=" , hoten = '${hoten}', cmnd='${cmnd}', sodt='${sodt}', ghichu='${ghichu}', sotk='${sotk}', diachi='${diachi}', ngaygoi='${ngaygoi}'";
+                    $qr.=" where customerid=${customerid}";
+                    $Customer->Query($qr);
                 }
+                // else {
+                //     $Customer->UpdateCustomerTrangThai($customerid, $hoten, $cmnd, $sodt, $hanmuc, $trangthai, $ghichu, $sotk, $diachi, $ngaygoi);
+                // }
                 
             }
             if($_SESSION['role'] == "nhanvien") {
                 $data = mysqli_fetch_all($Customer->GetCustomerForCustomerID_LIMIT($userid));
                 if($data == null) {
-                    header("Location: /StaffData");
+                    header("Location: /Customers");
                 }
                 
             }

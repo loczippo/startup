@@ -157,7 +157,7 @@
                     foreach($data["Customers"] as $row) {
                         $hanmuc = formatMoney($row[4]);
                         $nhucau = formatMoney($row[7]);
-                        $ngayhen = $row[8];
+                        $ngayhen = $row[8]; //err
                         $today = date("Y-m-d H:i:s");
                         if($_SESSION['role'] == "nhanvien") {
                             // if($row[5] == "Không nhu cầu" || $row[5] == "Có nhu cầu" || $row[5] == "Chửi") {

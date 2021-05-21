@@ -124,8 +124,35 @@
     document.addEventListener('DOMContentLoaded', (event) => {
         $(document).ready(function(){
             
-            $('#trangthai, #trangthai1, #trangthai2, #trangthai3, #trangthai4, #trangthai5, #trangthai6').click(function() {
+            $('#trangthai, #trangthai1, #trangthai2, #trangthai4, #trangthai5, #trangthai6').click(function() {
                     let hanmuc = document.getElementById("hanmuc");
+                    let sodt = document.getElementById("sodt");
+                    if(sodt.value.length == 0) {
+                        alert(' Vui lòng nhập sdt');
+                        preventDefault();
+                        return false;
+                    }
+                    let convert = hanmuc.value.replaceAll(',', '');
+                    hanmuc.value = convert;
+                    convert = sotien.value.replaceAll(',', '');
+                    sotien.value = convert;
+
+                    $("#update").submit();
+            });
+            $('#trangthai3').click(function() {
+                let ngayhen = document.getElementById("ngayhen");
+                if(ngayhen.value.length == 0) {
+                    alert('Vui lòng nhập ngày hẹn');
+                    preventDefault();
+                        return false;
+                }
+                let hanmuc = document.getElementById("hanmuc");
+                    let sodt = document.getElementById("sodt");
+                    if(sodt.value.length == 0) {
+                        alert(' Vui lòng nhập sdt');
+                        preventDefault();
+                        return false;
+                    }
                     let convert = hanmuc.value.replaceAll(',', '');
                     hanmuc.value = convert;
                     convert = sotien.value.replaceAll(',', '');
