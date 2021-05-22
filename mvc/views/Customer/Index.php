@@ -159,16 +159,7 @@
                         $nhucau = formatMoney($row[7]);
                         $ngayhen = $row[8]; //err
                         $today = date("Y-m-d H:i:s");
-                        if($_SESSION['role'] == "nhanvien") {
-                            // if($row[5] == "Không nhu cầu" || $row[5] == "Có nhu cầu" || $row[5] == "Chửi") {
-                            //     continue;
-                            // }
-                            if($ngayhen != NULL) {
-                                if(($ngayhen>$today)) {
-                                    continue;
-                                }
-                            }
-                        }
+                        
                         echo "<tr>";
                         if($_SESSION['role'] == "admin") {
                             echo "<th><input type='checkbox' name='customerIds[]' value='${row[0]}'/>${i}</th>";
@@ -192,7 +183,9 @@
                         if($row[5] == "cnc") echo "<td>Có nhu cầu</td>";
                         if($row[5] == "knc") echo "<td>Không nhu cầu</td>";
                         if($row[5] == "khac") echo "<td>Khác</td>";
-                        if($row[5] == "hgl") echo "<td>Hẹn gọi lại</td>";
+                        if($row[5] == "hgl"){
+                            echo "<td>Hẹn gọi lại (".$ngayhen.")</td>";
+                        }
                         if($row[5] == "kbm") echo "<td>Không bắt máy</td>";
                         if($row[5] == "chui") echo "<td>Chửi</td>";
                         echo "<td>${row[6]}</td>";
