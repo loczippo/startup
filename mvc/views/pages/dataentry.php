@@ -23,6 +23,7 @@
                 $cmnd = $row[2];
                 $sodt = $row[3];
                 $hanmuc = $row[4];
+                $trangthai = $row[5];
                 $ghichu = $row[6];
                 $sotien = $row[7];
                 $ngayhen = $row[8];
@@ -79,6 +80,21 @@
                     <label for="diachi" class="form-label">Địa chỉ: </label>
                     <div class="d-flex justify-content-between">
                     <textarea class="form-control" placeholder="" rows="2" id="diachi" name="diachi"><?php echo $diachi ?></textarea>
+                    </div>
+                </div>
+                <div class=" col-md-6 col-lg-4 col-xl-4">
+                    <label for="diachi" class="form-label"></label>
+                    <div class="d-flex justify-content-between">
+                        <?php
+                            echo "<p>Trạng thái: ";
+                            echo is_null($trangthai) ? "<b>Chưa nhập</b></p>" : "";
+                            echo $trangthai == "cnc" ? "<b>Có nhu cầu</b></p>" : "";
+                            echo $trangthai == "knc" ? "<b>Không nhu cầu</b></p>" : "";
+                            echo $trangthai == "hgl" ? "<b>Hẹn gọi lại</b></p>" : "";
+                            echo $trangthai == "kbm" ? "<b>Không bắt máy</b></p>" : "";
+                            echo $trangthai == "chui" ? "<b>Chửi</b></p>" : "";
+                            echo $trangthai == "khac" ? "<b>Khác</b></p>" : "";
+                        ?>
                     </div>
                 </div>
                  </div>

@@ -328,17 +328,30 @@
                 
             }
             if($_SESSION['role'] == "nhanvien") {
-                $data = mysqli_fetch_all($Customer->GetCustomerForCustomerID_LIMIT($userid));
+                $qr = "SELECT * FROM CRM_customers where userid = ${userid} and (trangthai IN ('hgl', 'kbm') OR trangthai IS NULL) and (ngayhen <= NOW() and ngayhen > CURDATE()) LIMIT 1";
+                $data = mysqli_fetch_all($Customer->Query($qr));
+
                 if($data == null) {
-                    header("Location: /Customers");
+                    $data = mysqli_fetch_all($Customer->GetCustomerForCustomerID_LIMIT($userid));
+                    if($data == null) {
+                        header("Location: /Customers");
+                    }
                 }
                 
             }
             else if($_SESSION['role'] == "admin") {
-                $data = mysqli_fetch_all($Customer->GetCustomerTrangThaiNULL_LIMIT());
+                $qr = "SELECT * FROM CRM_customers where userid = ${userid} and (trangthai IN ('hgl', 'kbm') OR trangthai IS NULL) and (ngayhen <= NOW() and ngayhen > CURDATE()) LIMIT 1";
+                $data = mysqli_fetch_all($Customer->Query($qr));
                 if($data == null) {
-                    header("Location: /Customers");
+                    $data = mysqli_fetch_all($Customer->GetCustomerForCustomerID_LIMIT($userid));
+                    if($data == null) {
+                        header("Location: /Customers");
+                    }
                 }
+                // $data = mysqli_fetch_all($Customer->GetCustomerTrangThaiNULL_LIMIT());
+                // if($data == null) {
+                //     header("Location: /Customers");
+                // }
             }
             foreach($data as $row) {
                 if(isset($row[0])) {
