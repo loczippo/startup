@@ -339,6 +339,7 @@
                 $qr = "SELECT * FROM CRM_customers where userid = ${userid} and (trangthai IN ('hgl', 'kbm') OR trangthai IS NULL) and (ngayhen <= NOW() and ngayhen > CURDATE()) and ( 1 ";
                 if(isset($_POST['DauSo'])){
                     $DauSo = $_POST['DauSo'];
+                    echo $DauSo;die;
                     $phonearr =explode(",", $DauSo);
             foreach($phonearr as $phone) {
                     if($phone!=null && $phone!="")
