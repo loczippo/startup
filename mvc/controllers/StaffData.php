@@ -325,6 +325,30 @@
                     $qr.=" where customerid=${customerid}";
                     $Customer->Query($qr);
                 }
+                if($trangthai == "chui") {
+                    $qr.="  set trangthai='chui'";
+                    if(strlen($hanmuc) == 0) {
+                        $qr.=", hanmuc=NULL";
+                    }
+                    else {
+                        $qr.=", hanmuc='${hanmuc}'";
+                    }
+                    if(strlen($ngayhen) ==0) {
+                        $qr.=", ngayhen=NULL";
+                    }
+                    else {
+                        $qr.=", ngayhen='${ngayhen}'";
+                    }
+                    if(strlen($sotien) ==0) {
+                        $qr.=", sotien=NULL";
+                    }
+                    else {
+                        $qr.=", sotien='${sotien}'";
+                    }
+                    $qr.=" , hoten = '${hoten}', cmnd='${cmnd}', sodt='${sodt}', ghichu='${ghichu}', sotk='${sotk}', diachi='${diachi}', ngaygoi='${ngaygoi}'";
+                    $qr.=" where customerid=${customerid}";
+                    $Customer->Query($qr);
+                }
                 // else {
                 //     $Customer->UpdateCustomerTrangThai($customerid, $hoten, $cmnd, $sodt, $hanmuc, $trangthai, $ghichu, $sotk, $diachi, $ngaygoi);
                 // }
@@ -377,8 +401,8 @@
             // }
             foreach($data as $row) {
                 if(isset($row[0])) {
-                    $url="/StaffData/DataEntry/${row[0]}";
-                    header("Location:".$url );
+                    $url="/StaffData/DataEntry/${row[0]}&dauso=${DauSo}";
+                    header("Location:".$url);
                 }
             }
         }

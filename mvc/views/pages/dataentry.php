@@ -113,7 +113,7 @@
 
                         <a href="javascript:;" class="btn btn-info btn-trangthai" id="trangthai6" data-value='khac'>Khác</a>
 Đầu số:
-                        <input type="text" name="DauSo" id="DauSo" value="<?php echo isset($data["DauSo"])?$data["DauSo"]:"" ?>">
+                        <input type="text" name="DauSo" id="DauSo" value="<?php echo isset($_GET['dauso'])?$_GET['dauso']:""?>">
                        
                     </div>
                 </div>
