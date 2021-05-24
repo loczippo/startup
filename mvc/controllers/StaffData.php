@@ -124,7 +124,7 @@
             echo $view;
             
         }
-        function DataEntry($customerid=null, $param=null) {
+        function DataEntry($customerid=null, $param=null,$DauSo=null) {
             if($customerid == null) die;
             if(!isset($_SESSION['username'])) die;
             if(!isset($_SESSION['role'])) die;
@@ -155,17 +155,13 @@
                     if($_SESSION['role'] != 'admin') die;
                 }
                 if($param == "Update") $this->Update($customerid, $userid_customer);
-                 if(isset($_POST["DauSo"])){
-                     $DauSo = $_POST['DauSo'];
-                    $data = mysqli_fetch_all($Customer->GetCustomerForCustomerIDandPhoneStart($customerid,$DauSo));
-                 }
-                 else{
+                
                     $data = mysqli_fetch_all($Customer->GetCustomerForCustomerID($customerid));
-                }
+                
                 $view = $this->view("Layout1", __CLASS__, [
                     "Page" => "dataentry",
                     "Customer" => $data,
-                    "DauSo"=>isset($_POST["DauSo"])?$DauSo:"",
+                    "DauSo"=>isset($_POST["DauSo"])?$_POST["DauSo"]:"",
                 ]);
                 echo $view;
             }
@@ -336,17 +332,25 @@
             }
            // if($_SESSION['role'] == "nhanvien") {
            
-                $qr = "SELECT * FROM CRM_customers where userid = ${userid} and (trangthai IN ('hgl', 'kbm') OR trangthai IS NULL) and (ngayhen <= NOW() and ngayhen > CURDATE()) and ( 1 ";
+                $qr = "SELECT * FROM CRM_customers where userid = ${userid} and (trangthai IN ('hgl', 'kbm') OR trangthai IS NULL) and (ngayhen <= NOW() and ngayhen > CURDATE())  ";
                 if(isset($_POST['DauSo'])){
                     $DauSo = $_POST['DauSo'];
-                    echo $DauSo;die;
+                   // echo $DauSo;die;
                     $phonearr =explode(",", $DauSo);
-            foreach($phonearr as $phone) {
+                    if(count($phonearr) >0){
+                        $phone=$phonearr[0];
+                        $qr.= "and ( sodt like '".$phone ."%'";
+                    }
+                    foreach($phonearr as $phone) {
                     if($phone!=null && $phone!="")
-                        $qr.= " or sodt like ".$phone ."%";
+                        $qr.= " or sodt like '".$phone ."%'";
+
+                    $qr.=") ";
+                    }
                 }
-            $qr.=")  LIMIT 1";
-                }
+                
+                $qr.=" order by customerid asc LIMIT 1";
+                //echo $qr;
                 $data = mysqli_fetch_all($Customer->Query($qr));
 
                 if($data == null) {
@@ -373,7 +377,8 @@
             // }
             foreach($data as $row) {
                 if(isset($row[0])) {
-                    header("Location: /StaffData/DataEntry/${row[0]}");
+                    $url="/StaffData/DataEntry/${row[0]}";
+                    header("Location:".$url );
                 }
             }
         }
