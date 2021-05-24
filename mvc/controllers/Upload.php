@@ -81,16 +81,18 @@
                             $cmnd=$row[1];
                             //echo $cmnd." - ";
                             $sodt=$row[2];
+                            echo $sodt  ;
+                            if($sodt==null || $sodt=="") continue;
+                            //echo $sodt." - ";
                             if($sodt[0]='+'){
-                                $sodt = substr($sodt, 2);
+                            $sodt = substr($sodt, 2);
                             }
-                            if($sodt[0] == 8 && $sodt[1] == 4) {
+                            if($sodt[0] == "8" && $sodt[1] == "4") {
                                 $sodt = substr($sodt, 3);
                             }
-                            if($sodt[0] != 0) {
+                            if($sodt[0] != "0") {
                                 $sodt = "0" . $sodt;
                             }
-                            //echo $sodt." - ";
                             $hanmuc=$row[3];
                             
                             if(!isset($hanmuc)|| $hanmuc==" " || $hanmuc==''){
@@ -126,13 +128,13 @@
                                 //echo $sodt." - ";
                                 if($sodt[0]='+'){
                                 $sodt = substr($sodt, 2);
-                            }
-                            if($sodt[0] == 8 && $sodt[1] == 4) {
-                                $sodt = substr($sodt, 3);
-                            }
-                            if($sodt[0] != 0) {
-                                $sodt = "0" . $sodt;
-                            }
+                                }
+                                if($sodt[0] == "8" && $sodt[1] == "4") {
+                                    $sodt = substr($sodt, 3);
+                                }
+                                if($sodt[0] != "0") {
+                                    $sodt = "0" . $sodt;
+                                }
                                 $hanmuc=$row[3];
                                 //echo $hanmuc." - ";
                                  $sotk=$row[4];

@@ -22,3 +22,5 @@ Chức năng mới ->>>>>>>>>> để Bình làm---------------------------------
 gọi theo nhà mạng							Bình			đang làm
 chia đều dữ liệu cho nhân viên				Bình 			xong
 
+tổng kết quả tìm kiếm						Bình			xong
+tìm kiếm Lỗi 								Bình			xong

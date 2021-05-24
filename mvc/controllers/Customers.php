@@ -41,7 +41,7 @@
             $cmnd=$this->getQueryParam("cmnd");
             if($cmnd != "") $query.=" and cmnd='${cmnd}'";
             $sodt=$this->getQueryParam("sodt");
-            if($sodt != "") $query.=" and cmnd='${sodt}'";
+            if($sodt != "") $query.=" and sodt='${sodt}'";
             $ngaybd=$this->getQueryParam('ngaybd');
 
             $ngaykt=$this->getQueryParam('Ngaykt');

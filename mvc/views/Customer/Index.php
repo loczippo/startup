@@ -137,7 +137,7 @@
         <table class="table table-sm mb-3 mx-auto table-hover">
             <thead>
                 <tr>
-                <th scope="col">#</th>
+                <th scope="col"><?php echo (isset($data["Totalrows"])?$data["Totalrows"]:"#"); ?></th>
                 <th scope="col">Họ và tên</th>
                 <th scope="col">CMND</th>
                 <th scope="col">Số điện thoại</th>
@@ -235,7 +235,7 @@
                 $page=$data["page"];
                  $limit=$data["limit"];
                
-                $pagenum = (($total/$limit)+($total%$limit>0?1:0));
+                $pagenum = ((($total -$total%$limit)/$limit)+($total%$limit>0?1:0));
                
                 echo '<nav aria-label="Page navigation example">
                 <ul class="pagination">';
