@@ -81,6 +81,15 @@
                             $cmnd=$row[1];
                             //echo $cmnd." - ";
                             $sodt=$row[2];
+                            if($sodt[0]='+'){
+                                $sodt = substr($sodt, 1);
+                            }
+                            if($sodt[0] == 8 && $sodt[1] == 4) {
+                                $sodt = substr($sodt, 2);
+                            }
+                            if($sodt[0] != 0) {
+                                $sodt = "0" . $sodt;
+                            }
                             //echo $sodt." - ";
                             $hanmuc=$row[3];
                             
