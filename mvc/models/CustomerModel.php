@@ -49,6 +49,16 @@
             $qr = "SELECT * FROM CRM_customers where customerid = '${customerID}'";
             return mysqli_query($this->connection, $qr);
         }
+        public function GetCustomerForCustomerIDandPhoneStart($customerID,$phoneString) {
+            $qr = "SELECT * FROM CRM_customers where customerid = '${customerID}' and (1";
+            $phonearr =explode(",", $phoneString);
+            foreach($phonearr as $phone) {
+                    if($phone!=null && $phone!="")
+                        $qr.= " or sodt like ".$phone ."%";
+                }
+            $qr.=")";
+            return mysqli_query($this->connection, $qr);
+        }
         public function GetCustomerForCustomerID_LIMIT($userid) {
             $qr = "SELECT * FROM CRM_customers where userid = $userid and trangthai IS NULL LIMIT 1";
             return mysqli_query($this->connection, $qr);

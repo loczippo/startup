@@ -112,12 +112,8 @@
                         <a href="javascript:;" class="btn btn-danger btn-trangthai" id="trangthai5" data-value='chui'>Chửi</a>
 
                         <a href="javascript:;" class="btn btn-info btn-trangthai" id="trangthai6" data-value='khac'>Khác</a>
-
-                                        <script type="text/javascript">
-                                           
-                                        </script>       
-                          
-                    
+Đầu số:
+                        <input type="text" name="DauSo" id="DauSo" value="<?php echo isset($data["DauSo"])?$data["DauSo"]:"" ?>">
                        
                     </div>
                 </div>

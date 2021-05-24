@@ -155,10 +155,17 @@
                     if($_SESSION['role'] != 'admin') die;
                 }
                 if($param == "Update") $this->Update($customerid, $userid_customer);
-                $data = mysqli_fetch_all($Customer->GetCustomerForCustomerID($customerid));
+                 if(isset($_POST["DauSo"])){
+                     $DauSo = $_POST['DauSo'];
+                    $data = mysqli_fetch_all($Customer->GetCustomerForCustomerIDandPhoneStart($customerid,$DauSo));
+                 }
+                 else{
+                    $data = mysqli_fetch_all($Customer->GetCustomerForCustomerID($customerid));
+                }
                 $view = $this->view("Layout1", __CLASS__, [
                     "Page" => "dataentry",
                     "Customer" => $data,
+                    "DauSo"=>isset($_POST["DauSo"])?$DauSo:"",
                 ]);
                 echo $view;
             }
@@ -327,8 +334,19 @@
                 // }
                 
             }
-            if($_SESSION['role'] == "nhanvien") {
-                $qr = "SELECT * FROM CRM_customers where userid = ${userid} and (trangthai IN ('hgl', 'kbm') OR trangthai IS NULL) and (ngayhen <= NOW() and ngayhen > CURDATE()) LIMIT 1";
+           // if($_SESSION['role'] == "nhanvien") {
+           
+                $qr = "SELECT * FROM CRM_customers where userid = ${userid} and (trangthai IN ('hgl', 'kbm') OR trangthai IS NULL) and (ngayhen <= NOW() and ngayhen > CURDATE()) and ( 1 ";
+                if(isset($DauSo)){
+                     $DauSo = $_POST['DauSo'];
+                    echo $DauSo;
+                    $phonearr =explode(",", $DauSo);
+            foreach($phonearr as $phone) {
+                    if($phone!=null && $phone!="")
+                        $qr.= " or sodt like ".$phone ."%";
+                }
+            $qr.=")  LIMIT 1";
+                }
                 $data = mysqli_fetch_all($Customer->Query($qr));
 
                 if($data == null) {
@@ -338,21 +356,21 @@
                     }
                 }
                 
-            }
-            else if($_SESSION['role'] == "admin") {
-                $qr = "SELECT * FROM CRM_customers where userid = ${userid} and (trangthai IN ('hgl', 'kbm') OR trangthai IS NULL) and (ngayhen <= NOW() and ngayhen > CURDATE()) LIMIT 1";
-                $data = mysqli_fetch_all($Customer->Query($qr));
-                if($data == null) {
-                    $data = mysqli_fetch_all($Customer->GetCustomerForCustomerID_LIMIT($userid));
-                    if($data == null) {
-                        header("Location: /Customers");
-                    }
-                }
-                // $data = mysqli_fetch_all($Customer->GetCustomerTrangThaiNULL_LIMIT());
-                // if($data == null) {
-                //     header("Location: /Customers");
-                // }
-            }
+           // }
+            // else if($_SESSION['role'] == "admin") {
+            //     $qr = "SELECT * FROM CRM_customers where userid = ${userid} and (trangthai IN ('hgl', 'kbm') OR trangthai IS NULL) and (ngayhen <= NOW() and ngayhen > CURDATE()) LIMIT 1";
+            //     $data = mysqli_fetch_all($Customer->Query($qr));
+            //     if($data == null) {
+            //         $data = mysqli_fetch_all($Customer->GetCustomerForCustomerID_LIMIT($userid));
+            //         if($data == null) {
+            //             header("Location: /Customers");
+            //         }
+            //     }
+            //     // $data = mysqli_fetch_all($Customer->GetCustomerTrangThaiNULL_LIMIT());
+            //     // if($data == null) {
+            //     //     header("Location: /Customers");
+            //     // }
+            // }
             foreach($data as $row) {
                 if(isset($row[0])) {
                     header("Location: /StaffData/DataEntry/${row[0]}");
