@@ -81,7 +81,7 @@
                             $cmnd=$row[1];
                             //echo $cmnd." - ";
                             $sodt=$row[2];
-                            echo $sodt  ;
+                            $sodt ="".$sodt;
                             if($sodt==null || $sodt=="") continue;
                             //echo $sodt." - ";
                             if($sodt[0]='+'){
@@ -125,16 +125,21 @@
                                 //echo $cmnd." - ";
                                 $sodt=$row[2];
                                 if($sodt==null || $sodt=="") continue;
+                                $sodt ="".$sodt;
                                 //echo $sodt." - ";
                                 if($sodt[0]='+'){
-                                $sodt = substr($sodt, 2);
+                                    $sodt = substr($sodt, 2);
                                 }
+                                //echo $sodt[0]." - ";
                                 if($sodt[0] == "8" && $sodt[1] == "4") {
                                     $sodt = substr($sodt, 3);
                                 }
+                                //echo $sodt." - ";
                                 if($sodt[0] != "0") {
                                     $sodt = "0" . $sodt;
                                 }
+                                //echo $sodt." - ";
+                                //echo "</br>";
                                 $hanmuc=$row[3];
                                 //echo $hanmuc." - ";
                                  $sotk=$row[4];

@@ -138,10 +138,9 @@
             <thead>
                 <tr>
                 <th scope="col"><?php echo (isset($data["Totalrows"])?$data["Totalrows"]:"#"); ?></th>
-                <th scope="col">Họ và tên</th>
-                <th scope="col">CMND</th>
-                <th scope="col">Số điện thoại</th>
-                <th scope="col">Hạn mức</th>
+                <th scope="col">Họ và tên - Địa chỉ</th>
+                <th scope="col"> SDT - CMND - Hạn mức</th>
+                
                 <th scope="col">Trạng thái</th>
                 <th scope="col">Ghi chú</th>
                 <th scope="col">Nhu cầu</th>
@@ -188,10 +187,12 @@
                 // <th scope="col">Ghi chú</th>
                 // <th scope="col">Nhu cầu</th>
                 // <th scope="col">Nhân viên</th>
-                        echo "<td>${row[1]}</td>";
-                        echo "<td>${row[2]}</td>";
-                        echo "<td>${row[3]}</td>";
-                         echo "<td>${hanmuc}</td>";
+                        echo "<td>${row[1]} ".(isset($row[11])?" <br/> ( ".$row[11].")":"")."</td>";
+                        echo "<td> ";
+                       if(isset($row[3])) echo "${row[3]}";
+                       if(isset($row[2])) echo " - ${row[2]}";
+                        if(isset($hanmuc)) echo " - ${hanmuc}";
+                         echo "</td>";
                         if($row[5] == NULL) echo "<td>Chưa cập nhật</td>";
                         if($row[5] == "cnc") echo "<td>Có nhu cầu</td>";
                         if($row[5] == "knc") echo "<td>Không nhu cầu</td>";
