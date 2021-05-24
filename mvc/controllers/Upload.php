@@ -124,6 +124,15 @@
                                 $sodt=$row[2];
                                 if($sodt==null || $sodt=="") continue;
                                 //echo $sodt." - ";
+                                if($sodt[0]='+'){
+                                $sodt = substr($sodt, 1);
+                            }
+                            if($sodt[0] == 8 && $sodt[1] == 4) {
+                                $sodt = substr($sodt, 2);
+                            }
+                            if($sodt[0] != 0) {
+                                $sodt = "0" . $sodt;
+                            }
                                 $hanmuc=$row[3];
                                 //echo $hanmuc." - ";
                                  $sotk=$row[4];
