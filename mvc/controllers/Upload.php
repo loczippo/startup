@@ -85,10 +85,10 @@
                             if($sodt==null || $sodt=="") continue;
                             //echo $sodt." - ";
                             if($sodt[0]='+'){
-                            $sodt = substr($sodt, 2);
+                            $sodt = substr($sodt, 1);
                             }
                             if($sodt[0] == "8" && $sodt[1] == "4") {
-                                $sodt = substr($sodt, 3);
+                                $sodt = substr($sodt, 2);
                             }
                             if($sodt[0] != "0") {
                                 $sodt = "0" . $sodt;
@@ -128,11 +128,11 @@
                                 $sodt ="".$sodt;
                                 //echo $sodt." - ";
                                 if($sodt[0]='+'){
-                                    $sodt = substr($sodt, 2);
+                                    $sodt = substr($sodt, 1);
                                 }
                                 //echo $sodt[0]." - ";
                                 if($sodt[0] == "8" && $sodt[1] == "4") {
-                                    $sodt = substr($sodt, 3);
+                                    $sodt = substr($sodt, 2);
                                 }
                                 //echo $sodt." - ";
                                 if($sodt[0] != "0") {
