@@ -85,7 +85,11 @@
                             if($sodt==null || $sodt=="") continue;
                                 $sodt ="".$sodt;
                                 //echo ".".$sodt." - ";
-                                if($sodt[0]=='+'||$sodt[0]=='0'){
+                                if($sodt[0]=='+'||$sodt[0]=='0'||$sodt[0]=="'"){
+                                    $sodt = substr($sodt, 1);
+                                    //echo "xoa 0,+ - ";
+                                }
+                                 if($sodt[0]=='+'||$sodt[0]=='0'||$sodt[0]=="'"){
                                     $sodt = substr($sodt, 1);
                                     //echo "xoa 0,+ - ";
                                 }
@@ -135,7 +139,11 @@
                                 if($sodt==null || $sodt=="") continue;
                                 $sodt ="".$sodt;
                                 //echo ".".$sodt." - ";
-                                if($sodt[0]=='+'||$sodt[0]=='0'){
+                                if($sodt[0]=='+'||$sodt[0]=='0'||$sodt[0]=="'"){
+                                    $sodt = substr($sodt, 1);
+                                    //echo "xoa 0,+ - ";
+                                }
+                                 if($sodt[0]=='+'||$sodt[0]=='0'||$sodt[0]=="'"){
                                     $sodt = substr($sodt, 1);
                                     //echo "xoa 0,+ - ";
                                 }
