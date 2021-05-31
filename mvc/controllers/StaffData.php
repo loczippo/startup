@@ -358,7 +358,7 @@
             if(isset($_POST['DauSo'])){
                         $DauSo = $_POST['DauSo'];
                     }
-                $qr = "SELECT * FROM CRM_customers where userid = ${userid} and trangthai IN ('hgl', 'kbm')  and ngayhen < NOW()  ";
+                $qr = "SELECT * FROM CRM_customers where userid = ${userid} and trangthai ='hgl' and ngayhen < NOW()  ";
                 
                 $qr.=" order by customerid asc LIMIT 1";
                 //echo $qr; die;
