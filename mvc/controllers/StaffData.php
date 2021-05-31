@@ -355,7 +355,9 @@
                 
             }
            // if($_SESSION['role'] == "nhanvien") {
-           
+            if(isset($_POST['DauSo'])){
+                        $DauSo = $_POST['DauSo'];
+                    }
                 $qr = "SELECT * FROM CRM_customers where userid = ${userid} and trangthai IN ('hgl', 'kbm')  and ngayhen < NOW()  ";
                 
                 $qr.=" order by customerid asc LIMIT 1";
@@ -375,10 +377,12 @@
                             $qr.= " and ( sodt like '".$phone ."%'";
                         }
                         foreach($phonearr as $phone) {
-                        if($phone!=null && $phone!="")
-                            $qr.= " or sodt like '".$phone ."%'";
+                            $phone=trim($phone);
+                            if($phone!=null && $phone!="")
 
-                       
+                                $qr.= " or sodt like '".$phone ."%'";
+
+                           
                         }
                          $qr.=") ";
                     }
