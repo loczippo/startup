@@ -157,10 +157,12 @@
                 if($param == "Update") $this->Update($customerid, $userid_customer);
                 
                     $data = mysqli_fetch_all($Customer->GetCustomerForCustomerID($customerid));
-                
+                    $NetWorkDAO = $this->model("NetWorkModel");
+                $NetworkList=mysqli_fetch_all($NetWorkDAO->GetAll());
                 $view = $this->view("Layout1", __CLASS__, [
                     "Page" => "dataentry",
                     "Customer" => $data,
+                     "NetworkList" => $NetworkList,
                     "DauSo"=>isset($_POST["DauSo"])?$_POST["DauSo"]:"",
                 ]);
                 echo $view;
