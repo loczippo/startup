@@ -210,7 +210,7 @@
                         $count++;
                     }
                     if($data["Customers"] == null) {
-                        echo "<tr><td  class='text-center' colspan='6'>Không có data nào dành cho bạn</td></tr>";
+                        echo "<tr><td  class='text-center' colspan='10'>Không có data nào dành cho bạn</td></tr>";
                     }
                 ?>
             </tbody>
