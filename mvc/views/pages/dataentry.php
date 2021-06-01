@@ -57,11 +57,11 @@
                 </div>
                 <div class=" col-md-6 col-lg-4 col-xl-4">
                     <label for="hanmuc" class="form-label">Hạn mức: </label>
-                    <input type="text" class="form-control" id="hanmuc" name="hanmuc" value="<?php echo $hanmuc; ?>">
+                    <input type="text" class="form-control money" id="hanmuc" name="hanmuc" value="<?php echo $hanmuc; ?>">
                 </div>
                 <div class=" col-md-6 col-lg-4 col-xl-4">
                     <label for="sotien" class="form-label">Số tiền: </label>
-                    <input type="text" class="form-control" id="sotien" name="sotien" value="<?php echo $sotien; ?>">
+                    <input type="text" class="form-control money" id="sotien" name="sotien" value="<?php echo $sotien; ?>">
                 </div>
                 <div class=" col-md-6 col-lg-4 col-xl-4">
                     <label for="ngayhen" class="form-label">Hẹn gọi lại: </label>
@@ -140,7 +140,11 @@ Nhà mạng:
         </div>
     </div>
 </div>
-
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="/public/js/formatMoney.js"></script>
+<script type="text/javascript">
+		$('.money').simpleMoneyFormat();
+	</script>
 <script>
     let hanmuc = document.getElementById('hanmuc');
     let format = hanmuc.value.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
@@ -152,6 +156,7 @@ Nhà mạng:
         $(document).ready(function(){
             
             $('#trangthai, #trangthai1, #trangthai2, #trangthai4, #trangthai5, #trangthai6').click(function() {
+                    
                     let hanmuc = document.getElementById("hanmuc");
                     let sodt = document.getElementById("sodt");
                     if(sodt.value.length == 0) {
