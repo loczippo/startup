@@ -8,8 +8,8 @@
             <div class="card-body">
                 <h5 class="card-title">Import dữ liệu</h5>
                 <p><input type="file" id="file" name="file" accept=".xlsx, .xls" class="form-control"/></p>
-                <div class="form-floating" style="display: none;"; ?>">
-                    <select class="form-select" id="username" name="username">
+                <div class="form-floating" <?php echo $data["Role"]=="admin"?"style='display: none;'":""; ?> >
+                    <select class="form-select" id="username" name="username" <?php echo $data["Role"]=="nhanvien"?"style='display: none;'":""; ?> >
                         <?php
                             foreach($data["NhanvienList"] as $row) {
                                 echo "<option value='${row[0]}'>${row[1]}</option>";
@@ -17,10 +17,10 @@
                             
                         ?>
                     </select>
-                    <label for="username">Chọn một nhân viên</label>
+                    
                     <button class="btn btn-success mt-2">Lưu</button>
                 </div>
-                
+               
                 <div class="row">
                     <?php if($data["Role"]=="admin"){
                         ?>

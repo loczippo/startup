@@ -81,7 +81,30 @@
                             $cmnd=$row[1];
                             //echo $cmnd." - ";
                             $sodt=$row[2];
-                            //echo $sodt." - ";
+                            $sodt ="".$sodt;
+                            if($sodt==null || $sodt=="") continue;
+                                $sodt ="".$sodt;
+                                //echo ".".$sodt." - ";
+                                if($sodt[0]=='+'||$sodt[0]=='0'||$sodt[0]=="'"){
+                                    $sodt = substr($sodt, 1);
+                                    //echo "xoa 0,+ - ";
+                                }
+                                 if($sodt[0]=='+'||$sodt[0]=='0'||$sodt[0]=="'"){
+                                    $sodt = substr($sodt, 1);
+                                    //echo "xoa 0,+ - ";
+                                }
+                                //echo $sodt." - ";
+                                if($sodt[0] == "8" && $sodt[1] == "4") {
+                                    $sodt = substr($sodt, 2);
+                                    //echo "xoa 84 - ";
+                                }
+                                //echo $sodt." - ";
+                                if($sodt != "0") {
+                                    $sodt = "0" . $sodt;
+                                    //echo "them 0 - ";
+                                }
+                                //echo $sodt." - ";
+                                //echo "</br>";
                             $hanmuc=$row[3];
                             
                             if(!isset($hanmuc)|| $hanmuc==" " || $hanmuc==''){
@@ -114,7 +137,28 @@
                                 //echo $cmnd." - ";
                                 $sodt=$row[2];
                                 if($sodt==null || $sodt=="") continue;
+                                $sodt ="".$sodt;
+                                //echo ".".$sodt." - ";
+                                if($sodt[0]=='+'||$sodt[0]=='0'||$sodt[0]=="'"){
+                                    $sodt = substr($sodt, 1);
+                                    //echo "xoa 0,+ - ";
+                                }
+                                 if($sodt[0]=='+'||$sodt[0]=='0'||$sodt[0]=="'"){
+                                    $sodt = substr($sodt, 1);
+                                    //echo "xoa 0,+ - ";
+                                }
                                 //echo $sodt." - ";
+                                if($sodt[0] == "8" && $sodt[1] == "4") {
+                                    $sodt = substr($sodt, 2);
+                                    //echo "xoa 84 - ";
+                                }
+                                //echo $sodt." - ";
+                                if($sodt != "0") {
+                                    $sodt = "0" . $sodt;
+                                    //echo "them 0 - ";
+                                }
+                                //echo $sodt." - ";
+                                //echo "</br>";
                                 $hanmuc=$row[3];
                                 //echo $hanmuc." - ";
                                  $sotk=$row[4];

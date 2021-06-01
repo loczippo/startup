@@ -13,6 +13,10 @@
             echo "<a class='nav-link' href='/PanelAdmin/ManageUser'>
             Quản lý nhân viên
             </a>";
+
+             echo "<a class='nav-link' href='/Networks'>
+            Nhà mạng
+            </a>";
             }
             else {
             //   echo "<a class='nav-link' href='/Customers/Import'>

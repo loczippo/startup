@@ -112,8 +112,23 @@
                         <a href="javascript:;" class="btn btn-danger btn-trangthai" id="trangthai5" data-value='chui'>Chửi</a>
 
                         <a href="javascript:;" class="btn btn-info btn-trangthai" id="trangthai6" data-value='khac'>Khác</a>
-Đầu số:
-                        <input type="text" name="DauSo" id="DauSo" value="<?php echo isset($_GET['dauso'])?$_GET['dauso']:""?>">
+Nhà mạng:
+                        <select  name="DauSo" id="DauSo">
+                            <option></option>
+                            <?php
+                            foreach($data["NetworkList"] as $row) {
+                                ?>
+                                <option value="<?php echo $row[2]; ?>" 
+                                    <?php echo ((isset($_GET['dauso'])&& $_GET['dauso'] ==$row[2] )?"selected":""); ?>
+                                >
+                                    <?php echo $row[1]; ?>
+                                </option>
+                                <?php
+                            }
+                            ?>
+                        </select>
+
+                       
                        
                     </div>
                 </div>

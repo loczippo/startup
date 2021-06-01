@@ -157,10 +157,12 @@
                 if($param == "Update") $this->Update($customerid, $userid_customer);
                 
                     $data = mysqli_fetch_all($Customer->GetCustomerForCustomerID($customerid));
-                
+                    $NetWorkDAO = $this->model("NetWorkModel");
+                $NetworkList=mysqli_fetch_all($NetWorkDAO->GetAll());
                 $view = $this->view("Layout1", __CLASS__, [
                     "Page" => "dataentry",
                     "Customer" => $data,
+                     "NetworkList" => $NetworkList,
                     "DauSo"=>isset($_POST["DauSo"])?$_POST["DauSo"]:"",
                 ]);
                 echo $view;
@@ -355,30 +357,40 @@
                 
             }
            // if($_SESSION['role'] == "nhanvien") {
-           
-                $qr = "SELECT * FROM CRM_customers where userid = ${userid} and (trangthai IN ('hgl', 'kbm') OR trangthai IS NULL) and (ngayhen <= NOW() and ngayhen > CURDATE())  ";
-                if(isset($_POST['DauSo'])){
-                    $DauSo = $_POST['DauSo'];
-                   // echo $DauSo;die;
-                    $phonearr =explode(",", $DauSo);
-                    if(count($phonearr) >0){
-                        $phone=$phonearr[0];
-                        $qr.= "and ( sodt like '".$phone ."%'";
+            if(isset($_POST['DauSo'])){
+                        $DauSo = $_POST['DauSo'];
                     }
-                    foreach($phonearr as $phone) {
-                    if($phone!=null && $phone!="")
-                        $qr.= " or sodt like '".$phone ."%'";
-
-                    $qr.=") ";
-                    }
-                }
+                $qr = "SELECT * FROM CRM_customers where userid = ${userid} and trangthai ='hgl' and ngayhen < NOW()  ";
                 
                 $qr.=" order by customerid asc LIMIT 1";
-                //echo $qr;
+                //echo $qr; die;
                 $data = mysqli_fetch_all($Customer->Query($qr));
 
                 if($data == null) {
-                    $data = mysqli_fetch_all($Customer->GetCustomerForCustomerID_LIMIT($userid));
+                    $qr="SELECT * FROM CRM_customers where userid = ${userid} and (trangthai is null)";
+                    if(isset($_POST['DauSo'])){
+                        $DauSo = $_POST['DauSo'];
+                       // echo $DauSo;die;
+                        $phonearr =explode(",", $DauSo);
+                        if(count($phonearr) >0){
+                            $phone=$phonearr[0];
+
+
+                            $qr.= " and ( sodt like '".$phone ."%'";
+                        }
+                        foreach($phonearr as $phone) {
+                            $phone=trim($phone);
+                            if($phone!=null && $phone!="")
+
+                                $qr.= " or sodt like '".$phone ."%'";
+
+                           
+                        }
+                         $qr.=") ";
+                    }
+                     $qr.=" order by customerid asc LIMIT 1";
+                    // echo $qr;die;
+                     $data = mysqli_fetch_all($Customer->Query($qr));
                     if($data == null) {
                         header("Location: /Customers");
                     }
