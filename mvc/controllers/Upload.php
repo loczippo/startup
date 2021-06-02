@@ -94,7 +94,7 @@
                                     //echo "xoa 0,+ - ";
                                 }
                                 //echo $sodt." - ";
-                                if($sodt[0] == "8" && $sodt[1] == "4") {
+                                if($sodt[0] == "8" && $sodt[1] == "4" && strlen($str2)>10) {
                                     $sodt = substr($sodt, 2);
                                     //echo "xoa 84 - ";
                                 }
@@ -148,7 +148,7 @@
                                     //echo "xoa 0,+ - ";
                                 }
                                 //echo $sodt." - ";
-                                if($sodt[0] == "8" && $sodt[1] == "4") {
+                                if($sodt[0] == "8" && $sodt[1] == "4" && strlen($str2)>10) {
                                     $sodt = substr($sodt, 2);
                                     //echo "xoa 84 - ";
                                 }
