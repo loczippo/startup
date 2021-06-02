@@ -94,7 +94,7 @@
                                     //echo "xoa 0,+ - ";
                                 }
                                 //echo $sodt." - ";
-                                if($sodt[0] == "8" && $sodt[1] == "4" && strlen($str2)>10) {
+                                if($sodt[0] == "8" && $sodt[1] == "4" && strlen($sodt)>10) {
                                     $sodt = substr($sodt, 2);
                                     //echo "xoa 84 - ";
                                 }
@@ -105,6 +105,12 @@
                                 }
                                 //echo $sodt." - ";
                                 //echo "</br>";
+                                $qr = "SELECT count(customerid) FROM CRM_customers where sodt ='".$sodt."'";
+                                $query = ($Customer->Query($qr));
+                                $count = mysqli_fetch_array($query);
+                                if($count[0]>0){
+                                    continue;
+                                }
                             $hanmuc=$row[3];
                             
                             if(!isset($hanmuc)|| $hanmuc==" " || $hanmuc==''){
@@ -141,24 +147,32 @@
                                 //echo ".".$sodt." - ";
                                 if($sodt[0]=='+'||$sodt[0]=='0'||$sodt[0]=="'"){
                                     $sodt = substr($sodt, 1);
-                                    //echo "xoa 0,+ - ";
+                                    echo "xoa 0,+ - ";
                                 }
                                  if($sodt[0]=='+'||$sodt[0]=='0'||$sodt[0]=="'"){
                                     $sodt = substr($sodt, 1);
-                                    //echo "xoa 0,+ - ";
+                                    echo "xoa 0,+ - ";
                                 }
                                 //echo $sodt." - ";
-                                if($sodt[0] == "8" && $sodt[1] == "4" && strlen($str2)>10) {
+                                if($sodt[0] == "8" && $sodt[1] == "4" && strlen($sodt)>10) {
                                     $sodt = substr($sodt, 2);
-                                    //echo "xoa 84 - ";
+                                    echo "xoa 84 - ";
                                 }
                                 //echo $sodt." - ";
                                 if($sodt != "0") {
                                     $sodt = "0" . $sodt;
-                                    //echo "them 0 - ";
+                                    echo "them 0 - ";
                                 }
                                 //echo $sodt." - ";
                                 //echo "</br>";
+
+                                $qr = "SELECT count(customerid) FROM CRM_customers where sodt ='".$sodt."'";
+                                $query = ($Customer->Query($qr));
+                                $count = mysqli_fetch_array($query);
+                                if($count[0]>0){
+                                    continue;
+                                }
+                                
                                 $hanmuc=$row[3];
                                 //echo $hanmuc." - ";
                                  $sotk=$row[4];
