@@ -1,7 +1,7 @@
 <?php
     class App{
         // set default mvc
-        protected $controller="Home";
+        protected $controller="Login";
         protected $action="Index";
         protected $params=[];
 

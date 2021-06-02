@@ -2,7 +2,7 @@
     class Logout extends Controller{
         function Index() {
             session_destroy();
-            header('Location: Home');
+            header('Location: Login');
         }
     }
 ?>
