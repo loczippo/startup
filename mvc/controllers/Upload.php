@@ -147,21 +147,21 @@
                                 //echo ".".$sodt." - ";
                                 if($sodt[0]=='+'||$sodt[0]=='0'||$sodt[0]=="'"){
                                     $sodt = substr($sodt, 1);
-                                    echo "xoa 0,+ - ";
+                                    //echo "xoa 0,+ - ";
                                 }
                                  if($sodt[0]=='+'||$sodt[0]=='0'||$sodt[0]=="'"){
                                     $sodt = substr($sodt, 1);
-                                    echo "xoa 0,+ - ";
+                                    //echo "xoa 0,+ - ";
                                 }
                                 //echo $sodt." - ";
                                 if($sodt[0] == "8" && $sodt[1] == "4" && strlen($sodt)>10) {
                                     $sodt = substr($sodt, 2);
-                                    echo "xoa 84 - ";
+                                    //echo "xoa 84 - ";
                                 }
                                 //echo $sodt." - ";
                                 if($sodt != "0") {
                                     $sodt = "0" . $sodt;
-                                    echo "them 0 - ";
+                                    //echo "them 0 - ";
                                 }
                                 //echo $sodt." - ";
                                 //echo "</br>";
@@ -182,7 +182,7 @@
                                 $today = date("Y-m-d");
                                 $UserId=$UserIds[$iuser];
                                  $ACTION = $Customer->InsertCustomer($hoten, $cmnd, $sodt, $hanmuc, $today,$sotk,$DiaChi, $UserId);
-                                echo $ACTION;
+                                //echo $ACTION;
                                 $iuser++;
                                 if($iuser==$usercount) $iuser =0;
                                 $i++;
