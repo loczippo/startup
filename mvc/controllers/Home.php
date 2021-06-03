@@ -16,7 +16,7 @@
                 }
             }
 
-            $qr = "SELECT * FROM crm_accounts where username = '$username' and password = '$password'";
+            $qr = "SELECT * FROM CRM_accounts where username = '$username' and password = '$password'";
             $Account = $this->model("AccountModel");
             if($Account->Query($qr)-> num_rows > 0) {
                 echo "Đăng nhập thành công";

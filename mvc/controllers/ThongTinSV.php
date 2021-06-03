@@ -3,7 +3,7 @@
         function ApiCustomer() {
             $NhaMang = $_GET['nhamang'];
             $NgayThem = $_GET['ngaythem'];
-            $qr = "SELECT * FROM Crm_Customers WHERE NgayThem='${NgayThem}' and(";
+            $qr = "SELECT * FROM CRM_customers WHERE NgayThem='${NgayThem}' and(";
             $Customer = $this->model("CustomerModel");
             $GetDayDauSo = $Customer ->Query("SELECT * FROM networks WHERE Ten = '${NhaMang}'");
             while($row = mysqli_fetch_array($GetDayDauSo)) {
