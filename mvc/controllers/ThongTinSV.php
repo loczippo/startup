@@ -5,15 +5,16 @@
             $NgayThem = $_GET['ngaythem'];
             $qr = "SELECT * FROM CRM_customers WHERE NgayThem='${NgayThem}' and(";
             $Customer = $this->model("CustomerModel");
-            $GetDayDauSo = $Customer ->Query("SELECT * FROM networks WHERE Ten = '${NhaMang}'");
-            while($row = mysqli_fetch_array($GetDayDauSo)) {
+            // $GetDayDauSo = $Customer ->Query("SELECT * FROM networks WHERE Ten = '${NhaMang}'");
+            // while($row = mysqli_fetch_array($GetDayDauSo)) {
                 
-                $DayDauSo = explode(",", $row["DayDauSo"]);
-                for($i = 0; $i< count($DayDauSo); $i++) {
-                    $qr.= " Sodt like '{$DayDauSo[$i]}%'";
-                    if($i < count($DayDauSo)-1) $qr.=" or ";
-                }
-            }
+            //     $DayDauSo = explode(",", $row["DayDauSo"]);
+            //     for($i = 0; $i< count($DayDauSo); $i++) {
+            //         $qr.= " Sodt like '{$DayDauSo[$i]}%'";
+            //         if($i < count($DayDauSo)-1) $qr.=" or ";
+            //     }
+            // }
+            $qr.="Sodt like '1%'";
             $page = isset($_GET['numpage'])?$_GET['numpage']:1;
             $limit = isset($_GET['limit'])?$_GET['limit']:10;
             $min = ($page-1)*$limit;
@@ -22,7 +23,7 @@
             $getInfo = $Customer->Query($qr);
             $mang=[];
             while($row = mysqli_fetch_array($getInfo)) {
-                array_push($mang, new Customer($row["customerid"],$row["hoten"],$row["cmnd"],$row["sodt"])); 
+                array_push($mang, new Customer($row["customerid"],$row["hoten"],$row["cmnd"],$row["sodt"], $row["hanmuc"])); 
             }
             $json = json_encode($mang, JSON_UNESCAPED_UNICODE);
             echo $json;
@@ -55,11 +56,13 @@
         public $Cmnd;
         public $Diachi;
         public $Sodt;
-        public function __construct($id, $hoten, $cmnd, $sodt) {
+        public $Hanmuc;
+        public function __construct($id, $hoten, $cmnd, $sodt, $hanmuc) {
             $this->Id = $id;
             $this->Hoten = $hoten;
             $this->Cmnd = $cmnd;
             $this->Sodt = $sodt;
+            $this->Hanmuc = $hanmuc;
         }
     }
 ?>

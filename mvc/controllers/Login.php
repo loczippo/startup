@@ -1,6 +1,9 @@
 <?php
     class Login extends Controller{
         function Index() {
+            if(isset($_SESSION['role'])) {
+                header("Location: /Customers");
+            }
             $view = $this->view("Layout2", __CLASS__, [
                 "Page" => "login",
             ]);
