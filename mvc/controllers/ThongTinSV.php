@@ -5,16 +5,15 @@
             $NgayThem = $_GET['ngaythem'];
             $qr = "SELECT * FROM CRM_customers WHERE NgayThem='${NgayThem}' and(";
             $Customer = $this->model("CustomerModel");
-            // $GetDayDauSo = $Customer ->Query("SELECT * FROM networks WHERE Ten = '${NhaMang}'");
-            // while($row = mysqli_fetch_array($GetDayDauSo)) {
+             $GetDayDauSo = $Customer ->Query("SELECT * FROM networks WHERE Ten = '${NhaMang}'");
+             while($row = mysqli_fetch_array($GetDayDauSo)) {
                 
-            //     $DayDauSo = explode(",", $row["DayDauSo"]);
-            //     for($i = 0; $i< count($DayDauSo); $i++) {
-            //         $qr.= " Sodt like '{$DayDauSo[$i]}%'";
-            //         if($i < count($DayDauSo)-1) $qr.=" or ";
-            //     }
-            // }
-            $qr.="Sodt like '1%'";
+                 $DayDauSo = explode(",", $row["DayDauSo"]);
+                 for($i = 0; $i< count($DayDauSo); $i++) {
+                     $qr.= " Sodt like '{$DayDauSo[$i]}%'";
+                     if($i < count($DayDauSo)-1) $qr.=" or ";
+                 }
+             }
             $page = isset($_GET['numpage'])?$_GET['numpage']:1;
             $limit = isset($_GET['limit'])?$_GET['limit']:10;
             $min = ($page-1)*$limit;
