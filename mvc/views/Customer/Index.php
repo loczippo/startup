@@ -41,6 +41,7 @@
                                     <option value='new' ";echo  (!isset( $data['Trangthai']) ||  $data['Trangthai']=='new'?'selected':'');echo" >Chưa gọi</option>
                                     
                                     <option value='cnc' ";echo  (isset( $data['Trangthai']) &&  $data['Trangthai']=='cnc'?'selected':'');echo" >Có nhu cầu</option>
+                                    <option value='knc' ";echo (isset( $data['Trangthai']) &&  $data['Trangthai']=='knc'?'selected':'');echo" >Không nhu cầu</option>
                                     <option value='kbm' ";echo (isset( $data['Trangthai']) &&  $data['Trangthai']=='kbm'?'selected':'');echo" >Không bắt máy</option>
                                     <option value='hgl' ";echo  (isset( $data['Trangthai']) &&  $data['Trangthai']=='hgl'?'selected':'');echo" >Hẹn gọi lại</option>
                                     <option value='khac' ";echo  (isset( $data['Trangthai']) &&  $data['Trangthai']=='khac'?'selected':'');echo" >Khác</option>
