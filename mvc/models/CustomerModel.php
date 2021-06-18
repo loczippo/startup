@@ -72,7 +72,7 @@
             return mysqli_query($this->connection, $qr);
         }
         public function UpdateUseridInCustomer($userid, $customerid) {
-            $qr = "UPDATE CRM_customers set userid = $userid where customerid = $customerid";
+            $qr = "UPDATE CRM_customers set userid = $userid, trangthai= NULL where customerid = $customerid";
             return mysqli_query($this->connection, $qr);
         }
         public function UpdateCustomerTrangThai($customerid, $hoten, $cmnd, $sodt, $hanmuc, $trangthai, $ghichu, $sotk, $diachi, $ngaygoi) {
