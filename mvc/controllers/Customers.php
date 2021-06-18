@@ -44,7 +44,7 @@
             if($sodt != "") $query.=" and sodt='${sodt}'";
             $ngaybd=$this->getQueryParam('ngaybd');
 
-            $ngaykt=$this->getQueryParam('Ngaykt');
+            $ngaykt=$this->getQueryParam('ngaykt');
             $today = date("Y-m-d");
             if($ngaybd == "") $query.=" and ngaythem >= '${today}'";
             else $query.=" and ngaythem >= '${ngaybd}'";
