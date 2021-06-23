@@ -13,6 +13,8 @@
             if($row = mysqli_fetch_array($user)) {
                 $curentuserid = $row["userid"];
             }
+            $NetWorkDAO = $this->model("NetWorkModel");
+            $NetworkList=mysqli_fetch_all($NetWorkDAO->GetAll());
             $query="WHERE 1 ";
             $userid="";
             if($role=="nhanvien")
@@ -32,11 +34,33 @@
             if($trangthai==""){
                 $trangthai="new";
             }
+            
             if($trangthai!="all" && $trangthai!="new"){
                 $query.=" and trangthai='".$trangthai."'" ;
             }
             if($trangthai=="new"){
                 $query.=" and trangthai is null" ;
+            }
+            $DauSo=$this->getQueryParam("DauSo");
+            
+           if($DauSo!=null && $DauSo!=""){
+                       
+                $phonearr =explode(",", $DauSo);
+                if(count($phonearr) >0){
+                    $phone=$phonearr[0];
+
+
+                    $query.= " and ( sodt like '".$phone ."%'";
+                }
+                foreach($phonearr as $phone) {
+                    $phone=trim($phone);
+                    if($phone!=null && $phone!="")
+
+                        $query.= " or sodt like '".$phone ."%'";
+
+                   
+                }
+                 $query.=") ";
             }
             $cmnd=$this->getQueryParam("cmnd");
             if($cmnd != "") $query.=" and cmnd='${cmnd}'";
@@ -76,9 +100,10 @@
                 "Sodt"=>$sodt,
                 "Ngaybd"=>$ngaybd,
                 "Ngaykt"=>$ngaykt,
-
+                "DauSo"=>$DauSo,
                 "Userid"=>$userid,
                 "NhanVienList" => $NhanVienList,
+                "NetworkList" => $NetworkList,
                 "page"=>$page,
                 "limit"=>$limit,
                 "Totalrows"=>$totalrows[0],

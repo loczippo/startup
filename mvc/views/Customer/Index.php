@@ -88,12 +88,35 @@
                                 </div>
                             </div>
                         </div>
-                        <a href='javascript:;' class='btn btn-primary' data-container='form'
+                        <div class='row'>
+                            <div class='col-md-2'>
+                                Nhà mạng:
+                                <select  name='DauSo' id='DauSo' style='width: 150px' class='form-select'>
+                                    <option></option>";
+                                    
+                                    foreach($data["NetworkList"] as $row) {
+                                        ?>
+                                        <option value='<?php echo $row[2]; ?>' 
+                                            <?php echo ((isset($data['DauSo'])&& $data['DauSo'] ==$row[2] )?"selected":""); ?>
+                                        >
+                                            <?php echo $row[1]; ?>
+                                        </option>
+                                        <?php
+                                        echo $data['DauSo'];
+                                    }
+                                    
+                               echo" </select>
+                            </div>
+                            <div class='col-md-3' style='vertical-align:bottom;padding-top: 25px;'>
+                             <a href='javascript:;' class='btn btn-primary' data-container='form'
                               id='btnLoc'
                                   >Lọc  </a>
                                    <a href='/Customers/Import' class='btn btn-success' 
                               id='btnLoc'
                                   >Import  </a>
+                            </div>
+                        </div>
+                       
                         </form>";
                     echo "</div>";
                     
