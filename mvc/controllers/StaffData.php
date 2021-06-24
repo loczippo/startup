@@ -358,9 +358,9 @@
             if(isset($_POST['DauSo'])){
                         $DauSo = $_POST['DauSo'];
                     }
-                $qr = "SELECT * FROM CRM_customers where userid = ${userid} and trangthai ='hgl' and ngayhen < NOW() ORDER BY ngaythem asc ";
+                $qr = "SELECT * FROM CRM_customers where userid = ${userid} and trangthai ='hgl' and ngayhen <= NOW() ORDER BY ngaythem asc ";
                 
-                $qr.=" order by customerid asc LIMIT 1";
+                $qr.="  LIMIT 1";
                 //echo $qr; die;
                 $data = mysqli_fetch_all($Customer->Query($qr));
 
