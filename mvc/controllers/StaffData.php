@@ -263,9 +263,7 @@
                         $qr.=", ngayhen=NULL";
                     }
                     else {
-                        $ngayhen1 = date("Y-m-d");
-                        $tomorrow = date('Y-m-d', strtotime($ngayhen1 . "+3 days"));
-                        $qr.=", ngayhen='${tomorrow}'";
+                        $qr.=", ngayhen='${ngayhen}'";
                     }
                     if(strlen($sotien) ==0) {
                         $qr.=", sotien=NULL";
