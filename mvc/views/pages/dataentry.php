@@ -127,8 +127,8 @@ Nhà mạng:
                             }
                             ?>
                         </select>
-
-                       
+                        Dữ liệu hôm nay: 
+                       <input type="checkbox" name="homnay" value="homnay" <?php echo (isset($_GET['homnay'])?"checked":"");  ?>>
                        
                     </div>
                 </div>
