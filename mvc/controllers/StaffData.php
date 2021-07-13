@@ -165,6 +165,8 @@
                      "NetworkList" => $NetworkList,
                     "DauSo"=>isset($_POST["DauSo"])?$_POST["DauSo"]:"",
                     "homnay"=>isset($_POST["homnay"])?$_POST["homnay"]:"",
+                    "Ngaybd"=>isset($_POST["Ngaybd"])?$_POST["Ngaybd"]:"",
+                    "Ngaykt"=>isset($_POST["Ngaykt"])?$_POST["Ngaykt"]:"",
                 ]);
                 echo $view;
             }
@@ -359,14 +361,19 @@
             if(isset($_POST['DauSo'])){
                         $DauSo = $_POST['DauSo'];
             }
-            $qr = "SELECT * FROM CRM_customers where userid = ${userid} and trangthai ='hgl' and ngayhen <= NOW() ORDER BY ngaythem asc ";
+            $Account = $this->model("AccountModel");
+            $user = $Account->GetUserID($_SESSION['username']);
+            if($row = mysqli_fetch_array($user)) {
+                $curentuserid = $row["userid"];
+            }
+            $qr = "SELECT * FROM CRM_customers where userid = ${curentuserid} and trangthai ='hgl' and ngayhen <= NOW() ORDER BY ngaythem asc ";
             
             $qr.="  LIMIT 1";
             //echo $qr; die;
             $data = mysqli_fetch_all($Customer->Query($qr));
 
             if($data == null) {
-                $qr="SELECT * FROM CRM_customers where userid = ${userid} and (trangthai is null)";
+                $qr="SELECT * FROM CRM_customers where userid = ${curentuserid} and (trangthai is null)";
                 if(isset($_POST['DauSo'])){
                     $DauSo = $_POST['DauSo'];
                    // echo $DauSo;die;
@@ -387,13 +394,15 @@
                         }
                          $qr.=") ";
                 }
-                if(isset($_POST['homnay'])){
-                    $qr.=" and Date(ngaythem) =Date(NOW())";
+                if(isset($_POST['Ngaybd'])){
+                    $qr.=" and ngaythem >= '${_POST['Ngaybd']}'";
                 }
-                 
+                 if(isset($_POST['Ngaykt'])){
+                    $qr.=" and ngaythem <= '${_POST['Ngaykt']}'";
+                }
                 $qr.="  ORDER BY ngaythem asc  LIMIT 1";
                 
-                // echo $qr;die;
+                //echo $qr;die;
                 $data = mysqli_fetch_all($Customer->Query($qr));
                 if($data == null) {
                     header("Location: /Customers");
@@ -404,8 +413,11 @@
             foreach($data as $row) {
                 if(isset($row[0])) {
                     $url="/StaffData/DataEntry/${row[0]}&dauso=${DauSo}";
-                    if(isset($_POST['homnay'])){
-                    $url.="&homnay=homnay";
+                    if(isset($_POST['Ngaybd'])){
+                    $url.="&Ngaybd=${_POST['Ngaybd']}";
+                }
+                    if(isset($_POST['Ngaykt'])){
+                    $url.="&Ngaykt=${_POST['Ngaykt']}";
                 }
                     header("Location:".$url);
                 }

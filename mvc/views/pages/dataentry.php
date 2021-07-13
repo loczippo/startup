@@ -127,8 +127,12 @@ Nhà mạng:
                             }
                             ?>
                         </select>
-                        Dữ liệu hôm nay: 
-                       <input type="checkbox" name="homnay" value="homnay" <?php echo (isset($_GET['homnay'])?"checked":"");  ?>>
+                       
+                       Chọn ngày từ:
+                        <input style='width: 140px' type='date' class=' datepicker' id='Ngaybd' name='Ngaybd' value='<?php echo isset($_GET['Ngaybd'])?$_GET['Ngaybd']:'';?>' />
+                       
+                       Đến:
+                        <input style='width: 140px' type='date' class=' datepicker' id='Ngaykt' name='Ngaykt' value='<?php echo isset($_GET['Ngaykt'])?$_GET['Ngaykt']:'';?>' />
                        
                     </div>
                 </div>
