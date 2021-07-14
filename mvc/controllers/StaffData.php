@@ -394,10 +394,10 @@
                         }
                          $qr.=") ";
                 }
-                if(isset($_POST['Ngaybd'])){
+                if(isset($_POST['Ngaybd']) && $_POST['Ngaybd']!="" ){
                     $qr.=" and ngaythem >= '${_POST['Ngaybd']}'";
                 }
-                 if(isset($_POST['Ngaykt'])){
+                 if(isset($_POST['Ngaykt']) && $_POST['Ngaykt']!=""){
                     $qr.=" and ngaythem <= '${_POST['Ngaykt']}'";
                 }
                 $qr.="  ORDER BY ngaythem asc  LIMIT 1";
